@@ -1,0 +1,991 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlbumButtonLabel" xml:space="preserve">
+    <value>Update album</value>
+  </data>
+  <data name="AlbumCancelPhotoButtonLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AlbumCreatePhotoButtonLabel" xml:space="preserve">
+    <value>Add new photo</value>
+  </data>
+  <data name="AlbumDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="AlbumDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="AlbumImageDimensionsInvalidMessage" xml:space="preserve">
+    <value>Image must be at least {0} by {1} pixels in size.</value>
+  </data>
+  <data name="AlbumImageInvalidMessage" xml:space="preserve">
+    <value>Upload does not appear to be a valid image.</value>
+  </data>
+  <data name="AlbumImageRequiredMessage" xml:space="preserve">
+    <value>Photo image is required.</value>
+  </data>
+  <data name="AlbumPhotoDescriptionLabel" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AlbumPhotoDragLabel" xml:space="preserve">
+    <value>Drag to reorder</value>
+  </data>
+  <data name="AlbumPhotoEmptyDescription" xml:space="preserve">
+    <value>Edit album to add photos.</value>
+  </data>
+  <data name="AlbumPhotoEmptyName" xml:space="preserve">
+    <value>Album has no photos</value>
+  </data>
+  <data name="AlbumPhotoNameLabel" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="AlbumPhotoNameMaxLengthMessage" xml:space="preserve">
+    <value>Heading cannot be more than {1} characters.</value>
+  </data>
+  <data name="AlbumPhotoUploadLabel" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="AlbumUpdatePhotoButtonLabel" xml:space="preserve">
+    <value>Update photo</value>
+  </data>
+  <data name="BreadcrumbNavigationButtonLabel" xml:space="preserve">
+    <value>Update breadcrumb navigation</value>
+  </data>
+  <data name="BreadcrumbNavigationPageLabel" xml:space="preserve">
+    <value>Page displayed</value>
+  </data>
+  <data name="CarouselButtonLabel" xml:space="preserve">
+    <value>Update carousel</value>
+  </data>
+  <data name="CarouselCancelSlideButtonLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CarouselCreateSlideButtonLabel" xml:space="preserve">
+    <value>Add new slide</value>
+  </data>
+  <data name="CarouselImageDimensionsInvalidMessage" xml:space="preserve">
+    <value>Image must be at least {0} by {1} pixels in size.</value>
+  </data>
+  <data name="CarouselImageInvalidMessage" xml:space="preserve">
+    <value>Upload does not appear to be a valid image.</value>
+  </data>
+  <data name="CarouselImageRequiredMessage" xml:space="preserve">
+    <value>Slide image is required.</value>
+  </data>
+  <data name="CarouselPageRequiredMessage" xml:space="preserve">
+    <value>You have entered button text, but have not specified the page that this text should link to.</value>
+  </data>
+  <data name="CarouselSlideDescriptionLabel" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CarouselSlideDragLabel" xml:space="preserve">
+    <value>Drag to reorder</value>
+  </data>
+  <data name="CarouselSlideEmptyDescription" xml:space="preserve">
+    <value>Edit carousel to add slides.</value>
+  </data>
+  <data name="CarouselSlideEmptyName" xml:space="preserve">
+    <value>Carousel has no slides</value>
+  </data>
+  <data name="CarouselSlideNameLabel" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="CarouselSlideNameMaxLengthMessage" xml:space="preserve">
+    <value>Heading cannot be more than {1} characters.</value>
+  </data>
+  <data name="CarouselSlidePageDefaultOption" xml:space="preserve">
+    <value>Select page that button linked to</value>
+  </data>
+  <data name="CarouselSlidePageLabel" xml:space="preserve">
+    <value>Button page</value>
+  </data>
+  <data name="CarouselSlidePageTextLabel" xml:space="preserve">
+    <value>Button text</value>
+  </data>
+  <data name="CarouselSlidePageTextMaxLengthMessage" xml:space="preserve">
+    <value>Button text cannot be more than {1} characters.</value>
+  </data>
+  <data name="CarouselSlideUploadLabel" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="CarouselUpdateSlideButtonLabel" xml:space="preserve">
+    <value>Update slide</value>
+  </data>
+  <data name="CodeSnippetButtonLabel" xml:space="preserve">
+    <value>Update code snippet</value>
+  </data>
+  <data name="CodeSnippetCodeLabel" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CodeSnippetCodeRequiredMessage" xml:space="preserve">
+    <value>Code is required</value>
+  </data>
+  <data name="CodeSnippetDefaultCode" xml:space="preserve">
+    <value>public class Hello1
+{
+   public static void Main()
+   {
+      System.Console.WriteLine("Hello, World!");
+   }
+}</value>
+  </data>
+  <data name="CodeSnippetLanguageLabel" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="ContactAddressLabel" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ContactAddressMaxLengthMessage" xml:space="preserve">
+    <value>Address cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactButtonLabel" xml:space="preserve">
+    <value>Update contact details</value>
+  </data>
+  <data name="ContactDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="ContactDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactEmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ContactEmailMaxLengthMessage" xml:space="preserve">
+    <value>Email cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactFacebookLabel" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="ContactFacebookUsernameLabel" xml:space="preserve">
+    <value>Facebook username</value>
+  </data>
+  <data name="ContactFacebookUsernameMaxLengthMessage" xml:space="preserve">
+    <value>Facebook username cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactInstagramLabel" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ContactInstagramUsernameLabel" xml:space="preserve">
+    <value>Instagram username</value>
+  </data>
+  <data name="ContactInstagramUsernameMaxLengthMessage" xml:space="preserve">
+    <value>Instagram username cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactLinkedInCompanyUsernameLabel" xml:space="preserve">
+    <value>LinkedIn company username</value>
+  </data>
+  <data name="ContactLinkedInCompanyUsernameMaxLengthMessage" xml:space="preserve">
+    <value>LinkedIn company username cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactLinkedInLabel" xml:space="preserve">
+    <value>LinkedIn</value>
+  </data>
+  <data name="ContactLinkedInPersonalUsernameLabel" xml:space="preserve">
+    <value>LinkedIn personal username</value>
+  </data>
+  <data name="ContactLinkedInPersonalUsernameMaxLengthMessage" xml:space="preserve">
+    <value>LinkedIn personal username cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactPreambleLabel" xml:space="preserve">
+    <value>Preamble</value>
+  </data>
+  <data name="ContactTelephoneNumber1Label" xml:space="preserve">
+    <value>Telephone number 1</value>
+  </data>
+  <data name="ContactTelephoneNumber1MaxLengthMessage" xml:space="preserve">
+    <value>Telephone number 1 cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactTelephoneNumber2Label" xml:space="preserve">
+    <value>Telephone number 2</value>
+  </data>
+  <data name="ContactTelephoneNumber2MaxLengthMessage" xml:space="preserve">
+    <value>Telephone number 2 cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactTwitterLabel" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="ContactTwitterUsernameLabel" xml:space="preserve">
+    <value>Twitter username</value>
+  </data>
+  <data name="ContactTwitterUsernameMaxLengthMessage" xml:space="preserve">
+    <value>Twitter username cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactYouTubeChannelIdLabel" xml:space="preserve">
+    <value>YouTube channel ID</value>
+  </data>
+  <data name="ContactYouTubeChannelIdMaxLengthMessage" xml:space="preserve">
+    <value>YouTube channel ID cannot be more than {1} characters.</value>
+  </data>
+  <data name="ContactYouTubeChannelLabel" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="FolderDefaultOption" xml:space="preserve">
+    <value>Current folder</value>
+  </data>
+  <data name="FooterButtonLabel" xml:space="preserve">
+    <value>Update footer</value>
+  </data>
+  <data name="FooterMessageLabel" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="FormAddFieldButtonLabel" xml:space="preserve">
+    <value>Add field</value>
+  </data>
+  <data name="FormButtonLabel" xml:space="preserve">
+    <value>Update form</value>
+  </data>
+  <data name="FormDefaultFieldLabel" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="FormDefaultSubmitButtonLabel" xml:space="preserve">
+    <value>Send message</value>
+  </data>
+  <data name="FormDefaultSubmittedMessage" xml:space="preserve">
+    <value>Thanks, your message has been sent!</value>
+  </data>
+  <data name="FormDeleteFieldButtonLabel" xml:space="preserve">
+    <value>Remove field</value>
+  </data>
+  <data name="FormEmailHeading" xml:space="preserve">
+    <value>The following data has been submitted at {0}</value>
+  </data>
+  <data name="FormEmailSubject" xml:space="preserve">
+    <value>Form submission ({0})</value>
+  </data>
+  <data name="FormFieldLabelDefaultValue" xml:space="preserve">
+    <value>New form field</value>
+  </data>
+  <data name="FormFieldLabelLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FormFieldLabelRequiredMessage" xml:space="preserve">
+    <value>Field name is required.</value>
+  </data>
+  <data name="FormFieldRequiredLabel" xml:space="preserve">
+    <value>Required?</value>
+  </data>
+  <data name="FormFieldRequiredMessage" xml:space="preserve">
+    <value>{0} is required.</value>
+  </data>
+  <data name="FormFieldsLabel" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="FormFieldTypeLabel" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FormFieldTypeMultiLineLabel" xml:space="preserve">
+    <value>Multiple line text field</value>
+  </data>
+  <data name="FormFieldTypeTextLabel" xml:space="preserve">
+    <value>Single line text field</value>
+  </data>
+  <data name="FormRecipientEmailLabel" xml:space="preserve">
+    <value>Recipient email (one per line)</value>
+  </data>
+  <data name="FormRecipientEmailRequiredMessage" xml:space="preserve">
+    <value>Recipient email is required.</value>
+  </data>
+  <data name="FormSubmitButtonLabelLabel" xml:space="preserve">
+    <value>Submit button text</value>
+  </data>
+  <data name="FormSubmitButtonLabelMaxLengthMessage" xml:space="preserve">
+    <value>Submit button text cannot be more than {1} characters.</value>
+  </data>
+  <data name="FormSubmitButtonLabelRequiredMessage" xml:space="preserve">
+    <value>Submit button text is required.</value>
+  </data>
+  <data name="FormSubmittedMessageLabel" xml:space="preserve">
+    <value>Message displayed after form submitted</value>
+  </data>
+  <data name="FormSubmittedMessageRequiredMessage" xml:space="preserve">
+    <value>Submitted message is required.</value>
+  </data>
+  <data name="ForumAllThreadsLabel" xml:space="preserve">
+    <value>View all comments</value>
+  </data>
+  <data name="ForumCreatePostEmailHtmlBody" xml:space="preserve">
+    <value>Hello %ALIAS%!&lt;br/&gt;&lt;br/&gt;
+
+%POSTALIAS% has replied to your comment entitled %THREADSUBJECT%&lt;br/&gt;&lt;br/&gt;
+
+Click the link below to view the reply.&lt;br/&gt;&lt;br/&gt;
+
+&lt;a href="%FORUMURL%"&gt;%FORUMURL%&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;
+
+Thanks!</value>
+  </data>
+  <data name="ForumCreatePostEmailPlainTextBody" xml:space="preserve">
+    <value>Hello %ALIAS%!
+
+%POSTALIAS% has replied to your comment entitled %THREADSUBJECT%
+
+Click the link below to view the reply.
+
+%FORUMURL%
+
+Thanks!</value>
+  </data>
+  <data name="ForumCreatePostEmailSubject" xml:space="preserve">
+    <value>%POSTALIAS% has replied to your comment entitled %THREADSUBJECT%</value>
+  </data>
+  <data name="ForumCreateThreadButtonLabel" xml:space="preserve">
+    <value>Add new comment</value>
+  </data>
+  <data name="ForumCreateThreadLinkLabel" xml:space="preserve">
+    <value>Add new comment</value>
+  </data>
+  <data name="ForumDeleteThreadButtonLabel" xml:space="preserve">
+    <value>Delete comment</value>
+  </data>
+  <data name="ForumDeleteThreadOptionLabel" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ForumMessageLabel" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ForumMessageRequiredMessage" xml:space="preserve">
+    <value>Comment is required.</value>
+  </data>
+  <data name="ForumNoThreadsCreateThreadLabel" xml:space="preserve">
+    <value>Why don't you add one?</value>
+  </data>
+  <data name="ForumNoThreadsMessage" xml:space="preserve">
+    <value>This forum has no comments.</value>
+  </data>
+  <data name="ForumNotifyLabel" xml:space="preserve">
+    <value>Notify me when others reply to my comment?</value>
+  </data>
+  <data name="ForumPageLabel" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="ForumPostedByLabel" xml:space="preserve">
+    <value>Posted by</value>
+  </data>
+  <data name="ForumQuoteBegin" xml:space="preserve">
+    <value>**Originally Posted By {0}**</value>
+  </data>
+  <data name="ForumQuotePostButtonLabel" xml:space="preserve">
+    <value>Quote comment</value>
+  </data>
+  <data name="ForumQuotePostOptionLabel" xml:space="preserve">
+    <value>Quote</value>
+  </data>
+  <data name="ForumQuoteThreadButtonLabel" xml:space="preserve">
+    <value>Quote comment</value>
+  </data>
+  <data name="ForumQuoteThreadOptionLabel" xml:space="preserve">
+    <value>Quote</value>
+  </data>
+  <data name="ForumReplyPostButtonLabel" xml:space="preserve">
+    <value>Reply to comment</value>
+  </data>
+  <data name="ForumReplyPostOptionLabel" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="ForumReplyThreadButtonLabel" xml:space="preserve">
+    <value>Reply to comment</value>
+  </data>
+  <data name="ForumReplyThreadMessage" xml:space="preserve">
+    <value>Why don't you create one?</value>
+  </data>
+  <data name="ForumReplyThreadOptionLabel" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="ForumSubjectLabel" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ForumSubjectMaxLengthMessage" xml:space="preserve">
+    <value>Subject cannot be more than {1} characters.</value>
+  </data>
+  <data name="ForumSubjectRequiredMessage" xml:space="preserve">
+    <value>Subject is required.</value>
+  </data>
+  <data name="ForumThreadNoRepliesMessage" xml:space="preserve">
+    <value>This comment has no replies.</value>
+  </data>
+  <data name="ForumThreadsCreatedColumnLabel" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="ForumThreadsLastPostColumnLabel" xml:space="preserve">
+    <value>Last Post</value>
+  </data>
+  <data name="ForumThreadsRepliesColumnLabel" xml:space="preserve">
+    <value>Replies</value>
+  </data>
+  <data name="ForumThreadsSubjectColumnLabel" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ForumThreadsViewsColumnLabel" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="ForumUpdatePostButtonLabel" xml:space="preserve">
+    <value>Update comment</value>
+  </data>
+  <data name="ForumUpdatePostOptionLabel" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="ForumUpdateThreadButtonLabel" xml:space="preserve">
+    <value>Update comment</value>
+  </data>
+  <data name="ForumUpdateThreadOptionLabel" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="HtmlButtonLabel" xml:space="preserve">
+    <value>Update text</value>
+  </data>
+  <data name="HtmlDefaultHtml" xml:space="preserve">
+    <value>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?&lt;/p&gt;</value>
+  </data>
+  <data name="HtmlHtmlLabel" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="HtmlImageInvalidMessage" xml:space="preserve">
+    <value>Upload does not appear to be a valid image.</value>
+  </data>
+  <data name="HtmlUploadLabel" xml:space="preserve">
+    <value>Upload image or file</value>
+  </data>
+  <data name="LatestThreadButtonLabel" xml:space="preserve">
+    <value>Update latest comments</value>
+  </data>
+  <data name="LatestThreadDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="LatestThreadDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="LatestThreadNoThreadsMessageLabel" xml:space="preserve">
+    <value>Message displayed when no threads found</value>
+  </data>
+  <data name="LatestThreadNoThreadsMessageRequiredMessage" xml:space="preserve">
+    <value>No threads message is required.</value>
+  </data>
+  <data name="LatestThreadPageLabel" xml:space="preserve">
+    <value>Show threads of pages in this folder</value>
+  </data>
+  <data name="LatestThreadPageSizeLabel" xml:space="preserve">
+    <value>Maximum number of threads displayed</value>
+  </data>
+  <data name="LatestThreadPageSizeRequiredMessage" xml:space="preserve">
+    <value>Page size is required.</value>
+  </data>
+  <data name="LatestThreadPreambleLabel" xml:space="preserve">
+    <value>Preamble</value>
+  </data>
+  <data name="LatestThreadRecursiveLabel" xml:space="preserve">
+    <value>Recursively show threads of all child pages?</value>
+  </data>
+  <data name="MapButtonLabel" xml:space="preserve">
+    <value>Update map</value>
+  </data>
+  <data name="MapDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="MapDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="MapLatitudeInvalidMessage" xml:space="preserve">
+    <value>Latitude is invalid.</value>
+  </data>
+  <data name="MapLatitudeLabel" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="MapLatitudeMaxLengthMessage" xml:space="preserve">
+    <value>Latitude cannot be more than {1} characters.</value>
+  </data>
+  <data name="MapLatitudeRequiredMessage" xml:space="preserve">
+    <value>Latitude is required.</value>
+  </data>
+  <data name="MapLongitudeInvalidMessage" xml:space="preserve">
+    <value>Longitude is invalid.</value>
+  </data>
+  <data name="MapLongitudeLabel" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="MapLongitudeMaxLengthMessage" xml:space="preserve">
+    <value>Longitude cannot be more than {1} characters.</value>
+  </data>
+  <data name="MapLongitudeRequiredMessage" xml:space="preserve">
+    <value>Longitude is required.</value>
+  </data>
+  <data name="NavBarAddTabButtonLabel" xml:space="preserve">
+    <value>Add tab</value>
+  </data>
+  <data name="NavBarButtonLabel" xml:space="preserve">
+    <value>Update navigation bar</value>
+  </data>
+  <data name="NavBarDeleteTabButtonLabel" xml:space="preserve">
+    <value>Remove tab</value>
+  </data>
+  <data name="NavBarNameLabel" xml:space="preserve">
+    <value>Site name</value>
+  </data>
+  <data name="NavBarPageLabel" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="NavBarTabNameLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NavBarTabNameMaxLengthMessage" xml:space="preserve">
+    <value>Name cannot be more than {1} characters.</value>
+  </data>
+  <data name="NavBarTabNameRequiredMessage" xml:space="preserve">
+    <value>Name is required.</value>
+  </data>
+  <data name="NavBarTabPageRequiredMessage" xml:space="preserve">
+    <value>Page is required.</value>
+  </data>
+  <data name="NavBarTabsLabel" xml:space="preserve">
+    <value>Tabs</value>
+  </data>
+  <data name="NavBarToggleNavigationLabel" xml:space="preserve">
+    <value>Toggle navigation</value>
+  </data>
+  <data name="PageDefaultOption" xml:space="preserve">
+    <value>Current page</value>
+  </data>
+  <data name="PageHeaderButtonLabel" xml:space="preserve">
+    <value>Update page header</value>
+  </data>
+  <data name="PageHeaderCreatedLabel" xml:space="preserve">
+    <value>Posted</value>
+  </data>
+  <data name="PageHeaderHomeBreadcrumbLabel" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="PageHeaderOccurredFutureLabel" xml:space="preserve">
+    <value>Occurs</value>
+  </data>
+  <data name="PageHeaderOccurredPastLabel" xml:space="preserve">
+    <value>Occurred</value>
+  </data>
+  <data name="PageHeaderPageLabel" xml:space="preserve">
+    <value>Page displayed</value>
+  </data>
+  <data name="PageHeaderShowBreadcrumbsLabel" xml:space="preserve">
+    <value>Show breadcrumbs?</value>
+  </data>
+  <data name="PageHeaderShowCreatedLabel" xml:space="preserve">
+    <value>Show page created date?</value>
+  </data>
+  <data name="PageHeaderShowDescriptionLabel" xml:space="preserve">
+    <value>Show page description?</value>
+  </data>
+  <data name="PageHeaderShowImageLabel" xml:space="preserve">
+    <value>Show page image?</value>
+  </data>
+  <data name="PageHeaderShowNameLabel" xml:space="preserve">
+    <value>Show page name?</value>
+  </data>
+  <data name="PageHeaderShowOccurredLabel" xml:space="preserve">
+    <value>Show page occurred date?</value>
+  </data>
+  <data name="PageHeaderShowUpdatedLabel" xml:space="preserve">
+    <value>Show page last updated date?</value>
+  </data>
+  <data name="PageHeaderUpdatedLabel" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="PageListButtonLabel" xml:space="preserve">
+    <value>Update page list</value>
+  </data>
+  <data name="PageListCommentsLabel" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="PageListCreatedLabel" xml:space="preserve">
+    <value>Posted</value>
+  </data>
+  <data name="PageListDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="PageListDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="PageListMoreMessageLabel" xml:space="preserve">
+    <value>More pages message</value>
+  </data>
+  <data name="PageListMoreMessageMaxLengthMessage" xml:space="preserve">
+    <value>More message cannot be more than {1} characters.</value>
+  </data>
+  <data name="PageListNoPagesMessageLabel" xml:space="preserve">
+    <value>Message displayed when no pages found</value>
+  </data>
+  <data name="PageListOccurredFutureLabel" xml:space="preserve">
+    <value>Occurs</value>
+  </data>
+  <data name="PageListOccurredPastLabel" xml:space="preserve">
+    <value>Occurred</value>
+  </data>
+  <data name="PageListPageLabel" xml:space="preserve">
+    <value>List pages in this folder</value>
+  </data>
+  <data name="PageListPageSizeLabel" xml:space="preserve">
+    <value>Maximum number of pages displayed</value>
+  </data>
+  <data name="PageListPageSizeRangeMessage" xml:space="preserve">
+    <value>Page size must be between {1} and {2} pixels.</value>
+  </data>
+  <data name="PageListPageSizeRequiredMessage" xml:space="preserve">
+    <value>Page size is required.</value>
+  </data>
+  <data name="PageListPageTypeLabel" xml:space="preserve">
+    <value>Type of page listed</value>
+  </data>
+  <data name="PageListPageTypeRequiredMessage" xml:space="preserve">
+    <value>Page type is required.</value>
+  </data>
+  <data name="PageListPreambleLabel" xml:space="preserve">
+    <value>Preamble</value>
+  </data>
+  <data name="PageListRecursiveLabel" xml:space="preserve">
+    <value>Recursively list all child pages?</value>
+  </data>
+  <data name="PageListShowBackgroundImageLabel" xml:space="preserve">
+    <value>Show page image as background?</value>
+  </data>
+  <data name="PageListShowCommentsLabel" xml:space="preserve">
+    <value>Show page comments?</value>
+  </data>
+  <data name="PageListShowCreatedLabel" xml:space="preserve">
+    <value>Show page created date?</value>
+  </data>
+  <data name="PageListShowDescriptionLabel" xml:space="preserve">
+    <value>Show page description?</value>
+  </data>
+  <data name="PageListShowImageLabel" xml:space="preserve">
+    <value>Show page image?</value>
+  </data>
+  <data name="PageListShowOccurredLabel" xml:space="preserve">
+    <value>Show page occurred date?</value>
+  </data>
+  <data name="PageListShowPagerLabel" xml:space="preserve">
+    <value>Show pager when number of pages greater than page size?</value>
+  </data>
+  <data name="PageListShowRelatedLabel" xml:space="preserve">
+    <value>Show pages related to the current page?</value>
+  </data>
+  <data name="PageListShowTagsLabel" xml:space="preserve">
+    <value>Show page tags?</value>
+  </data>
+  <data name="PageListShowUpdatedLabel" xml:space="preserve">
+    <value>Show page last updated date?</value>
+  </data>
+  <data name="PageListSortAscendingOption" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="PageListSortAscLabel" xml:space="preserve">
+    <value>Sort direction</value>
+  </data>
+  <data name="PageListSortAscRequiredMessage" xml:space="preserve">
+    <value>Sort direction is required.</value>
+  </data>
+  <data name="PageListSortByLabel" xml:space="preserve">
+    <value>Order pages by</value>
+  </data>
+  <data name="PageListSortByRequiredMessage" xml:space="preserve">
+    <value>Page order is required.</value>
+  </data>
+  <data name="PageListSortDescendingOption" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="PageListUpdatedLabel" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="ShareButtonLabel" xml:space="preserve">
+    <value>Update share</value>
+  </data>
+  <data name="ShareDiggTooltip" xml:space="preserve">
+    <value>Share on Digg</value>
+  </data>
+  <data name="ShareDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="ShareDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="ShareFacebookTooltip" xml:space="preserve">
+    <value>Share on Facebook</value>
+  </data>
+  <data name="ShareGoogleTooltip" xml:space="preserve">
+    <value>Share on Google</value>
+  </data>
+  <data name="ShareLinkedInTooltip" xml:space="preserve">
+    <value>Share on LinkedIn</value>
+  </data>
+  <data name="SharePinterestTooltip" xml:space="preserve">
+    <value>Share on Pinterest</value>
+  </data>
+  <data name="ShareRedditTooltip" xml:space="preserve">
+    <value>Share on Reddit</value>
+  </data>
+  <data name="ShareShareOnDiggLabel" xml:space="preserve">
+    <value>Share on Digg?</value>
+  </data>
+  <data name="ShareShareOnFacebookLabel" xml:space="preserve">
+    <value>Share on Facebook?</value>
+  </data>
+  <data name="ShareShareOnGoogleLabel" xml:space="preserve">
+    <value>Share on Google?</value>
+  </data>
+  <data name="ShareShareOnLinkedInLabel" xml:space="preserve">
+    <value>Share on LinkedIn?</value>
+  </data>
+  <data name="ShareShareOnPinterestLabel" xml:space="preserve">
+    <value>Share on Pinterest?</value>
+  </data>
+  <data name="ShareShareOnRedditLabel" xml:space="preserve">
+    <value>Share on Reddit?</value>
+  </data>
+  <data name="ShareShareOnStumbleUponLabel" xml:space="preserve">
+    <value>Share on StumbleUpon?</value>
+  </data>
+  <data name="ShareShareOnTumblrLabel" xml:space="preserve">
+    <value>Share on Tumblr?</value>
+  </data>
+  <data name="ShareShareOnTwitterLabel" xml:space="preserve">
+    <value>Share on Twitter?</value>
+  </data>
+  <data name="ShareStumbleUponTooltip" xml:space="preserve">
+    <value>Share on StumbleUpon</value>
+  </data>
+  <data name="ShareTumblrTooltip" xml:space="preserve">
+    <value>Share on Tumblr</value>
+  </data>
+  <data name="ShareTwitterTooltip" xml:space="preserve">
+    <value>Share on Twitter</value>
+  </data>
+  <data name="ShowLoggedOffUserOptionsLabel" xml:space="preserve">
+    <value>Show log in and register user options?</value>
+  </data>
+  <data name="ShowLoggedOnUserOptionsLabel" xml:space="preserve">
+    <value>Show update profile, change password and log out user options?</value>
+  </data>
+  <data name="TableButtonLabel" xml:space="preserve">
+    <value>Update table details</value>
+  </data>
+  <data name="TableDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="TableDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="TablePreambleLabel" xml:space="preserve">
+    <value>Preamble</value>
+  </data>
+  <data name="TableRowsLabel" xml:space="preserve">
+    <value>Data (comma separated values, 1 line per row)</value>
+  </data>
+  <data name="TableShowHeadersLabel" xml:space="preserve">
+    <value>Show column headers (use first line of data)?</value>
+  </data>
+  <data name="TagCloudButtonLabel" xml:space="preserve">
+    <value>Update tag cloud</value>
+  </data>
+  <data name="TagCloudDefaultNoTagsMessage" xml:space="preserve">
+    <value>No tags found.</value>
+  </data>
+  <data name="TagCloudDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="TagCloudDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="TagCloudNoTagsMessageLabel" xml:space="preserve">
+    <value>Message displayed when no tags found</value>
+  </data>
+  <data name="TagCloudNoTagsMessageRequiredMessage" xml:space="preserve">
+    <value>No tags message is required.</value>
+  </data>
+  <data name="TagCloudPageLabel" xml:space="preserve">
+    <value>Show tags of pages in this folder</value>
+  </data>
+  <data name="TagCloudRecursiveLabel" xml:space="preserve">
+    <value>Recursively show tags of all child pages?</value>
+  </data>
+  <data name="TestimonalCancelButtonLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="TestimonialAuthorLabel" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="TestimonialAuthorMaxLengthMessage" xml:space="preserve">
+    <value>Author cannot be more than {1} characters.</value>
+  </data>
+  <data name="TestimonialAuthorRequiredMessage" xml:space="preserve">
+    <value>Author is required.</value>
+  </data>
+  <data name="TestimonialAuthorTitleLabel" xml:space="preserve">
+    <value>Author's title</value>
+  </data>
+  <data name="TestimonialAuthorTitleMaxLengthMessage" xml:space="preserve">
+    <value>Author's title cannot be more than {1} characters.</value>
+  </data>
+  <data name="TestimonialCommentDateLabel" xml:space="preserve">
+    <value>Testimonial date</value>
+  </data>
+  <data name="TestimonialCommentDateMaxLengthMessage" xml:space="preserve">
+    <value>Testimonial date cannot be more than {1} characters.</value>
+  </data>
+  <data name="TestimonialCommentDragLabel" xml:space="preserve">
+    <value>Drag to reorder</value>
+  </data>
+  <data name="TestimonialCommentEmptyName" xml:space="preserve">
+    <value>No testimonials found. Edit testimonial to add some!</value>
+  </data>
+  <data name="TestimonialCommentLabel" xml:space="preserve">
+    <value>Testimonial</value>
+  </data>
+  <data name="TestimonialCommentRequiredMessage" xml:space="preserve">
+    <value>Testimonial is required.</value>
+  </data>
+  <data name="TestimonialCreateButtonLabel" xml:space="preserve">
+    <value>Add testimonial</value>
+  </data>
+  <data name="TestimonialCreateCommentButtonLabel" xml:space="preserve">
+    <value>Add testimonial</value>
+  </data>
+  <data name="TestimonialDefaultAuthor" xml:space="preserve">
+    <value>John Smith</value>
+  </data>
+  <data name="TestimonialDefaultAuthorTitle" xml:space="preserve">
+    <value>CEO of John Smith Industries Limited</value>
+  </data>
+  <data name="TestimonialDefaultComment" xml:space="preserve">
+    <value>I am very impressed with the level of service offered by Acme Corporation.</value>
+  </data>
+  <data name="TestimonialDefaultCommentDate" xml:space="preserve">
+    <value>10th December 2016</value>
+  </data>
+  <data name="TestimonialDisplayNameLabel" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="TestimonialDisplayNameMaxLengthMessage" xml:space="preserve">
+    <value>Display name cannot be more than {1} characters.</value>
+  </data>
+  <data name="TestimonialPreambleLabel" xml:space="preserve">
+    <value>Preamble</value>
+  </data>
+  <data name="TestimonialUpdateButtonLabel" xml:space="preserve">
+    <value>Update testimonials</value>
+  </data>
+  <data name="TestimonialUpdateCommentButtonLabel" xml:space="preserve">
+    <value>Update testimonial</value>
+  </data>
+</root>

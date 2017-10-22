@@ -1,0 +1,38 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.PageList
+
+@model IElementInfo<PageListSettings, PageListContent>
+
+<div class="rcms-page-list-admin" ng-app="adminApp" ng-controller="PageListAdminController" ng-init="initialise(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="model"></div>
+    <form name="form" role="form" ng-show="model" novalidate>
+        <validation-summary ng-model="model.customErrorMessages"></validation-summary>
+        <div class="row">
+            <div class="col-sm-6">
+                <text-field ng-model="model.fields.displayName"></text-field>
+                <multi-line-text-field ng-model="model.fields.preamble"></multi-line-text-field>
+                <select-field ng-model="model.fields.page"></select-field>
+                <select-field ng-model="model.fields.pageType"></select-field>
+                <select-field ng-model="model.fields.sortBy"></select-field>
+                <select-field ng-model="model.fields.sortAsc"></select-field>
+                <integer-field ng-model="model.fields.pageSize"></integer-field>
+            </div>
+            <div class="col-sm-6">
+                <text-field ng-model="model.fields.noPagesMessage"></text-field>
+                <text-field ng-model="model.fields.moreMessage"></text-field>
+                <checkbox-field ng-model="model.fields.recursive"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showRelated"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showPager"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showDescription"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showImage"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showBackgroundImage"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showCreated"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showUpdated"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showOccurred"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showComments"></checkbox-field>
+                <checkbox-field ng-model="model.fields.showTags"></checkbox-field>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || form.$invalid" ng-click="submitForm()">{{model.submitLabel}}</button>
+    </form>
+</div>

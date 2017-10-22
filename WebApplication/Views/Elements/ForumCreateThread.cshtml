@@ -1,0 +1,21 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Forums
+
+@model IElementInfo<ForumSettings, ForumContent>
+
+<div class="rcms-forum-create-thread forum">
+
+    @{ Html.RenderPartial("~/Views/Elements/ForumNavigation.cshtml", Model); }
+
+    <div ng-app="adminApp" ng-controller="ForumController" ng-init="getForm('@Model.Content.FormContext')" ng-cloak>
+        <div class="spinner" ng-hide="form"></div>
+        <form name="htmlForm" role="form" ng-show="form" novalidate>
+            <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+            <text-field ng-model="form.fields.subject"></text-field>
+            <multi-line-text-field ng-model="form.fields.message"></multi-line-text-field>
+            <checkbox-field ng-model="form.fields.notify"></checkbox-field>
+            <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+        </form>
+    </div>
+
+</div>

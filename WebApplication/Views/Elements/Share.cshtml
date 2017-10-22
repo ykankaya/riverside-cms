@@ -1,0 +1,36 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Resources
+@using Riverside.Cms.Elements.Shares
+
+@model IElementInfo<ShareSettings, ShareContent>
+
+@{
+    string title    = Model.Content.Title;
+    string url      = Model.Content.Url;
+    string desc     = Model.Content.Description;
+    string via      = Model.Content.Via;
+    string hashtags = Model.Content.Hashtags;
+    string img      = Model.Content.Image;
+    string is_video = Model.Content.IsVideo;
+}
+
+<div class="rcms-share">
+
+    @if (Model.Settings.DisplayName != null)
+    {
+        <h2>@Model.Settings.DisplayName</h2>
+    }
+
+    <ul class="share">
+        @if (Model.Settings.ShareOnDigg) {<li><a title="@ElementResource.ShareDiggTooltip" href="#" onclick="window.open('https://digg.com/submit?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-digg" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnFacebook) {<li><a title="@ElementResource.ShareFacebookTooltip" href="#" onclick="window.open('https://www.facebook.com/sharer.php?u=@(url)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnGoogle) {<li><a title="@ElementResource.ShareGoogleTooltip" href="#" onclick="window.open('https://plus.google.com/share?url=@(url)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnLinkedIn) {<li><a title="@ElementResource.ShareLinkedInTooltip" href="#" onclick="window.open('https://www.linkedin.com/shareArticle?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnPinterest) {<li><a title="@ElementResource.SharePinterestTooltip" href="#" onclick="window.open('https://pinterest.com/pin/create/bookmarklet/?media=@(img)&url=@(url)&is_video=@(is_video)&description=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-pinterest" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnReddit) {<li><a title="@ElementResource.ShareRedditTooltip" href="#" onclick="window.open('https://reddit.com/submit?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-reddit" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnStumbleUpon) {<li><a title="@ElementResource.ShareStumbleUponTooltip" href="#" onclick="window.open('https://www.stumbleupon.com/submit?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-stumbleupon" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnTumblr) {<li><a title="@ElementResource.ShareTumblrTooltip" href="#" onclick="window.open('https://www.tumblr.com/widgets/share/tool?canonicalUrl=@(url)&title=@(title)&caption=@(desc)}', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-tumblr" aria-hidden="true"></i></a></li>}
+        @if (Model.Settings.ShareOnTwitter) {<li><a title="@ElementResource.ShareTwitterTooltip" href="#" onclick="window.open('https://twitter.com/share?url=@(url)&text=@(title)&via=@(via)&hashtags=@(hashtags)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i></a></li>}
+    </ul>
+
+</div>

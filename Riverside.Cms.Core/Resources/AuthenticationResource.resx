@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AliasLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AliasMaxLengthMessage" xml:space="preserve">
+    <value>Name cannot be more than {1} characters.</value>
+  </data>
+  <data name="AliasNotAvailableMessage" xml:space="preserve">
+    <value>Name not available.</value>
+  </data>
+  <data name="AliasRequiredMessage" xml:space="preserve">
+    <value>Name is required.</value>
+  </data>
+  <data name="ChangePasswordButtonLabel" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="ChangePasswordConfirmPasswordLabel" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="ChangePasswordConfirmPasswordRequiredMessage" xml:space="preserve">
+    <value>Password confirmation is required.</value>
+  </data>
+  <data name="ChangePasswordCurrentPasswordInvalidMessage" xml:space="preserve">
+    <value>Current password is invalid.</value>
+  </data>
+  <data name="ChangePasswordCurrentPasswordLabel" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="ChangePasswordCurrentPasswordRequiredMessage" xml:space="preserve">
+    <value>Current password is required.</value>
+  </data>
+  <data name="ChangePasswordLogonMessage" xml:space="preserve">
+    <value>Too many change password attempts. Your account has been temporarily locked out. Log in to this site later and try changing your password again. If you have forgotten your password, go to the user options menu and reset your password.</value>
+  </data>
+  <data name="ChangePasswordNewPasswordLabel" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="ChangePasswordNewPasswordLengthMessage" xml:space="preserve">
+    <value>New password must be between {2} and {1} characters long.</value>
+  </data>
+  <data name="ChangePasswordNewPasswordRequiredMessage" xml:space="preserve">
+    <value>New password is required.</value>
+  </data>
+  <data name="ChangePasswordPageDescription" xml:space="preserve">
+    <value>Enter your current and new passwords to change your password.</value>
+  </data>
+  <data name="ChangePasswordPageName" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
+  <data name="ChangePasswordPasswordsDoNotMatchMessage" xml:space="preserve">
+    <value>The new passwords supplied do not match.</value>
+  </data>
+  <data name="ChangePasswordSuccessMessage" xml:space="preserve">
+    <value>Your password has been updated.</value>
+  </data>
+  <data name="ChangePasswordUserDisabledMessage" xml:space="preserve">
+    <value>Invalid user.</value>
+  </data>
+  <data name="ChangePasswordUserLockedOutMessage" xml:space="preserve">
+    <value>Account locked out. Please try again later.</value>
+  </data>
+  <data name="ChangePasswordUserNotFoundMessage" xml:space="preserve">
+    <value>Invalid user.</value>
+  </data>
+  <data name="ChangePasswordUserUnconfirmedMessage" xml:space="preserve">
+    <value>Invalid user.</value>
+  </data>
+  <data name="ConfirmUserConfirmedMessage" xml:space="preserve">
+    <value>Account activation failed.</value>
+  </data>
+  <data name="ConfirmUserConfirmPasswordLabel" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="ConfirmUserConfirmPasswordRequiredMessage" xml:space="preserve">
+    <value>Password confirmation is required.</value>
+  </data>
+  <data name="ConfirmUserDisabledMessage" xml:space="preserve">
+    <value>Account activation failed.</value>
+  </data>
+  <data name="ConfirmUserFailureMessage" xml:space="preserve">
+    <value>There was a problem activating your account. Please contact the site administrators.</value>
+  </data>
+  <data name="ConfirmUserLogonMessage" xml:space="preserve">
+    <value>Now that you have re-activated your account, you can log back in to this site.</value>
+  </data>
+  <data name="ConfirmUserNotFoundMessage" xml:space="preserve">
+    <value>Account activation failed.</value>
+  </data>
+  <data name="ConfirmUserPageName" xml:space="preserve">
+    <value>Activate account</value>
+  </data>
+  <data name="ConfirmUserPasswordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ConfirmUserPasswordLengthMessage" xml:space="preserve">
+    <value>Password must be between {2} and {1} characters long.</value>
+  </data>
+  <data name="ConfirmUserPasswordNotSetMessage" xml:space="preserve">
+    <value>User confirmation failed.</value>
+  </data>
+  <data name="ConfirmUserPasswordRequiredMessage" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="ConfirmUserPasswordsDoNotMatchMessage" xml:space="preserve">
+    <value>The passwords supplied do not match.</value>
+  </data>
+  <data name="ConfirmUserPasswordSetMessage" xml:space="preserve">
+    <value>Account activation failed.</value>
+  </data>
+  <data name="ConfirmUserSetPasswordButtonLabel" xml:space="preserve">
+    <value>Activate account and set password</value>
+  </data>
+  <data name="ConfirmUserSetPasswordFailureMessage" xml:space="preserve">
+    <value>There was a problem activating your account. Please contact the site administrators.</value>
+  </data>
+  <data name="ConfirmUserSetPasswordLogonMessage" xml:space="preserve">
+    <value>Now that you have activated your account, you can log in to this site.</value>
+  </data>
+  <data name="ConfirmUserSetPasswordPageDescription" xml:space="preserve">
+    <value>Choose a password to complete the account activation process.</value>
+  </data>
+  <data name="ConfirmUserSetPasswordPageName" xml:space="preserve">
+    <value>Activate account</value>
+  </data>
+  <data name="ConfirmUserSuccessMessage" xml:space="preserve">
+    <value>Thanks for activating your account. You can now log on to this site.</value>
+  </data>
+  <data name="ConfirmUserTokenExpiredMessage" xml:space="preserve">
+    <value>Account activation request expired.</value>
+  </data>
+  <data name="ConfirmUserTokenInvalidMessage" xml:space="preserve">
+    <value>Account activation failed.</value>
+  </data>
+  <data name="CreateUserButtonLabel" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="CreateUserEmailHtmlBody" xml:space="preserve">
+    <value>&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+h1 { margin: 20px 0 10px 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 36px; line-height: 1.1; color: #333333; }
+h2 { margin: 20px 0 10px 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 30px; line-height: 1.1; color: #333333; }
+p { margin: 10px 0 10px 0; padding: 0; width: 100%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #333333; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;User registration&lt;/h1&gt;
+&lt;p&gt;Hello %ALIAS%&lt;/p&gt;
+&lt;p&gt;An account has been created for you. Click the link below to set a password and activate your account.&lt;/p&gt;
+&lt;p&gt;&lt;a href="%CONFIRMURL%"&gt;%CONFIRMURL%&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The link will expire at %CONFIRMEXPIRES%.&lt;/p&gt;
+&lt;p&gt;Once you have clicked on the link and set your password, you will be able to login with your email address (%EMAIL%) and new password.&lt;/p&gt;
+&lt;p&gt;Thanks!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="CreateUserEmailPlainTextBody" xml:space="preserve">
+    <value>User registration
+
+Hello %ALIAS%
+
+An account has been created for you. Click the link below to set a password and activate your account.
+
+%CONFIRMURL%
+
+The link will expire at %CONFIRMEXPIRES%.
+
+Once you have clicked on the link and set your password, you will be able to login with your email address (%EMAIL%) and new password.
+
+Thanks!</value>
+  </data>
+  <data name="CreateUserEmailSubject" xml:space="preserve">
+    <value>Hello %ALIAS% and welcome!</value>
+  </data>
+  <data name="CreateUserPageDescription" xml:space="preserve">
+    <value>Registration is quick and easy. Fill out the form below to begin the process. Once you have created an account, you will receive an email containing instructions for activating your account. Once you have activated your account, you will be able to log on to this website.</value>
+  </data>
+  <data name="CreateUserPageName" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="CreateUserSuccessMessage" xml:space="preserve">
+    <value>Thanks for creating an account. You will shortly receive an email containing instructions for activating your account. Once you have activated your account, you will be able to log on to this site.</value>
+  </data>
+  <data name="EmailInvalidMessage" xml:space="preserve">
+    <value>Email address is invalid.</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailMaxLengthMessage" xml:space="preserve">
+    <value>Email address cannot be more than {1} characters.</value>
+  </data>
+  <data name="EmailNotAvailableMessage" xml:space="preserve">
+    <value>Email not available.</value>
+  </data>
+  <data name="EmailRequiredMessage" xml:space="preserve">
+    <value>Email address is required.</value>
+  </data>
+  <data name="ForgottenPasswordButtonLabel" xml:space="preserve">
+    <value>Forgotten password</value>
+  </data>
+  <data name="ForgottenPasswordCompletedMessage" xml:space="preserve">
+    <value>Thanks for submitting your email address. You will shortly receive an email containing instructions for resetting your password.</value>
+  </data>
+  <data name="ForgottenPasswordEmailHtmlBody" xml:space="preserve">
+    <value>&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+h1 { margin: 20px 0 10px 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 36px; line-height: 1.1; color: #333333; }
+h2 { margin: 20px 0 10px 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 30px; line-height: 1.1; color: #333333; }
+p { margin: 10px 0 10px 0; padding: 0; width: 100%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #333333; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Forgotten password&lt;/h1&gt;
+&lt;p&gt;Hello %ALIAS%&lt;/p&gt;
+&lt;p&gt;Click the link below to reset your password.&lt;/p&gt;
+&lt;p&gt;&lt;a href="%RESETPASSWORDURL%"&gt;%RESETPASSWORDURL%&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The link will expire at %RESETPASSWORDEXPIRES%.&lt;/p&gt;
+&lt;p&gt;Once you have clicked on the link and set your password, you will be able to login with your email address (%EMAIL%) and new password.&lt;/p&gt;
+&lt;p&gt;Thanks!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ForgottenPasswordEmailInvalidMessage" xml:space="preserve">
+    <value>Email address is invalid.</value>
+  </data>
+  <data name="ForgottenPasswordEmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ForgottenPasswordEmailMaxLengthMessage" xml:space="preserve">
+    <value>Email address cannot be more than {1} characters.</value>
+  </data>
+  <data name="ForgottenPasswordEmailPlainTextBody" xml:space="preserve">
+    <value>Forgotten password
+
+Hello %ALIAS%
+
+Click the link below to reset your password.
+
+%RESETPASSWORDURL%
+
+The link will expire at %RESETPASSWORDEXPIRES%.
+
+Once you have clicked on the link and set your password, you will be able to login with your email address (%EMAIL%) and new password.
+
+Thanks!</value>
+  </data>
+  <data name="ForgottenPasswordEmailRequiredMessage" xml:space="preserve">
+    <value>Email address is required.</value>
+  </data>
+  <data name="ForgottenPasswordEmailSubject" xml:space="preserve">
+    <value>Reset password request</value>
+  </data>
+  <data name="ForgottenPasswordPageDescription" xml:space="preserve">
+    <value>Enter your email address to begin the password reset process. Once you have submitted your email address, you will receive an email containing instructions for resetting your password.</value>
+  </data>
+  <data name="ForgottenPasswordPageName" xml:space="preserve">
+    <value>Forgotten password</value>
+  </data>
+  <data name="ForgottenPasswordUserDisabledMessage" xml:space="preserve">
+    <value>Email address is invalid.</value>
+  </data>
+  <data name="ForgottenPasswordUserNotConfirmedMessage" xml:space="preserve">
+    <value>Forgotten password failed.</value>
+  </data>
+  <data name="ForgottenPasswordUserNotFoundMessage" xml:space="preserve">
+    <value>Email address is invalid.</value>
+  </data>
+  <data name="LogonUserButtonLabel" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogonUserCreateUserLabel" xml:space="preserve">
+    <value>Don't have an account? Register here.</value>
+  </data>
+  <data name="LogonUserCredentialsInvalidMessage" xml:space="preserve">
+    <value>Email address or password is invalid.</value>
+  </data>
+  <data name="LogonUserDisabledMessage" xml:space="preserve">
+    <value>Email address or password is invalid.</value>
+  </data>
+  <data name="LogonUserForgottenPasswordLabel" xml:space="preserve">
+    <value>Forgotten your password?</value>
+  </data>
+  <data name="LogonUserLockedOutMessage" xml:space="preserve">
+    <value>Account locked out. Please try again later.</value>
+  </data>
+  <data name="LogonUserPageDescription" xml:space="preserve">
+    <value>Log in to {0}.</value>
+  </data>
+  <data name="LogonUserPageName" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogonUserUnconfirmedMessage" xml:space="preserve">
+    <value>Email address or password is invalid.</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordRequiredMessage" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="RememberMeLabel" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
+  <data name="ResetPasswordButtonLabel" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="ResetPasswordConfirmPasswordLabel" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="ResetPasswordConfirmPasswordRequiredMessage" xml:space="preserve">
+    <value>Password confirmation is required.</value>
+  </data>
+  <data name="ResetPasswordFailureMessage" xml:space="preserve">
+    <value>There was a problem resetting your password. Please contact the site administrators.</value>
+  </data>
+  <data name="ResetPasswordLogonMessage" xml:space="preserve">
+    <value>Your password has been reset. You can now log in to this site with your new credentials.</value>
+  </data>
+  <data name="ResetPasswordPageDescription" xml:space="preserve">
+    <value>Choose a password to complete the forgotten password reset process.</value>
+  </data>
+  <data name="ResetPasswordPageName" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="ResetPasswordPasswordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ResetPasswordPasswordLengthMessage" xml:space="preserve">
+    <value>Password must be between {2} and {1} characters long.</value>
+  </data>
+  <data name="ResetPasswordPasswordRequiredMessage" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="ResetPasswordPasswordsDoNotMatchMessage" xml:space="preserve">
+    <value>The passwords supplied do not match.</value>
+  </data>
+  <data name="ResetPasswordTokenExpiredMessage" xml:space="preserve">
+    <value>Reset password request expired.</value>
+  </data>
+  <data name="ResetPasswordTokenInvalidMessage" xml:space="preserve">
+    <value>Reset password failed.</value>
+  </data>
+  <data name="ResetPasswordUserDisabledMessage" xml:space="preserve">
+    <value>Reset password failed.</value>
+  </data>
+  <data name="ResetPasswordUserNotFoundMessage" xml:space="preserve">
+    <value>Reset password failed.</value>
+  </data>
+  <data name="UpdateUserAliasLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="UpdateUserAliasMaxLengthMessage" xml:space="preserve">
+    <value>Name cannot be more than {1} characters.</value>
+  </data>
+  <data name="UpdateUserAliasNotAvailableMessage" xml:space="preserve">
+    <value>Name not available.</value>
+  </data>
+  <data name="UpdateUserAliasRequiredMessage" xml:space="preserve">
+    <value>Name is required.</value>
+  </data>
+  <data name="UpdateUserButtonLabel" xml:space="preserve">
+    <value>Update profile</value>
+  </data>
+  <data name="UpdateUserEmailHtmlBody" xml:space="preserve">
+    <value>&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+h1 { margin: 20px 0 10px 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 36px; line-height: 1.1; color: #333333; }
+h2 { margin: 20px 0 10px 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 30px; line-height: 1.1; color: #333333; }
+p { margin: 10px 0 10px 0; padding: 0; width: 100%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #333333; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Account updated&lt;/h1&gt;
+&lt;p&gt;Hello %ALIAS%&lt;/p&gt;
+&lt;p&gt;Your account has been updated. Click the link below to re-activate your account.&lt;/p&gt;
+&lt;p&gt;&lt;a href="%CONFIRMURL%"&gt;%CONFIRMURL%&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The link will expire at %CONFIRMEXPIRES%.&lt;/p&gt;
+&lt;p&gt;Once you have clicked on the link and re-activated your account, you will be able to login with your new email address (%EMAIL%) and password.&lt;/p&gt;
+&lt;p&gt;Thanks!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="UpdateUserEmailInvalidMessage" xml:space="preserve">
+    <value>Email address is invalid.</value>
+  </data>
+  <data name="UpdateUserEmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UpdateUserEmailMaxLengthMessage" xml:space="preserve">
+    <value>Email address cannot be more than {1} characters.</value>
+  </data>
+  <data name="UpdateUserEmailNotAvailableMessage" xml:space="preserve">
+    <value>Email not available.</value>
+  </data>
+  <data name="UpdateUserEmailPlainTextBody" xml:space="preserve">
+    <value>Account updated
+
+Hello %ALIAS%
+
+Your account has been updated. Click the link below to re-activate your account.
+
+%CONFIRMURL%
+
+The link will expire at %CONFIRMEXPIRES%.
+
+Once you have clicked on the link and re-activated your account, you will be able to login with your new email address (%EMAIL%) and password.
+
+Thanks!</value>
+  </data>
+  <data name="UpdateUserEmailRequiredMessage" xml:space="preserve">
+    <value>Email address is required.</value>
+  </data>
+  <data name="UpdateUserEmailSubject" xml:space="preserve">
+    <value>Hello %ALIAS%, your account has been updated</value>
+  </data>
+  <data name="UpdateUserImageDimensionsInvalidMessage" xml:space="preserve">
+    <value>Avatar must be at least {0} by {1} pixels in size.</value>
+  </data>
+  <data name="UpdateUserImageInvalidMessage" xml:space="preserve">
+    <value>Avatar does not appear to be a valid image.</value>
+  </data>
+  <data name="UpdateUserImageNotAllowedMessage" xml:space="preserve">
+    <value>You are not allowed an avatar.</value>
+  </data>
+  <data name="UpdateUserLogonMessage" xml:space="preserve">
+    <value>As your email address has changed, you will need to re-activate your account. You will shortly receive an email containing instructions for activating your account. Once you have activated your account, you will be able to log back in to this site.</value>
+  </data>
+  <data name="UpdateUserPageDescription" xml:space="preserve">
+    <value>If you change your email address, you will need to re-activate your account. If you change your email address, you will receive an email containing instructions for re-activating your account. Once you have re-activated your account, you will be able to log back in to this website.</value>
+  </data>
+  <data name="UpdateUserPageName" xml:space="preserve">
+    <value>Update your profile</value>
+  </data>
+  <data name="UpdateUserSuccessMessage" xml:space="preserve">
+    <value>Your details have been updated.</value>
+  </data>
+  <data name="UpdateUserUploadLabel" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+</root>

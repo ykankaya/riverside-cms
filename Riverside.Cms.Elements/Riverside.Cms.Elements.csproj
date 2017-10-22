@@ -1,0 +1,242 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Sql\CopyAlbum.sql" />
+    <None Remove="Sql\CopyCodeSnippet.sql" />
+    <None Remove="Sql\CopyContact.sql" />
+    <None Remove="Sql\CopyFooter.sql" />
+    <None Remove="Sql\CopyForm.sql" />
+    <None Remove="Sql\CopyForum.sql" />
+    <None Remove="Sql\CopyHtml.sql" />
+    <None Remove="Sql\CopyLatestThread.sql" />
+    <None Remove="Sql\CopyMap.sql" />
+    <None Remove="Sql\CopyNavBar.sql" />
+    <None Remove="Sql\CopyPageHeader.sql" />
+    <None Remove="Sql\CopyPageList.sql" />
+    <None Remove="Sql\CopyShare.sql" />
+    <None Remove="Sql\CopyTable.sql" />
+    <None Remove="Sql\CopyTagCloud.sql" />
+    <None Remove="Sql\CopyTestimonial.sql" />
+    <None Remove="Sql\CreateAlbum.sql" />
+    <None Remove="Sql\CreateCodeSnippet.sql" />
+    <None Remove="Sql\CreateContact.sql" />
+    <None Remove="Sql\CreateFooter.sql" />
+    <None Remove="Sql\CreateForm.sql" />
+    <None Remove="Sql\CreateForum.sql" />
+    <None Remove="Sql\CreateForumPost.sql" />
+    <None Remove="Sql\CreateForumThread.sql" />
+    <None Remove="Sql\CreateHtml.sql" />
+    <None Remove="Sql\CreateHtmlUpload.sql" />
+    <None Remove="Sql\CreateLatestThread.sql" />
+    <None Remove="Sql\CreateMap.sql" />
+    <None Remove="Sql\CreateNavBar.sql" />
+    <None Remove="Sql\CreatePageHeader.sql" />
+    <None Remove="Sql\CreatePageList.sql" />
+    <None Remove="Sql\CreateShare.sql" />
+    <None Remove="Sql\CreateTable.sql" />
+    <None Remove="Sql\CreateTagCloud.sql" />
+    <None Remove="Sql\CreateTestimonial.sql" />
+    <None Remove="Sql\DeleteAlbum.sql" />
+    <None Remove="Sql\DeleteCarousel.sql" />
+    <None Remove="Sql\DeleteCodeSnippet.sql" />
+    <None Remove="Sql\DeleteContact.sql" />
+    <None Remove="Sql\DeleteFooter.sql" />
+    <None Remove="Sql\DeleteForm.sql" />
+    <None Remove="Sql\DeleteForum.sql" />
+    <None Remove="Sql\DeleteForumThread.sql" />
+    <None Remove="Sql\DeleteHtml.sql" />
+    <None Remove="Sql\DeleteLatestThread.sql" />
+    <None Remove="Sql\DeleteMap.sql" />
+    <None Remove="Sql\DeleteNavBar.sql" />
+    <None Remove="Sql\DeletePageHeader.sql" />
+    <None Remove="Sql\DeletePageList.sql" />
+    <None Remove="Sql\DeleteShare.sql" />
+    <None Remove="Sql\DeleteTable.sql" />
+    <None Remove="Sql\DeleteTagCloud.sql" />
+    <None Remove="Sql\DeleteTestimonial.sql" />
+    <None Remove="Sql\IncrementForumThreadViews.sql" />
+    <None Remove="Sql\ListForumThreadPosts.sql" />
+    <None Remove="Sql\ListForumThreads.sql" />
+    <None Remove="Sql\ListLatestThreads.sql" />
+    <None Remove="Sql\ListLatestThreadsRecursive.sql" />
+    <None Remove="Sql\ListPageForumCounts.sql" />
+    <None Remove="Sql\ListTaggedLatestThreads.sql" />
+    <None Remove="Sql\ListTaggedLatestThreadsRecursive.sql" />
+    <None Remove="Sql\ReadAlbum.sql" />
+    <None Remove="Sql\ReadAlbumPhoto.sql" />
+    <None Remove="Sql\ReadCarousel.sql" />
+    <None Remove="Sql\ReadCarouselSlide.sql" />
+    <None Remove="Sql\ReadCodeSnippet.sql" />
+    <None Remove="Sql\ReadContact.sql" />
+    <None Remove="Sql\ReadFooter.sql" />
+    <None Remove="Sql\ReadForm.sql" />
+    <None Remove="Sql\ReadForum.sql" />
+    <None Remove="Sql\ReadForumPost.sql" />
+    <None Remove="Sql\ReadForumPostAndUser.sql" />
+    <None Remove="Sql\ReadForumThread.sql" />
+    <None Remove="Sql\ReadForumThreadAndUser.sql" />
+    <None Remove="Sql\ReadHtml.sql" />
+    <None Remove="Sql\ReadHtmlUpload.sql" />
+    <None Remove="Sql\ReadLatestThread.sql" />
+    <None Remove="Sql\ReadMap.sql" />
+    <None Remove="Sql\ReadNavBar.sql" />
+    <None Remove="Sql\ReadPageHeader.sql" />
+    <None Remove="Sql\ReadPageList.sql" />
+    <None Remove="Sql\ReadShare.sql" />
+    <None Remove="Sql\ReadTable.sql" />
+    <None Remove="Sql\ReadTagCloud.sql" />
+    <None Remove="Sql\ReadTestimonial.sql" />
+    <None Remove="Sql\UpdateAlbum.sql" />
+    <None Remove="Sql\UpdateCarousel.sql" />
+    <None Remove="Sql\UpdateCodeSnippet.sql" />
+    <None Remove="Sql\UpdateContact.sql" />
+    <None Remove="Sql\UpdateFooter.sql" />
+    <None Remove="Sql\UpdateForm.sql" />
+    <None Remove="Sql\UpdateForum.sql" />
+    <None Remove="Sql\UpdateForumPost.sql" />
+    <None Remove="Sql\UpdateForumThread.sql" />
+    <None Remove="Sql\UpdateHtml.sql" />
+    <None Remove="Sql\UpdateLatestThread.sql" />
+    <None Remove="Sql\UpdateMap.sql" />
+    <None Remove="Sql\UpdateNavBar.sql" />
+    <None Remove="Sql\UpdatePageHeader.sql" />
+    <None Remove="Sql\UpdatePageList.sql" />
+    <None Remove="Sql\UpdateShare.sql" />
+    <None Remove="Sql\UpdateTable.sql" />
+    <None Remove="Sql\UpdateTagCloud.sql" />
+    <None Remove="Sql\UpdateTestimonial.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Sql\CopyAlbum.sql" />
+    <EmbeddedResource Include="Sql\CopyCodeSnippet.sql" />
+    <EmbeddedResource Include="Sql\CopyContact.sql" />
+    <EmbeddedResource Include="Sql\CopyFooter.sql" />
+    <EmbeddedResource Include="Sql\CopyForm.sql" />
+    <EmbeddedResource Include="Sql\CopyForum.sql" />
+    <EmbeddedResource Include="Sql\CopyHtml.sql" />
+    <EmbeddedResource Include="Sql\CopyLatestThread.sql" />
+    <EmbeddedResource Include="Sql\CopyMap.sql" />
+    <EmbeddedResource Include="Sql\CopyNavBar.sql" />
+    <EmbeddedResource Include="Sql\CopyPageHeader.sql" />
+    <EmbeddedResource Include="Sql\CopyPageList.sql" />
+    <EmbeddedResource Include="Sql\CopyShare.sql" />
+    <EmbeddedResource Include="Sql\CopyTable.sql" />
+    <EmbeddedResource Include="Sql\CopyTagCloud.sql" />
+    <EmbeddedResource Include="Sql\CopyTestimonial.sql" />
+    <EmbeddedResource Include="Sql\CreateAlbum.sql" />
+    <EmbeddedResource Include="Sql\CreateCodeSnippet.sql" />
+    <EmbeddedResource Include="Sql\CreateContact.sql" />
+    <EmbeddedResource Include="Sql\CreateFooter.sql" />
+    <EmbeddedResource Include="Sql\CreateForm.sql" />
+    <EmbeddedResource Include="Sql\CreateForum.sql" />
+    <EmbeddedResource Include="Sql\CreateForumPost.sql" />
+    <EmbeddedResource Include="Sql\CreateForumThread.sql" />
+    <EmbeddedResource Include="Sql\CreateHtml.sql" />
+    <EmbeddedResource Include="Sql\CreateHtmlUpload.sql" />
+    <EmbeddedResource Include="Sql\CreateLatestThread.sql" />
+    <EmbeddedResource Include="Sql\CreateMap.sql" />
+    <EmbeddedResource Include="Sql\CreateNavBar.sql" />
+    <EmbeddedResource Include="Sql\CreatePageHeader.sql" />
+    <EmbeddedResource Include="Sql\CreatePageList.sql" />
+    <EmbeddedResource Include="Sql\CreateShare.sql" />
+    <EmbeddedResource Include="Sql\CreateTable.sql" />
+    <EmbeddedResource Include="Sql\CreateTagCloud.sql" />
+    <EmbeddedResource Include="Sql\CreateTestimonial.sql" />
+    <EmbeddedResource Include="Sql\DeleteAlbum.sql" />
+    <EmbeddedResource Include="Sql\DeleteCarousel.sql" />
+    <EmbeddedResource Include="Sql\DeleteCodeSnippet.sql" />
+    <EmbeddedResource Include="Sql\DeleteContact.sql" />
+    <EmbeddedResource Include="Sql\DeleteFooter.sql" />
+    <EmbeddedResource Include="Sql\DeleteForm.sql" />
+    <EmbeddedResource Include="Sql\DeleteForum.sql" />
+    <EmbeddedResource Include="Sql\DeleteForumThread.sql" />
+    <EmbeddedResource Include="Sql\DeleteHtml.sql" />
+    <EmbeddedResource Include="Sql\DeleteLatestThread.sql" />
+    <EmbeddedResource Include="Sql\DeleteMap.sql" />
+    <EmbeddedResource Include="Sql\DeleteNavBar.sql" />
+    <EmbeddedResource Include="Sql\DeletePageHeader.sql" />
+    <EmbeddedResource Include="Sql\DeletePageList.sql" />
+    <EmbeddedResource Include="Sql\DeleteShare.sql" />
+    <EmbeddedResource Include="Sql\DeleteTable.sql" />
+    <EmbeddedResource Include="Sql\DeleteTagCloud.sql" />
+    <EmbeddedResource Include="Sql\DeleteTestimonial.sql" />
+    <EmbeddedResource Include="Sql\IncrementForumThreadViews.sql" />
+    <EmbeddedResource Include="Sql\ListForumThreadPosts.sql" />
+    <EmbeddedResource Include="Sql\ListForumThreads.sql" />
+    <EmbeddedResource Include="Sql\ListLatestThreads.sql" />
+    <EmbeddedResource Include="Sql\ListLatestThreadsRecursive.sql" />
+    <EmbeddedResource Include="Sql\ListPageForumCounts.sql" />
+    <EmbeddedResource Include="Sql\ListTaggedLatestThreads.sql" />
+    <EmbeddedResource Include="Sql\ListTaggedLatestThreadsRecursive.sql" />
+    <EmbeddedResource Include="Sql\ReadAlbum.sql" />
+    <EmbeddedResource Include="Sql\ReadAlbumPhoto.sql" />
+    <EmbeddedResource Include="Sql\ReadCarousel.sql" />
+    <EmbeddedResource Include="Sql\ReadCarouselSlide.sql" />
+    <EmbeddedResource Include="Sql\ReadCodeSnippet.sql" />
+    <EmbeddedResource Include="Sql\ReadContact.sql" />
+    <EmbeddedResource Include="Sql\ReadFooter.sql" />
+    <EmbeddedResource Include="Sql\ReadForm.sql" />
+    <EmbeddedResource Include="Sql\ReadForum.sql" />
+    <EmbeddedResource Include="Sql\ReadForumPost.sql" />
+    <EmbeddedResource Include="Sql\ReadForumPostAndUser.sql" />
+    <EmbeddedResource Include="Sql\ReadForumThread.sql" />
+    <EmbeddedResource Include="Sql\ReadForumThreadAndUser.sql" />
+    <EmbeddedResource Include="Sql\ReadHtml.sql" />
+    <EmbeddedResource Include="Sql\ReadHtmlUpload.sql" />
+    <EmbeddedResource Include="Sql\ReadLatestThread.sql" />
+    <EmbeddedResource Include="Sql\ReadMap.sql" />
+    <EmbeddedResource Include="Sql\ReadNavBar.sql" />
+    <EmbeddedResource Include="Sql\ReadPageHeader.sql" />
+    <EmbeddedResource Include="Sql\ReadPageList.sql" />
+    <EmbeddedResource Include="Sql\ReadShare.sql" />
+    <EmbeddedResource Include="Sql\ReadTable.sql" />
+    <EmbeddedResource Include="Sql\ReadTagCloud.sql" />
+    <EmbeddedResource Include="Sql\ReadTestimonial.sql" />
+    <EmbeddedResource Include="Sql\UpdateAlbum.sql" />
+    <EmbeddedResource Include="Sql\UpdateCarousel.sql" />
+    <EmbeddedResource Include="Sql\UpdateCodeSnippet.sql" />
+    <EmbeddedResource Include="Sql\UpdateContact.sql" />
+    <EmbeddedResource Include="Sql\UpdateFooter.sql" />
+    <EmbeddedResource Include="Sql\UpdateForm.sql" />
+    <EmbeddedResource Include="Sql\UpdateForum.sql" />
+    <EmbeddedResource Include="Sql\UpdateForumPost.sql" />
+    <EmbeddedResource Include="Sql\UpdateForumThread.sql" />
+    <EmbeddedResource Include="Sql\UpdateHtml.sql" />
+    <EmbeddedResource Include="Sql\UpdateLatestThread.sql" />
+    <EmbeddedResource Include="Sql\UpdateMap.sql" />
+    <EmbeddedResource Include="Sql\UpdateNavBar.sql" />
+    <EmbeddedResource Include="Sql\UpdatePageHeader.sql" />
+    <EmbeddedResource Include="Sql\UpdatePageList.sql" />
+    <EmbeddedResource Include="Sql\UpdateShare.sql" />
+    <EmbeddedResource Include="Sql\UpdateTable.sql" />
+    <EmbeddedResource Include="Sql\UpdateTagCloud.sql" />
+    <EmbeddedResource Include="Sql\UpdateTestimonial.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Riverside.Cms.Core\Riverside.Cms.Core.csproj" />
+    <ProjectReference Include="..\Riverside.UI\Riverside.UI.csproj" />
+    <ProjectReference Include="..\Riverside.Utilities\Riverside.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\ElementResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ElementResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ElementResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ElementResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

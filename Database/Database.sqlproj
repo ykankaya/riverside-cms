@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{403dc74a-a4d6-4be6-99b5-2ea8a1d87019}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Database</RootNamespace>
+    <AssemblyName>Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="cms" />
+    <Folder Include="cms\Stored Procedures" />
+    <Folder Include="cms\Tables" />
+    <Folder Include="cms\User Defined Types" />
+    <Folder Include="Security" />
+    <Folder Include="element" />
+    <Folder Include="element\Tables" />
+    <Folder Include="element\User Defined Types" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\PostDeployment" />
+    <Folder Include="Scripts\Templates" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="cms\Stored Procedures\CopyElement.sql" />
+    <Build Include="cms\Stored Procedures\CreateDomain.sql" />
+    <Build Include="cms\Stored Procedures\CreateElement.sql" />
+    <Build Include="cms\Stored Procedures\CreateImage.sql" />
+    <Build Include="cms\Stored Procedures\CreateTenant.sql" />
+    <Build Include="cms\Stored Procedures\CreateUpload.sql" />
+    <Build Include="cms\Stored Procedures\DeleteDomain.sql" />
+    <Build Include="cms\Stored Procedures\DeleteDomainsByTenant.sql" />
+    <Build Include="cms\Stored Procedures\DeleteElement.sql" />
+    <Build Include="cms\Stored Procedures\DeleteUpload.sql" />
+    <Build Include="cms\Stored Procedures\GetAdministrationMasterPageId.sql" />
+    <Build Include="cms\Stored Procedures\GetElementMasterPageCount.sql" />
+    <Build Include="cms\Stored Procedures\GetElementPageCount.sql" />
+    <Build Include="cms\Stored Procedures\GetHomePageId.sql" />
+    <Build Include="cms\Stored Procedures\ListElementTypes.sql" />
+    <Build Include="cms\Stored Procedures\ListNamedTags.sql" />
+    <Build Include="cms\Stored Procedures\ListPages.sql" />
+    <Build Include="cms\Stored Procedures\ListPagesRecursive.sql" />
+    <Build Include="cms\Stored Procedures\ListPageTags.sql" />
+    <Build Include="cms\Stored Procedures\ListPageTagsRecursive.sql" />
+    <Build Include="cms\Stored Procedures\ListTaggedPages.sql" />
+    <Build Include="cms\Stored Procedures\ListTaggedPagesRecursive.sql" />
+    <Build Include="cms\Stored Procedures\ListTaggedPageTags.sql" />
+    <Build Include="cms\Stored Procedures\ListTaggedPageTagsRecursive.sql" />
+    <Build Include="cms\Stored Procedures\LoadTagsForPages.sql" />
+    <Build Include="cms\Stored Procedures\ReadDomain.sql" />
+    <Build Include="cms\Stored Procedures\ReadDomainByUrl.sql" />
+    <Build Include="cms\Stored Procedures\ReadElement.sql" />
+    <Build Include="cms\Stored Procedures\ReadPageHierarchy.sql" />
+    <Build Include="cms\Stored Procedures\ReadUpload.sql" />
+    <Build Include="cms\Stored Procedures\SearchDomains.sql" />
+    <Build Include="cms\Stored Procedures\SearchPages.sql" />
+    <Build Include="cms\Stored Procedures\SearchTemplates.sql" />
+    <Build Include="cms\Stored Procedures\UpdateDomain.sql" />
+    <Build Include="cms\Stored Procedures\UpdateImage.sql" />
+    <Build Include="cms\Stored Procedures\UpdatePage.sql" />
+    <Build Include="cms\Stored Procedures\UpdatePageTags.sql" />
+    <Build Include="cms\Stored Procedures\UpdateUpload.sql" />
+    <Build Include="cms\Stored Procedures\UpdateUser.sql" />
+    <Build Include="cms\Tables\AssetDeployment.sql" />
+    <Build Include="cms\Tables\Domain.sql" />
+    <Build Include="cms\Tables\Element.sql" />
+    <Build Include="cms\Tables\ElementType.sql" />
+    <Build Include="cms\Tables\Function.sql" />
+    <Build Include="cms\Tables\Image.sql" />
+    <Build Include="cms\Tables\MasterPage.sql" />
+    <Build Include="cms\Tables\MasterPageZone.sql" />
+    <Build Include="cms\Tables\MasterPageZoneElement.sql" />
+    <Build Include="cms\Tables\MasterPageZoneElementType.sql" />
+    <Build Include="cms\Tables\Page.sql" />
+    <Build Include="cms\Tables\PageZone.sql" />
+    <Build Include="cms\Tables\PageZoneElement.sql" />
+    <Build Include="cms\Tables\Role.sql" />
+    <Build Include="cms\Tables\RoleFunction.sql" />
+    <Build Include="cms\Tables\Tag.sql" />
+    <Build Include="cms\Tables\TagPage.sql" />
+    <Build Include="cms\Tables\Template.sql" />
+    <Build Include="cms\Tables\TemplatePage.sql" />
+    <Build Include="cms\Tables\TemplatePageZone.sql" />
+    <Build Include="cms\Tables\TemplatePageZoneElement.sql" />
+    <Build Include="cms\Tables\TemplatePageZoneElementType.sql" />
+    <Build Include="cms\Tables\Tenant.sql" />
+    <Build Include="cms\Tables\Upload.sql" />
+    <Build Include="cms\Tables\User.sql" />
+    <Build Include="cms\Tables\UserRole.sql" />
+    <Build Include="cms\Tables\Web.sql" />
+    <Build Include="cms\User Defined Types\MasterPageZoneElementTableType.sql" />
+    <Build Include="cms\User Defined Types\MasterPageZoneElementTypeTableType.sql" />
+    <Build Include="cms\User Defined Types\MasterPageZoneTableType.sql" />
+    <Build Include="cms\User Defined Types\PageTableType.sql" />
+    <Build Include="cms\User Defined Types\PageZoneElementTableType.sql" />
+    <Build Include="cms\User Defined Types\PageZoneTableType.sql" />
+    <Build Include="cms\User Defined Types\TagTableType.sql" />
+    <Build Include="cms\User Defined Types\UserRoleTableType.sql" />
+    <Build Include="Security\cms.sql" />
+    <Build Include="Security\element.sql" />
+    <Build Include="element\Tables\Album.sql" />
+    <Build Include="element\Tables\AlbumPhoto.sql" />
+    <Build Include="element\Tables\CarouselSlide.sql" />
+    <Build Include="element\Tables\CodeSnippet.sql" />
+    <Build Include="element\Tables\Contact.sql" />
+    <Build Include="element\Tables\Footer.sql" />
+    <Build Include="element\Tables\Form.sql" />
+    <Build Include="element\Tables\FormField.sql" />
+    <Build Include="element\Tables\Forum.sql" />
+    <Build Include="element\Tables\ForumPost.sql" />
+    <Build Include="element\Tables\ForumThread.sql" />
+    <Build Include="element\Tables\Html.sql" />
+    <Build Include="element\Tables\HtmlUpload.sql" />
+    <Build Include="element\Tables\LatestThread.sql" />
+    <Build Include="element\Tables\Map.sql" />
+    <Build Include="element\Tables\NavBar.sql" />
+    <Build Include="element\Tables\NavBarTab.sql" />
+    <Build Include="element\Tables\PageHeader.sql" />
+    <Build Include="element\Tables\PageList.sql" />
+    <Build Include="element\Tables\Share.sql" />
+    <Build Include="element\Tables\Table.sql" />
+    <Build Include="element\Tables\TagCloud.sql" />
+    <Build Include="element\Tables\Testimonial.sql" />
+    <Build Include="element\Tables\TestimonialComment.sql" />
+    <Build Include="element\User Defined Types\AlbumPhotoTableType.sql" />
+    <Build Include="element\User Defined Types\CarouselSlideTableType.sql" />
+    <Build Include="element\User Defined Types\FormFieldTableType.sql" />
+    <Build Include="element\User Defined Types\HtmlUploadTableType.sql" />
+    <Build Include="element\User Defined Types\NavBarTabTableType.sql" />
+    <Build Include="element\User Defined Types\TestimonialCommentTableType.sql" />
+    <PostDeploy Include="Scripts\PostDeployment\PopulateDatabase.sql" />
+    <None Include="Scripts\PostDeployment\PopulateElementTypes.sql" />
+    <None Include="Scripts\PostDeployment\PopulateRolesAndFunctions.sql" />
+    <None Include="Scripts\Templates\cms-blank-template.sql" />
+    <None Include="Scripts\Templates\cms-reset.sql" />
+    <None Include="Scripts\Templates\cms-reset-uploads.sql" />
+    <None Include="Scripts\Templates\cms-setup.sql" />
+  </ItemGroup>
+</Project>

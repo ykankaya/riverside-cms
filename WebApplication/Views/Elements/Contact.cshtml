@@ -1,0 +1,65 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Contacts
+@using Riverside.Cms.Elements.Resources
+@using Riverside.UI.Extensions
+
+@model IElementInfo<ContactSettings, ContactContent>
+
+<div class="rcms-contact">
+
+    @if (Model.Settings.DisplayName != null)
+    {
+        <h2>@Model.Settings.DisplayName</h2>
+    }
+
+    @if (Model.Settings.Preamble != null)
+    {
+        <p class="rcms-preamble">@Html.FormatMultiline(Model.Settings.Preamble)</p>
+    }
+
+    <address>
+        <ul>
+            @if (Model.Content.TwitterUrl != null)
+            {
+                <li class="rcms-contact-twitter"><a href="@Model.Content.TwitterUrl" target="_blank"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i></a><a href="@Model.Content.TwitterUrl" target="_blank">@ElementResource.ContactTwitterLabel</a></li>
+            }
+            @if (Model.Content.FacebookUrl != null)
+            {
+                <li class="rcms-contact-facebook"><a href="@Model.Content.FacebookUrl" target="_blank"><i class="fa fa-fw fa-facebook-square" aria-hidden="true"></i></a><a href="@Model.Content.FacebookUrl" target="_blank">@ElementResource.ContactFacebookLabel</a></li>
+            }
+            @if (Model.Content.LinkedInCompanyUrl != null)
+            {
+                <li class="rcms-contact-linkedin-company"><a href="@Model.Content.LinkedInCompanyUrl" target="_blank"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i></a><a href="@Model.Content.LinkedInCompanyUrl" target="_blank">@ElementResource.ContactLinkedInLabel</a></li>
+            }
+            @if (Model.Content.LinkedInPersonalUrl != null)
+            {
+                <li class="rcms-contact-linkedin-personal"><a href="@Model.Content.LinkedInPersonalUrl" target="_blank"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i></a><a href="@Model.Content.LinkedInPersonalUrl" target="_blank">@ElementResource.ContactLinkedInLabel</a></li>
+            }
+            @if (Model.Content.InstagramUrl != null)
+            {
+                <li class="rcms-contact-instagram"><a href="@Model.Content.InstagramUrl" target="_blank"><i class="fa fa-fw fa-instagram" aria-hidden="true"></i></a><a href="@Model.Content.InstagramUrl" target="_blank">@ElementResource.ContactInstagramLabel</a></li>
+            }
+            @if (Model.Content.YouTubeChannelUrl != null)
+            {
+                <li class="rcms-contact-youtube"><a href="@Model.Content.YouTubeChannelUrl" target="_blank"><i class="fa fa-fw fa-youtube-square" aria-hidden="true"></i></a><a href="@Model.Content.YouTubeChannelUrl" target="_blank">@ElementResource.ContactYouTubeChannelLabel</a></li>
+            }
+            @if (Model.Settings.Email != null)
+            {
+                <li class="rcms-contact-email"><a href="mailto:@Model.Settings.Email"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i></a><a href="mailto:@Model.Settings.Email">@Model.Settings.Email</a></li>
+            }
+            @if (Model.Settings.Address != null)
+            {
+                <li class="rcms-contact-address"><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i>@Model.Settings.Address</li>
+            }
+            @if (Model.Settings.TelephoneNumber1 != null)
+            {
+                <li class="rcms-contact-telephone1"><i class="fa fa-fw fa-phone-square" aria-hidden="true"></i>@Model.Settings.TelephoneNumber1</li>
+            }
+            @if (Model.Settings.TelephoneNumber2 != null)
+            {
+                <li class="rcms-contact-telephone2"><i class="fa fa-fw fa-phone-square" aria-hidden="true"></i>@Model.Settings.TelephoneNumber2</li>
+            }
+        </ul>
+    </address>
+
+</div>

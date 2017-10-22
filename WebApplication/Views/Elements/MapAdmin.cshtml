@@ -1,0 +1,15 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Maps
+
+@model IElementInfo<MapSettings, ElementContent>
+
+<div class="rcms-map-admin" ng-app="adminApp" ng-controller="MapAdminController" ng-init="getForm(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <text-field ng-model="form.fields.displayName"></text-field>
+        <text-field ng-model="form.fields.latitude"></text-field>
+        <text-field ng-model="form.fields.longitude"></text-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>

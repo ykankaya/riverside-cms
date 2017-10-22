@@ -1,0 +1,55 @@
+﻿@using Riverside.Cms.Core.Administration
+@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.Footers
+@using Riverside.UI.Extensions
+
+@model IElementInfo<FooterSettings, FooterContent>
+
+@{
+    IAdministrationOptionGroup loggedOnUserOptionsGroup = null;
+    IAdministrationOptionGroup loggedOffUserOptionsGroup = null;
+    if (Model.Settings.ShowLoggedOffUserOptions)
+    {
+        loggedOffUserOptionsGroup = Model.Content.Options.Groups.Where(g => g.Group == AdministrationGroup.LoggedOffUser).FirstOrDefault();
+    }
+    if (Model.Settings.ShowLoggedOnUserOptions)
+    {
+        loggedOnUserOptionsGroup = Model.Content.Options.Groups.Where(g => g.Group == AdministrationGroup.LoggedOnUser).FirstOrDefault();
+    }
+    string colClass = "col-sm-12";
+    if (loggedOnUserOptionsGroup != null || loggedOffUserOptionsGroup != null)
+    {
+        colClass = "col-sm-6";
+    }
+}
+
+<div class="rcms-footer">
+    <div class="row">
+        <div class="@colClass">
+            @Html.MarkdownToHtml(Model.Content.FormattedMessage)
+        </div>
+        <div class="@colClass footer-admin-options">
+            @if (loggedOffUserOptionsGroup != null)
+            {
+                IAdministrationOptionSection groupSection = loggedOffUserOptionsGroup.Sections[0];
+                <p>
+                    @foreach (IAdministrationOption option in groupSection.Options)
+                    {
+                        <a href="@Url.AdminUrl(option)">@option.Name</a>
+                    }
+                </p>
+            }
+            @if (loggedOnUserOptionsGroup != null)
+            {
+                IAdministrationOptionSection groupSection = loggedOnUserOptionsGroup.Sections[0];
+                <p>
+                    @foreach (IAdministrationOption option in groupSection.Options)
+                    {
+                        <a href="@Url.AdminUrl(option)">@option.Name</a>
+                    }
+                </p>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Testimonials
+@using Riverside.Cms.Elements.Resources
+
+@model IElementInfo<TestimonialSettings, ElementContent>
+
+<div class="rcms-testimonial-admin" ng-app="adminApp" ng-controller="TestimonialAdminController" ng-init="initialise(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="testimonialForm"></div>
+    <form name="htmlTestimonialForm" role="form" ng-show="testimonialForm && showTestimonialForm" novalidate>
+        <validation-summary ng-model="testimonialForm.customErrorMessages"></validation-summary>
+        <text-field ng-model="testimonialForm.fields.displayName"></text-field>
+        <multi-line-text-field ng-model="testimonialForm.fields.preamble"></multi-line-text-field>
+        <div class="rcms-card-deck-options">
+            <button class="btn btn-default" type="button" ng-click="$event.preventDefault();createTestimonialComment()"><i class="fa fa-plus" aria-hidden="true"></i> @ElementResource.TestimonialCreateButtonLabel</button>
+        </div>
+        <ul class="rcms-card-deck" ng-sortable="{ animation: 150, handle: '.sort-handle' }">
+            <li class="rcms-card" ng-repeat="testimonialComment in testimonialForm.model.Comments">
+                <div class="rcms-card-handle">
+                    <a href="#" class="sort-handle"><i class="fa fa-fw fa-ellipsis-v" aria-hidden="true"></i> @ElementResource.TestimonialCommentDragLabel</a>
+                    <div class="rcms-card-options">
+                        <a href="#" ng-click="$event.preventDefault();updateTestimonialComment(testimonialComment, $index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="$event.preventDefault();deleteTestimonialComment(testimonialComment, $index)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="rcms-card-content">
+                    <p>{{testimonialComment.Author}}</p>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-primary" type="submit" ng-disabled="formSubmitting || htmlTestimonialForm.$invalid" ng-click="postTestimonialForm()">{{testimonialForm.submitLabel}}</button>
+    </form>
+    <form name="htmlTestimonialCommentForm" role="form" ng-show="testimonialCommentForm && showTestimonialCommentForm" novalidate>
+        <validation-summary ng-model="testimonialCommentForm.customErrorMessages"></validation-summary>
+        <multi-line-text-field ng-model="testimonialCommentForm.fields.comment"></multi-line-text-field>
+        <text-field ng-model="testimonialCommentForm.fields.author"></text-field>
+        <text-field ng-model="testimonialCommentForm.fields.authorTitle"></text-field>
+        <text-field ng-model="testimonialCommentForm.fields.commentDate"></text-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="testimonialCommentFormSubmitting || htmlTestimonialCommentForm.$invalid" ng-click="postTestimonialCommentForm()">{{testimonialCommentForm.submitLabel}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancelTestimonialComment()">@ElementResource.TestimonalCancelButtonLabel</button>
+    </form>
+</div>

@@ -1,0 +1,191 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Sql\CreateMasterPage.sql" />
+    <None Remove="Sql\CreatePage.sql" />
+    <None Remove="Sql\CreatePageZoneElements.sql" />
+    <None Remove="Sql\CreatePageZones.sql" />
+    <None Remove="Sql\CreateUser.sql" />
+    <None Remove="Sql\CreateWeb.sql" />
+    <None Remove="Sql\DeletePageZoneElementsByMasterPageZone.sql" />
+    <None Remove="Sql\DeletePageZoneElementsByMasterPageZoneElementIds.sql" />
+    <None Remove="Sql\DeletePageZonesByMasterPageZone.sql" />
+    <None Remove="Sql\DeleteWeb.sql" />
+    <None Remove="Sql\ListCreatableMasterPages.sql" />
+    <None Remove="Sql\ListElements.sql" />
+    <None Remove="Sql\ListMasterPageElements.sql" />
+    <None Remove="Sql\ListPageElementsByMasterPageZone.sql" />
+    <None Remove="Sql\ListPageElementsByMasterPageZoneElementIds.sql" />
+    <None Remove="Sql\ListPagesByMasterPage.sql" />
+    <None Remove="Sql\ListPageZonesByMasterPageZoneId.sql" />
+    <None Remove="Sql\ListRoles.sql" />
+    <None Remove="Sql\ReadAssetDeployment.sql" />
+    <None Remove="Sql\ReadMasterPage.sql" />
+    <None Remove="Sql\ReadMasterPageZone.sql" />
+    <None Remove="Sql\ReadPage.sql" />
+    <None Remove="Sql\ReadTemplate.sql" />
+    <None Remove="Sql\ReadUser.sql" />
+    <None Remove="Sql\ReadUserByAlias.sql" />
+    <None Remove="Sql\ReadUserByConfirmToken.sql" />
+    <None Remove="Sql\ReadUserByEmail.sql" />
+    <None Remove="Sql\ReadUserByResetPasswordToken.sql" />
+    <None Remove="Sql\ReadWeb.sql" />
+    <None Remove="Sql\ReadWebByName.sql" />
+    <None Remove="Sql\RegisterAssetDeployment.sql" />
+    <None Remove="Sql\SearchMasterPages.sql" />
+    <None Remove="Sql\SearchWebs.sql" />
+    <None Remove="Sql\SetAdminMasterPage.sql" />
+    <None Remove="Sql\UpdateMasterPage.sql" />
+    <None Remove="Sql\UpdateMasterPageZone.sql" />
+    <None Remove="Sql\UpdateMasterPageZones.sql" />
+    <None Remove="Sql\UpdatePageZoneElements.sql" />
+    <None Remove="Sql\UpdatePageZoneElementsForConfigurableAdminType.sql" />
+    <None Remove="Sql\UpdateThemeOptions.sql" />
+    <None Remove="Sql\UpdateWeb.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Sql\CreateMasterPage.sql" />
+    <EmbeddedResource Include="Sql\CreatePage.sql" />
+    <EmbeddedResource Include="Sql\CreatePageZoneElements.sql" />
+    <EmbeddedResource Include="Sql\CreatePageZones.sql" />
+    <EmbeddedResource Include="Sql\CreateUser.sql" />
+    <EmbeddedResource Include="Sql\CreateWeb.sql" />
+    <EmbeddedResource Include="Sql\DeletePageZoneElementsByMasterPageZone.sql" />
+    <EmbeddedResource Include="Sql\DeletePageZoneElementsByMasterPageZoneElementIds.sql" />
+    <EmbeddedResource Include="Sql\DeletePageZonesByMasterPageZone.sql" />
+    <EmbeddedResource Include="Sql\DeleteWeb.sql" />
+    <EmbeddedResource Include="Sql\ListCreatableMasterPages.sql" />
+    <EmbeddedResource Include="Sql\ListElements.sql" />
+    <EmbeddedResource Include="Sql\ListMasterPageElements.sql" />
+    <EmbeddedResource Include="Sql\ListPageElementsByMasterPageZone.sql" />
+    <EmbeddedResource Include="Sql\ListPageElementsByMasterPageZoneElementIds.sql" />
+    <EmbeddedResource Include="Sql\ListPagesByMasterPage.sql" />
+    <EmbeddedResource Include="Sql\ListPageZonesByMasterPageZoneId.sql" />
+    <EmbeddedResource Include="Sql\ListRoles.sql" />
+    <EmbeddedResource Include="Sql\ReadAssetDeployment.sql" />
+    <EmbeddedResource Include="Sql\ReadMasterPage.sql" />
+    <EmbeddedResource Include="Sql\ReadMasterPageZone.sql" />
+    <EmbeddedResource Include="Sql\ReadPage.sql" />
+    <EmbeddedResource Include="Sql\ReadTemplate.sql" />
+    <EmbeddedResource Include="Sql\ReadUser.sql" />
+    <EmbeddedResource Include="Sql\ReadUserByAlias.sql" />
+    <EmbeddedResource Include="Sql\ReadUserByConfirmToken.sql" />
+    <EmbeddedResource Include="Sql\ReadUserByEmail.sql" />
+    <EmbeddedResource Include="Sql\ReadUserByResetPasswordToken.sql" />
+    <EmbeddedResource Include="Sql\ReadWeb.sql" />
+    <EmbeddedResource Include="Sql\ReadWebByName.sql" />
+    <EmbeddedResource Include="Sql\RegisterAssetDeployment.sql" />
+    <EmbeddedResource Include="Sql\SearchMasterPages.sql" />
+    <EmbeddedResource Include="Sql\SearchWebs.sql" />
+    <EmbeddedResource Include="Sql\SetAdminMasterPage.sql" />
+    <EmbeddedResource Include="Sql\UpdateMasterPage.sql" />
+    <EmbeddedResource Include="Sql\UpdateMasterPageZone.sql" />
+    <EmbeddedResource Include="Sql\UpdateMasterPageZones.sql" />
+    <EmbeddedResource Include="Sql\UpdatePageZoneElements.sql" />
+    <EmbeddedResource Include="Sql\UpdatePageZoneElementsForConfigurableAdminType.sql" />
+    <EmbeddedResource Include="Sql\UpdateThemeOptions.sql" />
+    <EmbeddedResource Include="Sql\UpdateWeb.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Riverside.UI\Riverside.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\AdministrationResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AdministrationResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ApplicationResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApplicationResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\AuthenticationResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AuthenticationResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\DomainResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DomainResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\MasterPageResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MasterPageResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\PageResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PageResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ThemeResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ThemeResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\UploadResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UploadResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\WebResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WebResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\AdministrationResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdministrationResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ApplicationResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AuthenticationResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthenticationResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DomainResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\MasterPageResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MasterPageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PageResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ThemeResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ThemeResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UploadResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UploadResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\WebResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WebResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

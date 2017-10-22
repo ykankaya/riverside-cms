@@ -1,0 +1,21 @@
+﻿CREATE TABLE [element].[CarouselSlide](
+	[TenantId] [bigint] NOT NULL,
+	[ElementId] [bigint] NOT NULL,
+	[CarouselSlideId] [bigint] IDENTITY(1,1) NOT NULL,
+	[ImageTenantId] [bigint] NOT NULL,
+	[ThumbnailImageUploadId] [bigint] NOT NULL,
+	[PreviewImageUploadId] [bigint] NOT NULL,
+	[ImageUploadId] [bigint] NOT NULL,
+	[Name] [nvarchar](256) NULL,
+	[Description] [nvarchar](max) NULL,
+	[PageTenantId] [bigint] NULL,
+	[PageId] [bigint] NULL,
+	[PageText] [nvarchar](50) NULL,
+	[SortOrder] [int] NOT NULL,
+ CONSTRAINT [PK_CarouselSlide] PRIMARY KEY CLUSTERED ([TenantId] ASC, [ElementId] ASC, [CarouselSlideId] ASC),
+ CONSTRAINT [FK_CarouselSlide_Element] FOREIGN KEY([TenantId], [ElementId]) REFERENCES [cms].[Element] ([TenantId], [ElementId]),
+ CONSTRAINT [FK_CarouselSlide_Page] FOREIGN KEY([PageTenantId], [PageId]) REFERENCES [cms].[Page] ([TenantId], [PageId]),
+ CONSTRAINT [FK_CarouselSlide_ThumbnailImage] FOREIGN KEY([ImageTenantId], [ThumbnailImageUploadId]) REFERENCES [cms].[Image] ([TenantId], [UploadId]),
+ CONSTRAINT [FK_CarouselSlide_PreviewImage] FOREIGN KEY([ImageTenantId], [PreviewImageUploadId]) REFERENCES [cms].[Image] ([TenantId], [UploadId]),
+ CONSTRAINT [FK_CarouselSlide_Image] FOREIGN KEY([ImageTenantId], [ImageUploadId]) REFERENCES [cms].[Image] ([TenantId], [UploadId])
+)

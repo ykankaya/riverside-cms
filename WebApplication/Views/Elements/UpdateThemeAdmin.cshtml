@@ -1,0 +1,9 @@
+﻿<div class="rcms-update-theme" ng-app="adminApp" ng-controller="ThemesController" ng-init="getForm()" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <select-field ng-model="form.fields.font"></select-field>
+        <select-field ng-model="form.fields.colour"></select-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>

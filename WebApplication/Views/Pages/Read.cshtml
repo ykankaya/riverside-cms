@@ -1,0 +1,121 @@
+﻿@using Riverside.Cms.Core.MasterPages
+@using Riverside.Cms.Core.Pages
+
+@model PageViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    @if (Model.MetaKeywords != null)
+    {
+        <meta name="keywords" content="@Model.MetaKeywords" />
+    }
+    @if (Model.MetaDescription != null)
+    {
+        <meta name="description" content="@Model.MetaDescription" />
+    }
+
+    <title>@Model.Title</title>
+
+    <link href="@Url.Content("~/content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content(Model.AssetStyleSheetPath + "?refresh=20161104")" rel="stylesheet" type="text/css" />
+    @if (Model.FontOptionStyleSheetPath != null) {
+        <link href="@Url.Content(Model.FontOptionStyleSheetPath)" rel="stylesheet" type="text/css" />
+    }
+    @if (Model.ColourOptionStyleSheetPath != null) {
+        <link href="@Url.Content(Model.ColourOptionStyleSheetPath)" rel="stylesheet" type="text/css" />
+    }
+    <script src="@Url.Content("~/scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/scripts/angular.min.js")"></script>
+    <script src="@Url.Content("~/scripts/sortable.min.js")"></script>
+    <script src="@Url.Content("~/scripts/ng-sortable.js")"></script>
+    @if (Model.PageContext.UpdateElement) {
+        <script src="http://cdn.tinymce.com/4/tinymce.min.js"></script>
+    }
+    <script src="@Url.Content("~/scripts/tinymce.angular.min.js")"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    @if (!string.IsNullOrWhiteSpace(Model.ForumAction))
+    {
+        <style>
+            .rcms-main-section { display: none; }
+        </style>
+    }
+
+</head>
+<body class="@if (Model.Administration && Model.PageContext.UpdateElement) {<text>rcms-admin-page rcms-update-element</text>} else if (Model.Administration) {<text>rcms-admin-page</text>} else if (Model.PageContext.UpdateElement) {<text>rcms-update-element</text>}">
+
+    @Html.Raw(Model.BeginRender)
+
+    @foreach (PageZoneViewModel pageZoneViewModel in Model.PageZoneViewModels)
+    {
+        @Html.Raw(pageZoneViewModel.BeginRender)
+
+        foreach (PageZoneElementViewModel pageZoneElementViewModel in pageZoneViewModel.PageZoneElementViewModels)
+        {
+            @Html.Raw(pageZoneElementViewModel.BeginRender)
+
+            string elementDomId = pageZoneElementViewModel.ElementInfo.Settings.ElementTypeId + "_" + pageZoneElementViewModel.ElementInfo.Settings.ElementId;
+            bool admin = Model.PageContext.MasterPage.Administration && pageZoneViewModel.ContentType == MasterPageZoneContentType.Main && pageZoneElementViewModel.ElementInfo.Settings.ElementId != 0;
+            string partialViewName = "~/Views/Elements/" + pageZoneElementViewModel.ElementInfo.Content.PartialViewName + (admin ? "Admin" : string.Empty) + ".cshtml";
+            <div class="rcms-element" id="@elementDomId">
+                @{ Html.RenderPartial(partialViewName, pageZoneElementViewModel.ElementInfo); }
+            </div>
+
+            @Html.Raw(pageZoneElementViewModel.EndRender)
+        }
+
+        @Html.Raw(pageZoneViewModel.EndRender)
+    }
+
+    @Html.Raw(Model.EndRender)
+
+    <script src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/scripts/respond.min.js")"></script>
+    <script src="@Url.Content("~/scripts/ng-file-upload-shim.min.js")"></script>
+    <script src="@Url.Content("~/scripts/ng-file-upload.min.js")"></script>
+    <script src="@Url.Content("~/scripts/riverside-utilities.js")"></script>
+    <script src="@Url.Content("~/scripts/riverside-forms.js")"></script>
+    <script src="@Url.Content("~/scripts/riverside-grids.js")"></script>
+    <script src="@Url.Content("~/scripts/riverside-cms-admin-pages.js")"></script>
+    <script src="@Url.Content("~/scripts/highlight.min.js")"></script>
+    
+    <script>
+        $(".admin-options a").hover(function () {
+            var elementId = $(this).data("elementid");
+            var elementTypeId = $(this).data("elementtypeid");
+            if (elementId != '' && elementTypeId != '') {
+                var id = elementTypeId + '_' + elementId;
+                $('#' + id).addClass("rcms-selected");
+            }
+        }, function () {
+            var elementId = $(this).data("elementid");
+            var elementTypeId = $(this).data("elementtypeid");
+            if (elementId != '' && elementTypeId != '') {
+                var id = elementTypeId + '_' + elementId;
+                $('#' + id).removeClass("rcms-selected");
+            }
+        });
+        $(document).ready(function () {
+            $('.rcms-code-snippet pre code').each(function (i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
+
+</body>
+</html>

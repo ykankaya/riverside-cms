@@ -1,0 +1,43 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Carousels
+@using Riverside.Cms.Elements.Resources
+
+@model IElementInfo<CarouselSettings, CarouselContent>
+
+<div class="rcms-carousel-admin" ng-app="adminApp" ng-controller="CarouselAdminController" ng-init="initialise(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="slidesForm && initialSlideForm"></div>
+    <form name="htmlSlidesForm" role="form" ng-show="slidesForm && showSlidesForm" novalidate>
+        <div class="rcms-carousel-admin-options">
+            <button class="btn btn-default" type="button" ng-click="createSlide()"><i class="fa fa-plus" aria-hidden="true"></i> @ElementResource.CarouselCreateSlideButtonLabel</button>
+        </div>
+        <validation-summary ng-model="slidesForm.customErrorMessages"></validation-summary>
+        <ul ng-show="slides" class="rcms-card-deck" ng-sortable="{ animation: 150, handle: '.sort-handle' }">
+            <li class="rcms-card" ng-repeat="slide in slides">
+                <div class="rcms-card-handle">
+                    <a href="#" class="sort-handle"><i class="fa fa-fw fa-ellipsis-v" aria-hidden="true"></i> @ElementResource.CarouselSlideDragLabel</a>
+                    <div class="rcms-card-options">
+                        <a href="#" ng-click="updateSlide(slide, $index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="deleteSlide(slide, $index)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="rcms-card-content">
+                    <img ng-src="{{slide.imageUrl}}" />
+                    <h2 ng-if="slide.name">{{slide.name}}</h2>
+                    <p ng-if="slide.description">{{slide.description}}</p>
+                    <p ng-if="slide.buttonUrl"><a target="_blank" href="{{slide.buttonUrl}}" class="btn btn-default" role="button">{{slide.buttonText}}</a></p>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-primary" type="submit" ng-disabled="slidesSubmitting || htmlSlidesForm.$invalid" ng-click="postSlidesForm()">{{slidesForm.submitLabel}}</button>
+    </form>
+    <form name="htmlSlideForm" role="form" ng-show="initialSlideForm && showSlideForm" novalidate>
+        <validation-summary ng-model="slideForm.customErrorMessages"></validation-summary>
+        <text-field ng-model="slideForm.fields.name"></text-field>
+        <multi-line-text-field ng-model="slideForm.fields.description"></multi-line-text-field>
+        <upload-field ng-model="slideForm.fields.upload"></upload-field>
+        <select-field ng-model="slideForm.fields.page"></select-field>
+        <text-field ng-model="slideForm.fields.pageText"></text-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlSlideForm.$invalid" ng-click="postSlideForm()">{{slideForm.submitLabel}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancelSlide()">@ElementResource.CarouselCancelSlideButtonLabel</button>
+    </form>
+</div>

@@ -1,0 +1,135 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.PageList
+@using Riverside.Cms.Elements.Resources
+@using Riverside.UI.Extensions
+@using Cms = Riverside.Cms.Core.Pages
+
+@model IElementInfo<PageListSettings, PageListContent>
+
+@{
+    bool hide = (Model.Settings.NoPagesMessage == null && Model.Content.Pages.Count == 0);
+}
+
+@if (!hide)
+{
+    <div class="rcms-page-list">
+
+        @if (Model.Content.DisplayName != null) {
+            <h2>@Model.Content.DisplayName</h2>
+        }
+
+        @if (Model.Settings.Preamble != null)
+        {
+            <p class="rcms-preamble">@Html.FormatMultiline(Model.Settings.Preamble)</p>
+        }
+
+        @if (Model.Content.Pages.Count == 0)
+        {
+            <div class="rcms-page-list-no-items">
+                <p>@Model.Settings.NoPagesMessage</p>
+            </div>
+        }
+
+        @if (Model.Content.Pages.Count > 0)
+        {
+            <div class="rcms-page-list-pages">
+                @foreach (Cms.Page page in Model.Content.Pages)
+                {
+                    bool showUpdated = Model.Settings.ShowUpdated && !(Model.Settings.ShowCreated && (page.Created.Date == page.Updated.Date));
+                    bool showOccurred = Model.Settings.ShowOccurred && page.Occurred.HasValue;
+                    bool occursInFuture = showOccurred && page.Occurred.Value > DateTime.UtcNow;
+                    bool showComments = Model.Settings.ShowComments && Model.Content.CommentCounts.ContainsKey(page.PageId) && Model.Content.CommentCounts[page.PageId] > 0;
+                    string backgroundImageUrl = null;
+                    if (Model.Settings.ShowBackgroundImage && page.ThumbnailImageUploadId.HasValue)
+                    {
+                        backgroundImageUrl = Url.RouteUrl("ReadPageImage", new { pageid = page.PageId, format = "thumbnail", description = Url.UrlFriendly(page.Name), t = page.ThumbnailImageUploadId });
+                    }
+
+                    <div class="rcms-page-list-item" @if (backgroundImageUrl != null) {<text>style="background-image: url(@backgroundImageUrl);"</text>}>
+                        @if (Model.Settings.ShowBackgroundImage)
+                        {
+                            @Html.Raw("<div class=\"rcms-page-list-item-content\">")
+                        }
+                        <h3>@Html.PageLink(page)</h3>
+                        @if (Model.Settings.ShowDescription && page.Description != null)
+                        {
+                            @Html.MarkdownToHtml(page.Description)
+                        }
+                        @if (Model.Settings.ShowImage)
+                        {
+                            <a href="@Url.PageUrl(page)">
+                                <div class="media-object">
+                                    @if (page.ThumbnailImageUploadId != null)
+                                    {
+                                        <img src="@Url.RouteUrl("ReadPageImage", new { pageid = page.PageId, format = "thumbnail", description = Url.UrlFriendly(page.Name), t = page.ThumbnailImageUploadId })" alt="@(page.Name)" />
+                                    }
+                                </div>    
+                            </a>
+                        }
+                        @if (Model.Settings.ShowCreated || showUpdated || showOccurred || showComments)
+                        {
+                            <dl>
+                                @if (Model.Settings.ShowCreated)
+                                {
+                                    <dt class="created">@ElementResource.PageListCreatedLabel</dt>
+                                    <dd class="created">@Html.Date(page.Created)</dd>
+                                }
+                                @if (showUpdated)
+                                {
+                                    <dt class="updated">@ElementResource.PageListUpdatedLabel</dt>
+                                    <dd class="updated">@Html.Date(page.Updated)</dd>
+                                }
+                                @if (showOccurred)
+                                {
+                                    <dt class="occurred">@if (occursInFuture)
+                                    { <text>@ElementResource.PageListOccurredFutureLabel</text> }
+                                    else { <text>@ElementResource.PageListOccurredPastLabel</text> }</dt>
+                                    <dd class="occurred">@Html.Date(page.Occurred.Value)</dd>
+                                }
+                                @if (showComments)
+                                {
+                                    <dt class="comments">@ElementResource.PageListCommentsLabel</dt>
+                                    <dd class="comments">@Model.Content.CommentCounts[page.PageId]</dd>
+                                }
+                            </dl>
+                        }
+                        @if (Model.Settings.ShowTags && page.Tags.Count > 0)
+                        {
+                            <ul class="tags">
+                                @foreach (Cms.Tag tag in page.Tags) {<li class="tag-available">@Html.PageLink(
+                                    Model.Content.CurrentPage, tag.Name, new { tags = tag.Name }, null)</li>}
+                            </ul>
+                        }
+                        @if (Model.Settings.ShowBackgroundImage)
+                        {
+                            @Html.Raw("</div>")
+                        }
+                    </div>
+                }
+            </div>
+        }
+
+        @if (Model.Content.Pages.Count > 0 && Model.Settings.ShowPager)
+        {
+            <div class="rcms-page-list-pager">
+                <div class="row">
+                    <div class="pager-text">
+                        @Html.PagerText(Model.Content.Pager)
+                    </div>
+                    <div class="pager-pagination">
+                        @Html.Pager(Model.Content.Pager)
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.Settings.MoreMessage != null)
+        {
+            <div class="rcms-page-list-more">
+                <p>@Html.PageLink(Model.Content.Page, Model.Settings.MoreMessage)</p>
+            </div>
+        }
+
+    </div>
+}

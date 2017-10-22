@@ -1,0 +1,256 @@
+﻿@using Riverside.Cms.Core.Administration
+@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.NavBars
+@using Riverside.Cms.Elements.Resources
+
+@model IElementInfo<NavBarSettings, NavBarContent>
+
+@{
+    bool pageTabs = Model.Content.PageTabs.Count > 0;
+    IAdministrationOptionGroup loggedOnUserOptionsGroup = null;
+    IAdministrationOptionGroup loggedOffUserOptionsGroup = null;
+    IAdministrationOptionGroup pageOptionsGroup = Model.Content.Options.Groups.Where(g => g.Group == AdministrationGroup.Page).FirstOrDefault();
+    IAdministrationOptionGroup masterPageOptionsGroup = Model.Content.Options.Groups.Where(g => g.Group == AdministrationGroup.MasterPage).FirstOrDefault();
+    if (Model.Settings.ShowLoggedOffUserOptions)
+    {
+        loggedOffUserOptionsGroup = Model.Content.Options.Groups.Where(g => g.Group == AdministrationGroup.LoggedOffUser).FirstOrDefault();
+    }
+    if (Model.Settings.ShowLoggedOnUserOptions)
+    {
+        loggedOnUserOptionsGroup = Model.Content.Options.Groups.Where(g => g.Group == AdministrationGroup.LoggedOnUser).FirstOrDefault();
+    }
+    bool adminTabs = loggedOnUserOptionsGroup != null || loggedOffUserOptionsGroup != null || pageOptionsGroup != null || masterPageOptionsGroup != null;
+}
+
+<div class="rcms-nav-bar">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                @if (pageTabs || adminTabs)
+                {
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">@ElementResource.NavBarToggleNavigationLabel</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                }
+                @if (Model.Settings.NavBarName != null) {
+                    <a class="navbar-brand" href="@Url.Content("~/")">@Model.Settings.NavBarName</a>
+                }
+            </div>
+            @if (pageTabs || adminTabs)
+            {
+                <div id="navbar" class="navbar-collapse collapse">
+                    @if (pageTabs)
+                    {
+                        <ul class="nav navbar-nav">
+                            @foreach (NavBarPageTab pageTab in Model.Content.PageTabs)
+                            {
+                                <li class="@if (pageTab.Active) {<text>active</text>}">@Html.PageLink(pageTab.Page, pageTab.Name)</li>
+                            }
+                        </ul>
+                    }
+                    @if (adminTabs)
+                    {
+                        <ul class="nav navbar-nav navbar-right admin-options">
+                            @foreach (IAdministrationOptionGroup group in Model.Content.Options.Groups)
+                            {
+                                bool display = (group.Group == AdministrationGroup.LoggedOnUser && loggedOnUserOptionsGroup != null) ||
+                                    (group.Group == AdministrationGroup.LoggedOffUser && loggedOffUserOptionsGroup != null) ||
+                                    (group.Group != AdministrationGroup.LoggedOnUser && group.Group != AdministrationGroup.LoggedOffUser);
+                                if (display)
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            @switch (group.Group)
+                                            {
+                                                case AdministrationGroup.Site:
+                                                    <i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>
+                                                    break;
+
+                                                case AdministrationGroup.Page:
+                                                    <i class="fa fa-fw fa-file-o" aria-hidden="true"></i>
+                                                    break;
+
+                                                case AdministrationGroup.LoggedOffUser:
+                                                case AdministrationGroup.LoggedOnUser:
+                                                    <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+                                                    break;
+
+                                                case AdministrationGroup.MasterPage:
+                                                    <i class="fa fa-fw fa-object-group" aria-hidden="true"></i>
+                                                    break;
+                                            }
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @for (int index = 0; index < group.Sections.Count; index++)
+                                            {
+                                                IAdministrationOptionSection groupSection = group.Sections[index];
+                                                <li class="dropdown-header">@groupSection.Name</li>
+                                                foreach (IAdministrationOption option in groupSection.Options)
+                                                {
+                                                    string dataElementId = "";
+                                                    string dataElementTypeId = "";
+                                                    if (option is UpdateElementOption && ((UpdateElementOption)option).ElementTypeId.ToString() != "a94c34c0-1a4c-4c91-a669-2f830cf1ea5f")
+                                                    {
+                                                        dataElementId = ((UpdateElementOption)option).ElementId.ToString();
+                                                        dataElementTypeId = ((UpdateElementOption)option).ElementTypeId.ToString();
+                                                    }
+                                                    <li>
+                                                        <a href="@Url.AdminUrl(option)" data-elementid="@dataElementId" data-elementtypeid="@dataElementTypeId">
+                                                            @switch (option.Action)
+                                                            {
+                                                                case AdministrationAction.UpdateTheme:
+                                                                    <i class="fa fa-fw fa-font" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.CreatePage:
+                                                                    <i class="fa fa-fw fa-plus" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.CreateMasterPage:
+                                                                    <i class="fa fa-fw fa-plus" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.UpdatePage:
+                                                                    <i class="fa fa-fw fa-file-o" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.UpdateMasterPage:
+                                                                    <i class="fa fa-fw fa-object-group" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.UpdateMasterPageZones:
+                                                                    <i class="fa fa-fw fa-object-ungroup" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.LogonUser:
+                                                                    <i class="fa fa-fw" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.CreateUser:
+                                                                    <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.UpdateUser:
+                                                                    <i class="fa fa-fw fa-user" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.ChangePassword:
+                                                                    <i class="fa fa-fw fa-lock" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.LogoffUser:
+                                                                    <i class="fa fa-fw fa-power-off" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.UpdatePageZone:
+                                                                    <i class="fa fa-fw fa-th" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.UpdateMasterPageZone:
+                                                                    <i class="fa fa-fw fa-th" aria-hidden="true"></i> @option.Name
+                                                                    break;
+
+                                                                case AdministrationAction.UpdatePageElement:
+                                                                case AdministrationAction.UpdateMasterPageElement:
+                                                                    switch (((UpdateElementOption)option).ElementTypeId.ToString())
+                                                                    {
+                                                                        case "b539d2a4-52ae-40d5-b366-e42447b93d15":    // Album
+                                                                            <i class="fa fa-fw fa-camera" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "aacb11a0-5532-47cb-aab9-939cee3d5175":    // Carousel
+                                                                            <i class="fa fa-fw fa-map-o" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "4e6b936d-e8a1-4ff2-9576-9f9b78f82895":    // Contact details
+                                                                            <i class="fa fa-fw fa-phone" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "eafbd5ab-8c98-4edc-b8e1-42f5e8bfe2dc":    // Form
+                                                                            <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "484192d1-5a4f-496f-981b-7e0120453949":    // Forum
+                                                                            <i class="fa fa-fw fa-comment-o" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "c92ee4c4-b133-44cc-8322-640e99c334dc":    // Html
+                                                                            <i class="fa fa-fw fa-paragraph" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "f9557287-ba01-48e3-9ab4-e2f4831933d0":    // Latest threads
+                                                                            <i class="fa fa-fw fa-comments-o" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "9a4b77e3-2edd-42db-8e14-153ae1f47005":    // Map
+                                                                            <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "a94c34c0-1a4c-4c91-a669-2f830cf1ea5f":    // Nav bar
+                                                                            <i class="fa fa-fw fa-bars" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "1cbac30c-5deb-404e-8ea8-aabc20c82aa8":    // Page Info
+                                                                            <i class="fa fa-fw fa-info" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "61f55535-9f3e-4ef5-96a2-bc84d648842a":    // Page list
+                                                                            <i class="fa fa-fw fa-list" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "b910c231-7dbd-4cad-92ef-775981e895b4":    // Tag cloud
+                                                                            <i class="fa fa-fw fa-hashtag" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "f1c2b384-4909-47c8-ada7-cd3cc7f32620":    // Footer
+                                                                            <i class="fa fa-fw fa-caret-down" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "5401977d-865f-4a7a-b416-0a26305615de":    // Code snippet
+                                                                            <i class="fa fa-fw fa-code" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "cf0d7834-54fb-4a6e-86db-0f238f8b1ac1":    // Share
+                                                                            <i class="fa fa-fw fa-share-alt" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "252ca19c-d085-4e0d-b70b-da3e1098f51b":    // Table
+                                                                            <i class="fa fa-fw fa-table" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        case "eb479ac9-8c79-4fae-817a-e77fd3dbf05b":    // Testimonial
+                                                                        case "7d6d413f-bf9a-4964-9ae7-59ca0f1eb73a":    // Testimonial carousel
+                                                                            <i class="fa fa-fw fa-quote-right" aria-hidden="true"></i>
+                                                                            break;
+
+                                                                        default:
+                                                                            <i class="fa fa-fw" aria-hidden="true"></i>
+                                                                            break;
+                                                                    }
+                                                                    @option.Name
+                                                                    break;
+                                                            }
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (index < group.Sections.Count - 1)
+                                                {
+                                                    <li role="separator" class="divider"></li>
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    }
+                </div>
+            }
+        </div>
+    </nav>
+</div>

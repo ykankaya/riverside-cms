@@ -1,0 +1,30 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Contacts
+
+@model IElementInfo<ContactSettings, ContactContent>
+
+<div class="rcms-contact-admin" ng-app="adminApp" ng-controller="ContactAdminController" ng-init="getForm(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <div class="row">
+            <div class="col-sm-6">
+                <text-field ng-model="form.fields.displayName"></text-field>
+                <multi-line-text-field ng-model="form.fields.preamble"></multi-line-text-field>
+                <text-field ng-model="form.fields.twitterUsername"></text-field>
+                <text-field ng-model="form.fields.facebookUsername"></text-field>
+                <text-field ng-model="form.fields.instagramUsername"></text-field>
+                <text-field ng-model="form.fields.youTubeChannelId"></text-field>
+            </div>
+            <div class="col-sm-6">
+                <text-field ng-model="form.fields.linkedInCompanyUsername"></text-field>
+                <text-field ng-model="form.fields.linkedInPersonalUsername"></text-field>
+                <text-field ng-model="form.fields.email"></text-field>
+                <text-field ng-model="form.fields.address"></text-field>
+                <text-field ng-model="form.fields.telephoneNumber1"></text-field>
+                <text-field ng-model="form.fields.telephoneNumber2"></text-field>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>

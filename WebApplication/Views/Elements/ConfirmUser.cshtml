@@ -1,0 +1,13 @@
+﻿@using Riverside.Cms.Core.Resources
+
+<div class="rcms-confirm-user" ng-app="adminApp" ng-controller="ConfirmUserController" ng-init="initialise()" ng-cloak>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="spinner" ng-hide="model"></div>
+            <form name="form" role="form" ng-show="model && confirmUserFailure" novalidate>
+                <validation-summary ng-model="model.customErrorMessages"></validation-summary>
+            </form>
+            <p ng-if="confirmUserFailure">@AuthenticationResource.ConfirmUserFailureMessage</p>
+        </div>
+    </div>
+</div>

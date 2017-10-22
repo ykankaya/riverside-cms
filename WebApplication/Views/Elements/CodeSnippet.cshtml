@@ -1,0 +1,11 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.CodeSnippets
+
+@model IElementInfo<CodeSnippetSettings, CodeSnippetContent>
+
+<div class="rcms-code-snippet">
+
+    <pre><code class="@Model.Content.CssClass">@Model.Settings.Code</code></pre>
+
+</div>
+

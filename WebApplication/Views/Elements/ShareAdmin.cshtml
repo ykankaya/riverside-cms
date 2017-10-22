@@ -1,0 +1,22 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Shares
+
+@model IElementInfo<ShareSettings, ShareContent>
+
+<div class="rcms-share-admin" ng-app="adminApp" ng-controller="ShareAdminController" ng-init="getForm(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <text-field ng-model="form.fields.displayName"></text-field>
+        <checkbox-field ng-model="form.fields.shareOnDigg"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnFacebook"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnGoogle"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnLinkedIn"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnPinterest"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnReddit"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnStumbleUpon"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnTumblr"></checkbox-field>
+        <checkbox-field ng-model="form.fields.shareOnTwitter"></checkbox-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>

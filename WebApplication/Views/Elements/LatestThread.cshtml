@@ -1,0 +1,48 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Forums
+@using Riverside.Cms.Elements.LatestThreads
+@using Riverside.UI.Extensions
+
+@model IElementInfo<LatestThreadSettings, LatestThreadContent>
+
+<div class="rcms-latest-threads">
+
+    @if (Model.Settings.DisplayName != null)
+    {
+        <h2>@Model.Settings.DisplayName</h2>
+    }
+
+    @if (Model.Settings.Preamble != null)
+    {
+        <p class="rcms-preamble">@Html.FormatMultiline(Model.Settings.Preamble)</p>
+    }
+
+    @if (Model.Content.Threads.Count == 0)
+    {
+        <p>@Model.Settings.NoThreadsMessage</p>
+    }
+
+    @if (Model.Content.Threads.Count > 0)
+    {
+        <ul class="comments">
+            @foreach (ForumThreadExtended thread in Model.Content.Threads)
+            {
+                <li>
+                    <a href="@Url.RouteUrl("ReadPage", new { pageid = thread.PageId, description = Url.UrlFriendly(thread.Thread.Subject), forumaction = "thread", threadid = thread.Thread.ThreadId })">
+                        <div class="media-object">
+                            @if (thread.LastPostUser != null && thread.LastPostUser.Uploaded != null)
+                            {
+                                <img src="@Url.RouteUrl("ReadUserImage", new { userid = thread.LastPostUserId, format = "thumbnail", description = Url.UrlFriendly(thread.LastPostUser.Alias), t = thread.LastPostUser.Uploaded.Value.Ticks })" alt="@thread.LastPostUser.Alias" />
+                            }
+                            else if (thread.User.Uploaded != null)
+                            {
+                                <img src="@Url.RouteUrl("ReadUserImage", new { userid = thread.Thread.UserId, format = "thumbnail", description = Url.UrlFriendly(thread.User.Alias), t = thread.User.Uploaded.Value.Ticks })" alt="@thread.User.Alias" />
+                            }
+                        </div>
+                        @thread.Thread.Subject <span class="badge">@(thread.Thread.Replies + 1)</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</div>

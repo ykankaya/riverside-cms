@@ -1,0 +1,12 @@
+﻿<div class="rcms-create-page" ng-app="adminApp" ng-controller="PagesController" ng-init="getForm('@Model.Content.FormContext')" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <text-field ng-model="form.fields.name"></text-field>
+        <multi-line-text-field ng-model="form.fields.description"></multi-line-text-field>
+        <select-field ng-model="form.fields.parent" ng-if="form.fields.parent"></select-field>
+        <multi-line-text-field ng-if="form.fields.tags" ng-model="form.fields.tags"></multi-line-text-field>
+        <upload-field ng-if="form.fields.upload" ng-model="form.fields.upload"></upload-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>

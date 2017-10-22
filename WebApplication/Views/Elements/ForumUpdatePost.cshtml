@@ -1,0 +1,38 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Forums
+@using Riverside.Cms.Elements.Resources
+@using Riverside.UI.Extensions
+
+@model IElementInfo<ForumSettings, ForumContent>
+
+<div class="rcms-forum-update-post forum">
+
+    @{ Html.RenderPartial("~/Views/Elements/ForumNavigation.cshtml", Model); }
+
+    <div ng-app="adminApp" ng-controller="ForumController" ng-init="getForm('@Model.Content.FormContext')" ng-cloak>
+        <div class="spinner" ng-hide="form"></div>
+        <form name="htmlForm" role="form" ng-show="form" novalidate>
+            <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+            <h2>@Model.Content.Thread.Subject</h2>
+            <div class="media">
+                <div class="pull-left hidden-xs">
+                    <div class="media-object">
+                        @if (Model.Content.PostAndUser.User.Uploaded != null)
+                        {
+                            <img src="@Url.RouteUrl("ReadUserImage", new { userid = Model.Content.PostAndUser.Post.UserId, format = "thumbnail", description = Url.UrlFriendly(Model.Content.PostAndUser.User.Alias), t = Model.Content.PostAndUser.User.Uploaded.Value.Ticks })" alt="@Model.Content.PostAndUser.User.Alias" />
+                        }
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">@ElementResource.ForumPostedByLabel @Model.Content.PostAndUser.User.Alias @Html.RelativeTime(Model.Content.PostAndUser.Post.Created)</h4>
+                    <div class="forum-message">
+                        @Html.MarkdownToHtml(Model.Content.PostAndUser.Post.Message)
+                    </div>
+                </div>
+            </div>
+            <multi-line-text-field ng-model="form.fields.message"></multi-line-text-field>
+            <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+        </form>
+    </div>
+
+</div>

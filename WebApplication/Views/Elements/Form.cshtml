@@ -1,0 +1,17 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Forms
+
+@model IElementInfo<FormSettings, FormContent>
+
+<div class="rcms-form" ng-app="adminApp" ng-controller="FormController" ng-init="getForm('', @ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form && !formSubmitted" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <div ng-repeat="fieldSet in form.fieldSets">
+            <text-field ng-if="fieldSet.fields.field.fieldType == 0" ng-model="fieldSet.fields.field"></text-field>
+            <multi-line-text-field ng-if="fieldSet.fields.field.fieldType == 1" ng-model="fieldSet.fields.field"></multi-line-text-field>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+    <p ng-show="formSubmitted">@Model.Settings.SubmittedMessage</p>
+</div>

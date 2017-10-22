@@ -1,0 +1,47 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Tables
+@using Riverside.UI.Extensions
+
+@model IElementInfo<TableSettings, TableContent>
+
+<div class="rcms-table">
+
+    @if (Model.Settings.DisplayName != string.Empty)
+    {
+        <h2>@Model.Settings.DisplayName</h2>
+    }
+
+    @if (Model.Settings.Preamble != string.Empty)
+    {
+        <p class="rcms-preamble">@Html.FormatMultiline(Model.Settings.Preamble)</p>
+    }
+
+    <table class="table">
+        @if (Model.Content.Headers != null)
+        {
+            <thead>
+                <tr>
+                    @foreach (string header in Model.Content.Headers)
+                    {
+                        <th>@header</th>
+                    }
+                </tr>
+            </thead>
+        }
+        @if (Model.Content.Rows.Count > 0)
+        {
+            <tbody>
+                @foreach (List<string> row in Model.Content.Rows)
+                {
+                    <tr>
+                        @foreach (string cell in row)
+                        {
+                            <td>@cell</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        }
+    </table>
+
+</div>

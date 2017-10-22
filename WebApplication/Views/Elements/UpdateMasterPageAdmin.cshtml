@@ -1,0 +1,77 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.MasterPages
+
+@model IElementInfo<ElementSettings, MasterPageContent>
+
+<div class="rcms-master-page-admin" ng-app="adminApp" ng-controller="MasterPagesController" ng-init="initialise('@Model.Content.FormContext')" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form && showForm" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <text-field ng-model="form.fields.name"></text-field>
+        <text-field ng-model="form.fields.pageName"></text-field>
+        <multi-line-text-field ng-model="form.fields.pageDescription"></multi-line-text-field>
+        <div class="row">
+            <div class="col-sm-6">
+                <select-field ng-model="form.fields.ancestorPageId"></select-field>
+            </div>
+            <div class="col-sm-6" ng-if="form.fields.ancestorPageId.value">
+                <select-field ng-model="form.fields.ancestorPageLevel"></select-field>
+            </div>
+        </div>
+        <select-field ng-model="form.fields.pageType"></select-field>
+        <checkbox-field ng-model="form.fields.hasOccurred"></checkbox-field>
+        <checkbox-field ng-model="form.fields.hasImage"></checkbox-field>
+        <div class="row" ng-if="form.fields.hasImage.value">
+            <div class="col-sm-6">
+                <integer-field ng-model="form.fields.imageMinWidth"></integer-field>
+            </div>
+            <div class="col-sm-6">
+                <integer-field ng-model="form.fields.imageMinHeight"></integer-field>
+            </div>
+        </div>
+        <div class="row" ng-if="form.fields.hasImage.value">
+            <div class="col-sm-4">
+                <integer-field ng-model="form.fields.thumbnailImageWidth"></integer-field>
+            </div>
+            <div class="col-sm-4">
+                <integer-field ng-model="form.fields.thumbnailImageHeight"></integer-field>
+            </div>
+            <div class="col-sm-4">
+                <select-field ng-model="form.fields.thumbnailImageResizeMode"></select-field>
+            </div>
+        </div>
+        <div class="row" ng-if="form.fields.hasImage.value">
+            <div class="col-sm-4">
+                <integer-field ng-model="form.fields.previewImageWidth"></integer-field>
+            </div>
+            <div class="col-sm-4">
+                <integer-field ng-model="form.fields.previewImageHeight"></integer-field>
+            </div>
+            <div class="col-sm-4">
+                <select-field ng-model="form.fields.previewImageResizeMode"></select-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <checkbox-field ng-model="form.fields.creatable"></checkbox-field>
+            </div>
+            <div class="col-sm-4">
+                <checkbox-field ng-model="form.fields.deletable"></checkbox-field>
+            </div>
+            <div class="col-sm-4">
+                <checkbox-field ng-model="form.fields.taggable"></checkbox-field>
+            </div>
+        </div>
+        <checkbox-field ng-model="form.fields.administration"></checkbox-field>
+        <div class="row">
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="form.fields.beginRender"></multi-line-text-field>
+            </div>
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="form.fields.endRender"></multi-line-text-field>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="formSubmitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>
+

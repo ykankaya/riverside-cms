@@ -1,0 +1,61 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Albums
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.Resources
+
+@model IElementInfo<AlbumSettings, ElementContent>
+
+<div class="rcms-album" ng-app="adminApp" ng-controller="AlbumController" ng-keydown="keyDown($event)" ng-init="initialise(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)">
+
+    @if (Model.Settings.Photos.Count == 0)
+    {
+        <div class="rcms-album-photo-info">
+            <h2>@ElementResource.AlbumPhotoEmptyName</h2>
+            <p>@ElementResource.AlbumPhotoEmptyDescription</p>
+        </div>
+    }
+
+    @if (Model.Settings.Photos.Count > 0)
+    {
+        <div class="rcms-album-photos">
+            @for (int index = 0; index < Model.Settings.Photos.Count; index++)
+            {
+                AlbumPhoto photo = Model.Settings.Photos[index];
+                <div class="rcms-album-photo">
+                    <a ng-click="$event.preventDefault();showPhoto(@index)" title="@photo.Name" href="@Url.RouteUrl("ReadElementUpload", new { elementid = photo.ElementId, uploadid = photo.AlbumPhotoId, format = "preview", t = photo.PreviewImageUploadId })">
+                        <img src="@Url.RouteUrl("ReadElementUpload", new { elementid = photo.ElementId, uploadid = photo.AlbumPhotoId, format = "thumbnail", t = photo.ThumbnailImageUploadId })" />
+                    </a>
+                </div>
+            }
+        </div>
+
+        <div class="rcms-viewer" ng-show="visible" ng-cloak>
+            <div class="rcms-viewer-backdrop">
+            </div>
+            <div class="rcms-viewer-popup">
+                <div class="rcms-viewer-main-outer">
+                    <div visualiser class="rcms-viewer-main">
+                        <div class="spinner" ng-show="loadingVisual"></div>
+                        <img visual ng-src="{{selectedPhoto.imageUrl}}" ng-style="visualStyle()" ng-hide="loadingVisual" />
+                    </div>
+                </div>
+                <div class="rcms-viewer-side">
+                    <div class="rcms-viewer-options">
+                        <a ng-click="hideViewer()" href><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="rcms-viewer-details">
+                        <h3 ng-show="selectedPhoto.name">{{selectedPhoto.name}}</h3>
+                        <p ng-show="selectedPhoto.description">{{selectedPhoto.description}}</p>
+                    </div>
+                    <div class="rcms-viewer-pager">
+                        <ul>
+                            <li><a ng-click="previous()" href>Previous</a></li>
+                            <li><a ng-click="next()" href>Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,105 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Forums
+@using Riverside.Cms.Elements.Resources
+@using Riverside.UI.Extensions
+
+@model IElementInfo<ForumSettings, ForumContent>
+
+@{
+    ThreadViewModel viewModel = Model.Content.ThreadViewModel;
+}
+
+<div class="rcms-forum">
+    <div class="forum forum-thread">
+
+        @{ Html.RenderPartial("~/Views/Elements/ForumNavigation.cshtml", Model); }
+
+        <h2>@viewModel.ThreadAndUser.Thread.Subject@if (viewModel.Pager.PageCount > 1)
+        {<text> (page @viewModel.Pager.PageIndex of @viewModel.Pager.PageCount)</text>}</h2>
+
+        @if (viewModel.DisplayThreadDetails)
+        {
+            <div class="media">
+                <div class="pull-left hidden-xs">
+                    <div class="media-object">
+                        @if (viewModel.ThreadAndUser.User.Uploaded != null)
+                        {
+                            <img src="@Url.RouteUrl("ReadUserImage", new { userid = viewModel.ThreadAndUser.Thread.UserId, format = "thumbnail", description = Url.UrlFriendly(viewModel.ThreadAndUser.User.Alias), t = viewModel.ThreadAndUser.User.Uploaded.Value.Ticks })" alt="@viewModel.ThreadAndUser.User.Alias" />
+                        }
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Posted by @viewModel.ThreadAndUser.User.Alias @Html.RelativeTime(viewModel.ThreadAndUser.Thread.Created)</h4>
+                    <div class="forum-message">
+                        @Html.MarkdownToHtml(viewModel.ThreadAndUser.Thread.Message)
+                    </div>
+                    <div class="btn-group">
+                        <a href="@viewModel.ReplyThreadUrl" class="btn btn-default">@ElementResource.ForumReplyThreadOptionLabel</a>
+                        <a href="@viewModel.QuoteThreadUrl" class="btn btn-default">@ElementResource.ForumQuoteThreadOptionLabel</a>
+                        @if (viewModel.ShowUpdateThread)
+                        {
+                            <a href="@viewModel.UpdateThreadUrl" class="btn btn-default">@ElementResource.ForumUpdateThreadOptionLabel</a>
+                        }
+                        @if (viewModel.ShowDeleteThread)
+                        {
+                            <a href="@viewModel.DeleteThreadUrl" class="btn btn-default">@ElementResource.ForumDeleteThreadOptionLabel</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (viewModel.PostViewModels.Count == 0)
+        {
+            <div class="alert alert-info">
+                @ElementResource.ForumThreadNoRepliesMessage
+                <a href="@viewModel.ReplyThreadUrl">@ElementResource.ForumReplyThreadMessage</a>
+            </div>
+        }
+        else
+        {
+            <ul class="media-list">
+                @foreach (PostViewModel postViewModel in viewModel.PostViewModels)
+                {
+                    <li class="media" id="post@(postViewModel.PostAndUser.Post.PostId)">
+                        <div class="pull-left hidden-xs">
+                            <div class="media-object">
+                                @if (postViewModel.PostAndUser.User.Uploaded != null)
+                                {
+                                    <img src="@Url.RouteUrl("ReadUserImage", new { userid = postViewModel.PostAndUser.Post.UserId, format = "thumbnail", description = Url.UrlFriendly(postViewModel.PostAndUser.User.Alias), t = postViewModel.PostAndUser.User.Uploaded.Value.Ticks })" alt="@postViewModel.PostAndUser.User.Alias" />
+                                }
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Posted by @postViewModel.PostAndUser.User.Alias @Html.RelativeTime(postViewModel.PostAndUser.Post.Created)</h4>
+                            <div class="forum-message">
+                                @Html.MarkdownToHtml(postViewModel.PostAndUser.Post.Message)
+                            </div>
+                            <div class="btn-group">
+                                <a href="@postViewModel.ReplyPostUrl" class="btn btn-default">@ElementResource.ForumReplyPostOptionLabel</a>
+                                <a href="@postViewModel.QuotePostUrl" class="btn btn-default">@ElementResource.ForumQuotePostOptionLabel</a>
+                                @if (postViewModel.ShowUpdatePost)
+                                {
+                                    <a href="@postViewModel.UpdatePostUrl" class="btn btn-default">@ElementResource.ForumUpdatePostOptionLabel</a>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+            if (viewModel.Pager.PageCount > 0)
+            {
+                <div class="row">
+                    <div class="pager-text">
+                        @Html.PagerText(viewModel.Pager)
+                    </div>
+                    <div class="pager-pagination">
+                        @Html.Pager(viewModel.Pager)
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

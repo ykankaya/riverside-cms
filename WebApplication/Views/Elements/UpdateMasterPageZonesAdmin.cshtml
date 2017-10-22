@@ -1,0 +1,38 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.MasterPages
+@using Riverside.Cms.Core.Resources
+
+@model IElementInfo<ElementSettings, MasterPageContent>
+
+<div class="rcms-master-page-zones-admin" ng-app="adminApp" ng-controller="MasterPageZonesController" ng-init="initialise('@Model.Content.FormContext')" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form && showForm" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <div class="rcms-card-deck-options">
+            <button class="btn btn-default" type="button" ng-click="$event.preventDefault();createZone()"><i class="fa fa-plus" aria-hidden="true"></i> @MasterPageResource.CreateZoneButtonLabel</button>
+        </div>
+        <ul class="rcms-card-deck" ng-sortable="{ animation: 150, handle: '.sort-handle' }">
+            <li class="rcms-card" ng-repeat="zone in masterPageZones">
+                <div class="rcms-card-handle">
+                    <a href="#" class="sort-handle"><i class="fa fa-fw fa-ellipsis-v" aria-hidden="true"></i> @MasterPageResource.MasterPageZoneDragLabel</a>
+                    <div class="rcms-card-options">
+                        <a href="#" ng-click="$event.preventDefault();updateZone(zone, $index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="$event.preventDefault();deleteZone(zone, $index)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="rcms-card-content">
+                    <p ng-if="zone.MasterPageZoneId == undefined">{{zone.Name}}</p>
+                    <p ng-if="zone.MasterPageZoneId != undefined"><a target="_blank" href="/admin/masterpages/{{zone.MasterPageId}}/masterpagezones/{{zone.MasterPageZoneId}}">{{zone.Name}}</a></p>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-primary" type="submit" ng-disabled="formSubmitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+    <form name="htmlZoneForm" role="form" ng-show="zoneForm && showZoneForm" novalidate>
+        <validation-summary ng-model="zoneForm.customErrorMessages"></validation-summary>
+        <text-field ng-model="zoneForm.fields.name"></text-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="zoneFormSubmitting || htmlZoneForm.$invalid" ng-click="postZoneForm()">{{zoneForm.submitLabel}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancelZone()">@MasterPageResource.CancelZoneButtonLabel</button>
+    </form>
+</div>
+

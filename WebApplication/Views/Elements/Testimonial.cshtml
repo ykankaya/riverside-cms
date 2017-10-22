@@ -1,0 +1,46 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Resources
+@using Riverside.Cms.Elements.Testimonials
+@using Riverside.UI.Extensions
+
+@model IElementInfo<TestimonialSettings, TestimonialContent>
+
+<div class="rcms-testimonials">
+
+    @if (Model.Settings.DisplayName != string.Empty)
+    {
+        <h2>@Model.Settings.DisplayName</h2>
+    }
+
+    @if (Model.Settings.Preamble != string.Empty)
+    {
+        <p class="rcms-preamble">@Html.FormatMultiline(Model.Settings.Preamble)</p>
+    }
+
+    <ul>
+        @if (Model.Settings.Comments.Count == 0)
+        {
+            <li>
+                <div class="rcms-testimonial">
+                    <div class="rcms-testimonial-info">
+                        <p class="comment">@ElementResource.TestimonialCommentEmptyName</p>
+                    </div>
+                </div>
+            </li>
+        }
+        @foreach (TestimonialComment comment in Model.Settings.Comments)
+        {
+            <li>
+                <div class="rcms-testimonial">
+                    <div class="rcms-testimonial-info">
+                        @if (comment.Comment != string.Empty) { <p class="comment">@comment.Comment</p> }
+                        @if (comment.Author != string.Empty) { <p class="author">@comment.Author</p> }
+                        @if (comment.AuthorTitle != string.Empty) { <p class="author-title">@comment.AuthorTitle</p> }
+                        @if (comment.CommentDate != string.Empty) { <p class="comment-date">@comment.CommentDate</p> }
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+
+</div>

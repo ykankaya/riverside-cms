@@ -1,0 +1,28 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Testimonials
+
+@model IElementInfo<TestimonialSettings, TestimonialContent>
+
+@{ Html.RenderPartial("~/Views/Elements/Testimonial.cshtml", Model); }
+
+@if (!Model.Content.Items.ContainsKey("slick-loaded"))
+{
+    Model.Content.Items["slick-loaded"] = true;
+    <script src="@Url.Content("~/scripts/slick.min.js")"></script>
+}
+@if (!Model.Content.Items.ContainsKey("testimonial-carousel-loaded"))
+{
+    Model.Content.Items["testimonial-carousel-loaded"] = true;
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.rcms-testimonials ul').slick({
+                dots: true,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 5000,
+                arrows: false
+            });
+        });
+    </script>
+}

@@ -1,0 +1,21 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Resources
+@using Riverside.Cms.Elements.Authentication
+
+@model IElementInfo<ElementSettings, AuthenticationContent>
+
+<div class="rcms-change-password" ng-app="adminApp" ng-controller="AuthenticationController" ng-init="getForm('@Model.Content.FormContext')" ng-cloak>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="spinner" ng-hide="form"></div>
+            <form name="htmlForm" role="form" ng-show="form" novalidate ng-hide="userUpdated">
+                <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+                <text-field ng-model="form.fields.alias"></text-field>
+                <text-field ng-model="form.fields.email"></text-field>
+                <upload-field ng-if="form.fields.upload" ng-model="form.fields.upload"></upload-field>
+                <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+            </form>
+            <p ng-show="userUpdated">@AuthenticationResource.UpdateUserSuccessMessage</p>
+        </div>
+    </div>
+</div>

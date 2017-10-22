@@ -1,0 +1,107 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.MasterPages
+@using Riverside.Cms.Core.Resources
+
+@model IElementInfo<ElementSettings, MasterPageZoneContent>
+
+<div class="rcms-master-page-zone-admin" ng-app="adminApp" ng-controller="MasterPageZoneController" ng-init="initialise('@Model.Content.MasterPageId', '@Model.Content.MasterPageZoneId')" ng-cloak>
+    <div class="spinner" ng-hide="zoneForm"></div>
+    <form name="htmlZoneForm" role="form" ng-show="zoneForm && showZoneForm" novalidate>
+        <validation-summary ng-model="zoneForm.customErrorMessages"></validation-summary>
+        <text-field ng-model="zoneForm.fields.name"></text-field>
+        <div class="row">
+            <div class="col-sm-6">
+                <select-field ng-model="zoneForm.fields.adminType"></select-field>
+            </div>
+            <div class="col-sm-6">
+                <select-field ng-model="zoneForm.fields.contentType"></select-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="zoneForm.fields.beginRender"></multi-line-text-field>
+            </div>
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="zoneForm.fields.endRender"></multi-line-text-field>
+            </div>
+        </div>
+        <div class="rcms-card-deck-options">
+            <button class="btn btn-default" type="button" ng-click="$event.preventDefault();createZoneElement()"><i class="fa fa-plus" aria-hidden="true"></i> @MasterPageResource.CreateZoneElementButtonLabel</button>
+            <button class="btn btn-default" type="button" ng-click="$event.preventDefault();createZoneElementNew()"><i class="fa fa-plus" aria-hidden="true"></i> @MasterPageResource.CreateZoneElementNewButtonLabel</button>
+        </div>
+        <ul class="rcms-card-deck" ng-sortable="{ animation: 150, handle: '.sort-handle' }">
+            <li class="rcms-card" ng-repeat="zoneElement in zoneForm.model.MasterPageZoneElements">
+                <div class="rcms-card-handle">
+                    <a href="#" class="sort-handle"><i class="fa fa-fw fa-ellipsis-v" aria-hidden="true"></i> @MasterPageResource.MasterPageZoneElementDragLabel</a>
+                    <div class="rcms-card-options">
+                        <a href="#" ng-click="$event.preventDefault();updateZoneElement(zoneElement, $index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="$event.preventDefault();deleteZoneElement(zoneElement, $index)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="rcms-card-content">
+                    <p ng-if="zoneElement.ElementId == 0">{{zoneElement.Element.Name}}</p>
+                    <p ng-if="zoneElement.ElementId != 0"><a target="_blank" href="/admin/masterpages/{{masterPageZone.MasterPageId}}/elements/{{zoneElement.ElementId}}">{{zoneElement.Element.Name}}</a></p>
+                </div>
+            </li>
+        </ul>
+        <div ng-if="zoneForm.fields.adminType.value == '2'">
+            <div class="rcms-card-deck-options">
+                <button class="btn btn-default" type="button" ng-click="$event.preventDefault();createZoneElementType()"><i class="fa fa-plus" aria-hidden="true"></i> @MasterPageResource.CreateZoneElementTypeButtonLabel</button>
+            </div>
+            <ul class="rcms-card-deck">
+                <li class="rcms-card" ng-repeat="zoneElementType in zoneForm.model.MasterPageZoneElementTypes">
+                    <div class="rcms-card-handle">
+                        <div class="rcms-card-options">
+                            <a href="#" ng-click="$event.preventDefault();updateZoneElementType(zoneElementType, $index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a href="#" ng-click="$event.preventDefault();deleteZoneElementType(zoneElementType, $index)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="rcms-card-content">
+                        <p>{{zoneElementType.ElementType.Name}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="formSubmitting || htmlZoneForm.$invalid" ng-click="postZoneForm()">{{zoneForm.submitLabel}}</button>
+    </form>
+    <form name="htmlZoneElementForm" role="form" ng-show="zoneElementForm && showZoneElementForm" novalidate>
+        <validation-summary ng-model="zoneElementForm.customErrorMessages"></validation-summary>
+        <select-field ng-model="zoneElementForm.fields.elementId"></select-field>
+        <div class="row">
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="zoneElementForm.fields.beginRender"></multi-line-text-field>
+            </div>
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="zoneElementForm.fields.endRender"></multi-line-text-field>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="zoneElementFormSubmitting || htmlZoneElementForm.$invalid" ng-click="postZoneElementForm()">{{zoneElementForm.submitLabel}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancelZoneElement()">@MasterPageResource.CancelZoneElementButtonLabel</button>
+    </form>
+    <form name="htmlZoneElementNewForm" role="form" ng-show="zoneElementNewForm && showZoneElementNewForm" novalidate>
+        <validation-summary ng-model="zoneElementNewForm.customErrorMessages"></validation-summary>
+        <select-field ng-model="zoneElementNewForm.fields.elementType"></select-field>
+        <div class="row">
+            <div class="col-sm-12">
+                <text-field ng-model="zoneElementNewForm.fields.name"></text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="zoneElementNewForm.fields.beginRender"></multi-line-text-field>
+            </div>
+            <div class="col-sm-6">
+                <multi-line-text-field ng-model="zoneElementNewForm.fields.endRender"></multi-line-text-field>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="zoneElementNewFormSubmitting || htmlZoneElementNewForm.$invalid" ng-click="postZoneElementNewForm()">{{zoneElementNewForm.submitLabel}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancelZoneElementNew()">@MasterPageResource.CancelZoneElementNewButtonLabel</button>
+    </form>
+    <form name="htmlZoneElementTypeForm" role="form" ng-show="zoneElementTypeForm && showZoneElementTypeForm" novalidate>
+        <validation-summary ng-model="zoneElementTypeForm.customErrorMessages"></validation-summary>
+        <select-field ng-model="zoneElementTypeForm.fields.elementTypeId"></select-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="zoneElementTypeFormSubmitting || htmlZoneElementTypeForm.$invalid" ng-click="postZoneElementTypeForm()">{{zoneElementTypeForm.submitLabel}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancelZoneElementType()">@MasterPageResource.CancelZoneElementTypeButtonLabel</button>
+    </form>
+</div>
+

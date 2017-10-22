@@ -1,0 +1,16 @@
+﻿@using Riverside.Cms.Core.Resources
+
+<div class="rcms-create-user" ng-app="adminApp" ng-controller="CreateUserController" ng-init="initialise()" ng-cloak>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="spinner" ng-hide="model"></div>
+            <form name="form" role="form" ng-show="model" novalidate ng-hide="userCreated">
+                <validation-summary ng-model="model.customErrorMessages"></validation-summary>
+                <text-field ng-model="model.fields.alias"></text-field>
+                <text-field ng-model="model.fields.email"></text-field>
+                <button class="btn btn-primary" type="submit" ng-disabled="submitting || form.$invalid" ng-click="submitForm()">{{model.submitLabel}}</button>
+            </form>
+            <div class="alert alert-info" role="alert" ng-show="userCreated">@AuthenticationResource.CreateUserSuccessMessage</div>
+        </div>
+    </div>
+</div>

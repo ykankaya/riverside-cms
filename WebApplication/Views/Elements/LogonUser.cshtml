@@ -1,0 +1,36 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Resources
+@using Riverside.Cms.Elements.Authentication
+
+@model IElementInfo<ElementSettings, LogonUserContent>
+
+<div class="rcms-logon-user" ng-app="adminApp" ng-controller="LogonUserController" ng-init="getForm()" ng-cloak>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            @if (Model.Content.LogonMessage != null)
+            {
+                <div class="alert alert-info" role="alert">
+                    @Model.Content.LogonMessage
+                </div>
+            }
+            <div class="spinner" ng-hide="form"></div>
+            <form name="htmlForm" role="form" ng-show="form" novalidate>
+                <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+                <text-field ng-model="form.fields.email"></text-field>
+                <password-text-field ng-model="form.fields.password"></password-text-field>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <checkbox-field ng-model="form.fields.rememberMe"></checkbox-field>
+                    </div>
+                    <div class="col-xs-6">
+                        <button class="btn btn-primary btn-block" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+                    </div>
+                </div>
+                <ul class="list-unstyled logon-options">
+                    <li>@Html.ActionLink(AuthenticationResource.LogonUserForgottenPasswordLabel, "forgottenpassword", "users")</li>
+                    <li>@Html.ActionLink(AuthenticationResource.LogonUserCreateUserLabel, "create", "users")</li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>

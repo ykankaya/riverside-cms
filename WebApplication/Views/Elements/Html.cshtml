@@ -1,0 +1,8 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Html
+
+@model IElementInfo<HtmlSettings, HtmlContent>
+
+<div class="rcms-html">
+    @Html.Raw(Model.Content.FormattedHtml)
+</div>

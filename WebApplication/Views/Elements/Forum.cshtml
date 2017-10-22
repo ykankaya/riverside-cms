@@ -1,0 +1,139 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.Forums
+@using Riverside.Cms.Elements.Resources
+@using Riverside.UI.Extensions
+
+@model IElementInfo<ForumSettings, ForumContent>
+
+@{
+    ThreadsViewModel viewModel = Model.Content.ThreadsViewModel;
+    bool showCreateThread = viewModel.ShowCreateThread;
+    bool showSearch = false && viewModel.Threads.Count > 0;
+    int createThreadColumns = showSearch ? 8 : 12;
+    int searchColumns = showCreateThread ? 4 : 12;
+}
+
+<div class="rcms-forum">
+    <div class="forum forum-threads">
+
+        @if (showCreateThread || showSearch)
+        {
+            <div class="row">
+                @if (showCreateThread)
+                {
+                    <div class="col-sm-@createThreadColumns col-md-@createThreadColumns">
+                        <a href="@viewModel.CreateThreadUrl" class="btn btn-default block-xs"><i class="fa fa-plus" aria-hidden="true"></i> @ElementResource.ForumCreateThreadButtonLabel</a>
+                    </div>
+                }
+                @if (showSearch)
+                {
+                    <div class="col-sm-@searchColumns col-md-@searchColumns">
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Search</button>
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        @if (viewModel.Threads.Count == 0)
+        {
+            <div class="alert alert-info">
+                @ElementResource.ForumNoThreadsMessage
+                @if (showCreateThread) { <a href="@viewModel.CreateThreadUrl">@ElementResource.ForumNoThreadsCreateThreadLabel</a> }
+            </div>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@ElementResource.ForumThreadsSubjectColumnLabel</th>
+                        <th>@ElementResource.ForumThreadsCreatedColumnLabel</th>
+                        <th>@ElementResource.ForumThreadsLastPostColumnLabel</th>
+                        <th class="hidden-xs">@ElementResource.ForumThreadsRepliesColumnLabel</th>
+                        <th class="hidden-xs hidden-sm">@ElementResource.ForumThreadsViewsColumnLabel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int index = 0; index < viewModel.Threads.Count; index++)
+                    {
+                        ForumThreadExtended threadExtended = viewModel.Threads[index];
+                        int pageCount = viewModel.PageCounts[index];
+                        <tr>
+                            <td>
+                                @Html.PageLink(Model.Content.Page, threadExtended.Thread.Subject, threadExtended.Thread.Subject, new { forumaction = "thread", threadid = threadExtended.Thread.ThreadId }, null)
+                                @if (pageCount > 1)
+                                {
+                                    <text>(@ElementResource.ForumPageLabel</text>
+                                    for (int page = 1; page <= pageCount; page++)
+                                    {
+                                        if (page != 1)
+                                        {<text>, </text>}
+                                        @Html.PageLink(Model.Content.Page, page.ToString(), threadExtended.Thread.Subject, new { forumaction = "thread", threadId = threadExtended.Thread.ThreadId, page = page == 1 ? (int?)null : page }, null)
+                                    }
+                                    <text>)</text>
+                                }
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <div class="pull-left hidden-xs hidden-sm">
+                                        <div class="media-object">
+                                            @if (threadExtended.User.Uploaded != null)
+                                            {
+                                                <img src="@Url.RouteUrl("ReadUserImage", new { userid = threadExtended.Thread.UserId, format = "thumbnail", description = Url.UrlFriendly(threadExtended.User.Alias), t = threadExtended.User.Uploaded.Value.Ticks })" alt="@threadExtended.User.Alias" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="media-heading"><span class="alias">@threadExtended.User.Alias</span><span class="created">@Html.RelativeTime(threadExtended.Thread.Created)</span></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                @if (threadExtended.Thread.LastPostId != null)
+                                {
+                                    <div class="media">
+                                        <div class="pull-left hidden-xs hidden-sm">
+                                            <div class="media-object">
+                                                @if (threadExtended.LastPostUser.Uploaded != null)
+                                                {
+                                                    <img src="@Url.RouteUrl("ReadUserImage", new { userid = threadExtended.LastPostUserId, format = "thumbnail", description = Url.UrlFriendly(threadExtended.LastPostUser.Alias), t = threadExtended.LastPostUser.Uploaded.Value.Ticks })" alt="@threadExtended.LastPostUser.Alias" />
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="media-heading"><span class="alias">@threadExtended.LastPostUser.Alias</span><span class="created">@Html.RelativeTime(threadExtended.Thread.LastMessageCreated)</span></p>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <text>-</text>
+                                }
+                            </td>
+                            <td class="hidden-xs">@threadExtended.Thread.Replies</td>
+                            <td class="hidden-xs hidden-sm">@threadExtended.Thread.Views</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            if (viewModel.Pager.PageCount > 0)
+            {
+                <div class="row">
+                    <div class="pager-text">
+                        @Html.PagerText(viewModel.Pager)
+                    </div>
+                    <div class="pager-pagination">
+                        @Html.Pager(viewModel.Pager)
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

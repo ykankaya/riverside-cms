@@ -1,0 +1,36 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.NavBars
+@using Riverside.Cms.Elements.Resources
+
+@model IElementInfo<NavBarSettings, NavBarContent>
+
+<div class="rcms-nav-bar-admin" ng-app="adminApp" ng-controller="NavBarAdminController" ng-init="getForm(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <text-field ng-model="form.fields.navBarName"></text-field>
+        <checkbox-field ng-model="form.fields.showLoggedOffUserOptions"></checkbox-field>
+        <checkbox-field ng-model="form.fields.showLoggedOnUserOptions"></checkbox-field>
+        <label>@ElementResource.NavBarTabsLabel</label>
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <button class="btn btn-default btn-block control-margin-bottom" ng-click="addTab()" type="submit"><i class="fa fa-fw fa-plus"></i> @ElementResource.NavBarAddTabButtonLabel</button>
+                <ul class="nav nav-pills nav-stacked control-margin-bottom" ng-sortable="{ animation: 150, handle: '.sort-handle' }" ng-show="form.fieldSets.length > 0">
+                    <li role="presentation" ng-class="{ active: form.activeFieldSet == fieldSet }" ng-repeat="fieldSet in form.fieldSets">
+                        <a href class="sort-handle" ng-click="selectTab(fieldSet)">
+                            <i class="fa fa-fw fa-arrows-v"></i> {{fieldSet.fields.name.value}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-8 col-xs-12" ng-if="form.activeFieldSet">
+                <button class="btn btn-default btn-block control-margin-bottom" ng-click="deleteTab()" type="submit"><i class="fa fa-fw fa-trash"></i> @ElementResource.NavBarDeleteTabButtonLabel</button>
+                <div ng-repeat="fieldSet in form.fieldSets" ng-show="fieldSet == form.activeFieldSet">
+                    <text-field ng-model="fieldSet.fields.name"></text-field>
+                    <select-field ng-model="fieldSet.fields.tab"></select-field>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>

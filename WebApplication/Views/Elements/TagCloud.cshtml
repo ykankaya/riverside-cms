@@ -1,0 +1,37 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.TagCloud
+@using Cms = Riverside.Cms.Core.Pages
+
+@model IElementInfo<TagCloudSettings, TagCloudContent>
+
+@{ 
+    bool tagsToDisplay = Model.Content.TagList.Count > 0 || Model.Content.TaggedList.Count > 0 || Model.Content.RelatedTagList.Count > 0;
+}
+
+<div class="rcms-tag-cloud">
+
+    @if (Model.Settings.DisplayName != null)
+    {
+        <h2>@Model.Settings.DisplayName</h2>
+    }
+
+    @if (!tagsToDisplay)
+    {
+        <p>@Model.Settings.NoTagsMessage</p>
+    }
+
+    @if (tagsToDisplay)
+    {
+        <ul class="tags">
+            @foreach (Cms.TagCount tagCount in Model.Content.TagList) {<li class="tag-available">@Html.PageLink(
+                Model.Content.Page, tagCount.Name, new { tags = tagCount.Name }, new { @class = "tag" + tagCount.Size })</li>}
+            @foreach (TagTagged tagTagged in Model.Content.TaggedList){<li class="tag-tagged">
+                <a href="@Url.PageUrl(Model.Content.Page, new { tags = tagTagged.RemoveTaggedList })">@tagTagged.Tag.Name <i class="fa fa-times" aria-hidden="true"></i></a></li>
+            }
+            @foreach (Cms.TagCount tagCount in Model.Content.RelatedTagList) {<li class="tag-available">@Html.PageLink(
+                Model.Content.Page, tagCount.Name, new { tags = Model.Content.Tags + Cms.TagVariables.Separator + tagCount.Name }, new { @class = "tag" + tagCount.Size })</li>}
+        </ul>
+    }
+
+</div>

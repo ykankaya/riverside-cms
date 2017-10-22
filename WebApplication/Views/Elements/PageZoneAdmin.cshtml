@@ -1,0 +1,32 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Resources
+@using Riverside.Cms.Elements.Pages
+
+@model IElementInfo<ElementSettings, PageZoneContent>
+
+<div class="rcms-page-zone-admin" ng-app="adminApp" ng-controller="PageZoneAdminController" ng-init="getForm(@Model.Content.PageId, @Model.Content.PageZoneId)" ng-cloak>
+    <div class="spinner" ng-hide="form"></div>
+    <form name="htmlForm" role="form" ng-show="form" novalidate>
+        <validation-summary ng-model="form.customErrorMessages"></validation-summary>
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <button class="btn btn-default btn-block control-margin-bottom" ng-click="addElement()" type="submit"><i class="fa fa-fw fa-plus"></i> @PageResource.PageZoneAddElementButtonLabel</button>
+                <ul class="nav nav-pills nav-stacked control-margin-bottom" ng-sortable="{ animation: 150, handle: '.sort-handle' }" ng-show="form.fieldSets.length > 0">
+                    <li role="presentation" ng-class="{ active: form.activeFieldSet == fieldSet }" ng-repeat="fieldSet in form.fieldSets">
+                        <a href class="sort-handle" ng-click="selectElement(fieldSet)">
+                            <i class="fa fa-fw fa-arrows-v"></i> {{fieldSet.fields.name.value}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-8 col-xs-12" ng-if="form.activeFieldSet">
+                <button class="btn btn-default btn-block control-margin-bottom" ng-click="deleteElement()" type="submit"><i class="fa fa-fw fa-trash"></i> @PageResource.PageZoneDeleteElementButtonLabel</button>
+                <div ng-repeat="fieldSet in form.fieldSets" ng-show="fieldSet == form.activeFieldSet">
+                    <select-field ng-model="fieldSet.fields.elementType"></select-field>
+                    <text-field ng-model="fieldSet.fields.name"></text-field>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlForm.$invalid" ng-click="postForm()">{{form.submitLabel}}</button>
+    </form>
+</div>

@@ -1,0 +1,40 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Albums
+@using Riverside.Cms.Elements.Resources
+
+@model IElementInfo<AlbumSettings, ElementContent>
+
+<div class="rcms-album-admin" ng-app="adminApp" ng-controller="AlbumAdminController" ng-init="initialise(@ViewBag.PageContext.Page.PageId, @Model.Settings.ElementId)" ng-cloak>
+    <div class="spinner" ng-hide="photosForm && initialPhotoForm"></div>
+    <form name="htmlPhotosForm" role="form" ng-show="photosForm && showPhotosForm" novalidate>
+        <div class="rcms-card-deck-options">
+            <button class="btn btn-default" type="button" ng-click="createPhoto()"><i class="fa fa-plus" aria-hidden="true"></i> @ElementResource.AlbumCreatePhotoButtonLabel</button>
+        </div>
+        <validation-summary ng-model="photosForm.customErrorMessages"></validation-summary>
+        <ul ng-show="photos" class="rcms-card-deck" ng-sortable="{ animation: 150, handle: '.sort-handle' }">
+            <li class="rcms-card" ng-repeat="photo in photos">
+                <div class="rcms-card-handle">
+                    <a href="#" class="sort-handle"><i class="fa fa-fw fa-ellipsis-v" aria-hidden="true"></i> @ElementResource.AlbumPhotoDragLabel</a>
+                    <div class="rcms-card-options">
+                        <a href="#" ng-click="updatePhoto(photo, $index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="deletePhoto(photo, $index)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="rcms-card-content">
+                    <img ng-src="{{photo.imageUrl}}" />
+                    <h2 ng-if="photo.name">{{photo.name}}</h2>
+                    <p ng-if="photo.description">{{photo.description}}</p>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-primary" type="submit" ng-disabled="photosSubmitting || htmlPhotosForm.$invalid" ng-click="postPhotosForm()">{{photosForm.submitLabel}}</button>
+    </form>
+    <form name="htmlPhotoForm" role="form" ng-show="initialPhotoForm && showPhotoForm" novalidate>
+        <validation-summary ng-model="photoForm.customErrorMessages"></validation-summary>
+        <text-field ng-model="photoForm.fields.name"></text-field>
+        <multi-line-text-field ng-model="photoForm.fields.description"></multi-line-text-field>
+        <upload-field ng-model="photoForm.fields.upload"></upload-field>
+        <button class="btn btn-primary" type="submit" ng-disabled="submitting || htmlPhotoForm.$invalid" ng-click="postPhotoForm()">{{photoForm.submitLabel}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancelPhoto()">@ElementResource.AlbumCancelPhotoButtonLabel</button>
+    </form>
+</div>

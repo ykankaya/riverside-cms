@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdministrationLabel" xml:space="preserve">
+    <value>Use this master page for administering the CMS?</value>
+  </data>
+  <data name="AdminTypeLabel" xml:space="preserve">
+    <value>Zone type</value>
+  </data>
+  <data name="AdminTypeRequiredMessage" xml:space="preserve">
+    <value>Zone type is required.</value>
+  </data>
+  <data name="AncestorPageIdDefaultOption" xml:space="preserve">
+    <value>Select parent folder (if required)</value>
+  </data>
+  <data name="AncestorPageIdLabel" xml:space="preserve">
+    <value>Parent folder of pages</value>
+  </data>
+  <data name="AncestorPageLevelDefaultOption" xml:space="preserve">
+    <value>Select relation</value>
+  </data>
+  <data name="AncestorPageLevelLabel" xml:space="preserve">
+    <value>Relation of parent folder to pages</value>
+  </data>
+  <data name="AncestorPageLevelRequiredMessage" xml:space="preserve">
+    <value>Relation of parent folder to pages is required.</value>
+  </data>
+  <data name="BeginRenderLabel" xml:space="preserve">
+    <value>HTML at beginning of page</value>
+  </data>
+  <data name="CancelZoneButtonLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelZoneElementButtonLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelZoneElementNewButtonLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelZoneElementTypeButtonLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ContentTypeLabel" xml:space="preserve">
+    <value>Zone content</value>
+  </data>
+  <data name="ContentTypeRequiredMessage" xml:space="preserve">
+    <value>Zone content is required.</value>
+  </data>
+  <data name="CreatableLabel" xml:space="preserve">
+    <value>Can pages be created?</value>
+  </data>
+  <data name="CreateMasterPageActionLabel" xml:space="preserve">
+    <value>Create Master Page</value>
+  </data>
+  <data name="CreateMasterPageButtonLabel" xml:space="preserve">
+    <value>Create master page</value>
+  </data>
+  <data name="CreateZoneButtonLabel" xml:space="preserve">
+    <value>Add new zone</value>
+  </data>
+  <data name="CreateZoneElementButtonLabel" xml:space="preserve">
+    <value>Add existing element</value>
+  </data>
+  <data name="CreateZoneElementNewButtonLabel" xml:space="preserve">
+    <value>Add new element</value>
+  </data>
+  <data name="CreateZoneElementTypeButtonLabel" xml:space="preserve">
+    <value>Add allowed element type to zone</value>
+  </data>
+  <data name="DeletableLabel" xml:space="preserve">
+    <value>Can pages be deleted?</value>
+  </data>
+  <data name="DeleteMasterPageActionLabel" xml:space="preserve">
+    <value>Delete {0}</value>
+  </data>
+  <data name="ElementIdDefaultOption" xml:space="preserve">
+    <value>Select element</value>
+  </data>
+  <data name="ElementIdLabel" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="ElementIdRequiredMessage" xml:space="preserve">
+    <value>Element is required.</value>
+  </data>
+  <data name="ElementInvalidMessage" xml:space="preserve">
+    <value>New element information is invalid.</value>
+  </data>
+  <data name="ElementNameInvalidMessage" xml:space="preserve">
+    <value>Element name is invalid. It must not contain a forward slash.</value>
+  </data>
+  <data name="ElementNameLabel" xml:space="preserve">
+    <value>Element name</value>
+  </data>
+  <data name="ElementNameMaxLengthMessage" xml:space="preserve">
+    <value>Element name cannot be more than {1} characters long.</value>
+  </data>
+  <data name="ElementNameRequiredMessage" xml:space="preserve">
+    <value>Element name is required.</value>
+  </data>
+  <data name="ElementTypeIdDefaultOption" xml:space="preserve">
+    <value>Select element type</value>
+  </data>
+  <data name="ElementTypeIdLabel" xml:space="preserve">
+    <value>Element type</value>
+  </data>
+  <data name="ElementTypeIdRequiredMessage" xml:space="preserve">
+    <value>Element type is required.</value>
+  </data>
+  <data name="ElementTypeLabel" xml:space="preserve">
+    <value>Element type</value>
+  </data>
+  <data name="ElementTypeRequiredMessage" xml:space="preserve">
+    <value>Element type is required.</value>
+  </data>
+  <data name="EndRenderLabel" xml:space="preserve">
+    <value>HTML at end of page</value>
+  </data>
+  <data name="HasImageLabel" xml:space="preserve">
+    <value>Do pages have an image?</value>
+  </data>
+  <data name="HasOccurredLabel" xml:space="preserve">
+    <value>Do pages have an occurred date?</value>
+  </data>
+  <data name="ImageMinHeightLabel" xml:space="preserve">
+    <value>Minimum height of original image</value>
+  </data>
+  <data name="ImageMinHeightMaxErrorMessage" xml:space="preserve">
+    <value>Minimum height of original image must not be larger than {1} pixels.</value>
+  </data>
+  <data name="ImageMinHeightMinErrorMessage" xml:space="preserve">
+    <value>Minimum height of original image must be at least {1} pixels.</value>
+  </data>
+  <data name="ImageMinHeightRequiredMessage" xml:space="preserve">
+    <value>Minimum height of original image is required.</value>
+  </data>
+  <data name="ImageMinWidthLabel" xml:space="preserve">
+    <value>Minimum width of original image</value>
+  </data>
+  <data name="ImageMinWidthMaxErrorMessage" xml:space="preserve">
+    <value>Minimum width of original image must not be larger than {1} pixels.</value>
+  </data>
+  <data name="ImageMinWidthMinErrorMessage" xml:space="preserve">
+    <value>Minimum width of original image must be at least {1} pixels.</value>
+  </data>
+  <data name="ImageMinWidthRequiredMessage" xml:space="preserve">
+    <value>Minimum width of original image is required.</value>
+  </data>
+  <data name="MasterPageZoneDragLabel" xml:space="preserve">
+    <value>Drag to reorder</value>
+  </data>
+  <data name="MasterPageZoneElementDragLabel" xml:space="preserve">
+    <value>Drag to reorder</value>
+  </data>
+  <data name="NameInvalidMessage" xml:space="preserve">
+    <value>Layout name must not start or end with white space</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Master page name</value>
+  </data>
+  <data name="NameMaxLengthMessage" xml:space="preserve">
+    <value>Master page name cannot be more than {1} characters long</value>
+  </data>
+  <data name="NameRequiredMessage" xml:space="preserve">
+    <value>Master page name is required.</value>
+  </data>
+  <data name="NoMasterPagesMessage" xml:space="preserve">
+    <value>No master pages found</value>
+  </data>
+  <data name="PageDescriptionLabel" xml:space="preserve">
+    <value>Initial description given to pages</value>
+  </data>
+  <data name="PageNameLabel" xml:space="preserve">
+    <value>Initial name given to pages</value>
+  </data>
+  <data name="PageNameMaxLengthMessage" xml:space="preserve">
+    <value>Initial name given to pages cannot be more than {1} characters long.</value>
+  </data>
+  <data name="PageNameRequiredMessage" xml:space="preserve">
+    <value>Initial name given to pages is required.</value>
+  </data>
+  <data name="PageTypeLabel" xml:space="preserve">
+    <value>Type of pages</value>
+  </data>
+  <data name="PageTypeRequiredMessage" xml:space="preserve">
+    <value>Type of pages is required.</value>
+  </data>
+  <data name="PreviewImageHeightLabel" xml:space="preserve">
+    <value>Preview image height</value>
+  </data>
+  <data name="PreviewImageHeightMaxErrorMessage" xml:space="preserve">
+    <value>Preview image height must not be larger than {1} pixels.</value>
+  </data>
+  <data name="PreviewImageHeightMinErrorMessage" xml:space="preserve">
+    <value>Preview image height must be at least {1} pixels.</value>
+  </data>
+  <data name="PreviewImageHeightRequiredMessage" xml:space="preserve">
+    <value>Preview image height is required.</value>
+  </data>
+  <data name="PreviewImageResizeModeLabel" xml:space="preserve">
+    <value>Preview image resize mode</value>
+  </data>
+  <data name="PreviewImageResizeModeRequiredMessage" xml:space="preserve">
+    <value>Preview image resize mode is required.</value>
+  </data>
+  <data name="PreviewImageWidthLabel" xml:space="preserve">
+    <value>Preview image width</value>
+  </data>
+  <data name="PreviewImageWidthMaxErrorMessage" xml:space="preserve">
+    <value>Preview image width must not be larger than {1} pixels.</value>
+  </data>
+  <data name="PreviewImageWidthMinErrorMessage" xml:space="preserve">
+    <value>Preview image width must be at least {1} pixels.</value>
+  </data>
+  <data name="PreviewImageWidthRequiredMessage" xml:space="preserve">
+    <value>Preview image width is required.</value>
+  </data>
+  <data name="ReadMasterPageActionLabel" xml:space="preserve">
+    <value>View {0}</value>
+  </data>
+  <data name="ReadMasterPageBreadcrumbLabel" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="ResizeModeDefaultOption" xml:space="preserve">
+    <value>Select resize mode</value>
+  </data>
+  <data name="SearchMasterPagesBreadcrumbLabel" xml:space="preserve">
+    <value>Master Pages</value>
+  </data>
+  <data name="TaggableLabel" xml:space="preserve">
+    <value>Can pages be tagged?</value>
+  </data>
+  <data name="ThumbnailImageHeightLabel" xml:space="preserve">
+    <value>Thumbnail image height</value>
+  </data>
+  <data name="ThumbnailImageHeightMaxErrorMessage" xml:space="preserve">
+    <value>Thumbnail image height must not be larger than {1} pixels.</value>
+  </data>
+  <data name="ThumbnailImageHeightMinErrorMessage" xml:space="preserve">
+    <value>Thumbnail image height must be at least {1} pixels.</value>
+  </data>
+  <data name="ThumbnailImageHeightRequiredMessage" xml:space="preserve">
+    <value>Thumbnail image height is required.</value>
+  </data>
+  <data name="ThumbnailImageResizeModeLabel" xml:space="preserve">
+    <value>Thumbnail image resize mode</value>
+  </data>
+  <data name="ThumbnailImageResizeModeRequiredMessage" xml:space="preserve">
+    <value>Thumbnail image resize mode is required.</value>
+  </data>
+  <data name="ThumbnailImageWidthLabel" xml:space="preserve">
+    <value>Thumbnail image width</value>
+  </data>
+  <data name="ThumbnailImageWidthMaxErrorMessage" xml:space="preserve">
+    <value>Thumbnail image width must not be larger than {1} pixels.</value>
+  </data>
+  <data name="ThumbnailImageWidthMinErrorMessage" xml:space="preserve">
+    <value>Thumbnail image width must be at least {1} pixels.</value>
+  </data>
+  <data name="ThumbnailImageWidthRequiredMessage" xml:space="preserve">
+    <value>Thumbnail image width is required.</value>
+  </data>
+  <data name="UpdateMasterPageActionLabel" xml:space="preserve">
+    <value>Update {0}</value>
+  </data>
+  <data name="UpdateMasterPageButtonLabel" xml:space="preserve">
+    <value>Update master page</value>
+  </data>
+  <data name="UpdateZoneButtonLabel" xml:space="preserve">
+    <value>Update zone</value>
+  </data>
+  <data name="UpdateZoneElementButtonLabel" xml:space="preserve">
+    <value>Update zone element</value>
+  </data>
+  <data name="UpdateZoneElementNewButtonLabel" xml:space="preserve">
+    <value>Update zone element</value>
+  </data>
+  <data name="UpdateZoneElementTypeButtonLabel" xml:space="preserve">
+    <value>Update zone element type</value>
+  </data>
+  <data name="UpdateZonesButtonLabel" xml:space="preserve">
+    <value>Update zones</value>
+  </data>
+  <data name="ZoneAdminTypeConfigurableLabel" xml:space="preserve">
+    <value>Configurable</value>
+  </data>
+  <data name="ZoneAdminTypeEditableLabel" xml:space="preserve">
+    <value>Editable content</value>
+  </data>
+  <data name="ZoneAdminTypeStaticLabel" xml:space="preserve">
+    <value>Fixed content</value>
+  </data>
+  <data name="ZoneBeginRenderLabel" xml:space="preserve">
+    <value>HTML before zone</value>
+  </data>
+  <data name="ZoneContentTypeCommentLabel" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ZoneContentTypeMainLabel" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="ZoneContentTypeStandardLabel" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="ZoneElementBeginRenderLabel" xml:space="preserve">
+    <value>HTML before element</value>
+  </data>
+  <data name="ZoneElementEndRenderLabel" xml:space="preserve">
+    <value>HTML after element</value>
+  </data>
+  <data name="ZoneEndRenderLabel" xml:space="preserve">
+    <value>HTML after zone</value>
+  </data>
+  <data name="ZoneNameLabel" xml:space="preserve">
+    <value>Zone name</value>
+  </data>
+  <data name="ZoneNameMaxLengthMessage" xml:space="preserve">
+    <value>Zone name cannot be more than {1} characters long.</value>
+  </data>
+  <data name="ZoneNameRequiredMessage" xml:space="preserve">
+    <value>Zone name is required.</value>
+  </data>
+</root>

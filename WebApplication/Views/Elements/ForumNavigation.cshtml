@@ -1,0 +1,8 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.Forums
+@using Riverside.Cms.Elements.Resources
+
+@model IElementInfo<ForumSettings, ForumContent>
+
+<p><a class="btn btn-default block-xs" href="@Url.PageUrl(Model.Content.Page)"><i class="fa fa-fw fa-comments"></i> @ElementResource.ForumAllThreadsLabel</a></p>

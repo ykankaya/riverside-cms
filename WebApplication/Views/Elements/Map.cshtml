@@ -1,0 +1,38 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Elements.Maps
+
+@model IElementInfo<MapSettings, ElementContent>
+
+<div class="rcms-map">
+
+    @if (Model.Settings.DisplayName != null)
+    {
+        <h2>@Model.Settings.DisplayName</h2>
+    }
+
+    <div class="rcms-map-content" id="rcms-map-content">
+    </div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var latlng = new google.maps.LatLng(@Model.Settings.Latitude, @Model.Settings.Longitude);
+            var myOptions = {
+                zoom: 16,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("rcms-map-content"), myOptions);
+            var marker = new google.maps.Marker
+            (
+                {
+                    position: latlng,
+                    map: map,
+                    title: 'Location'
+                }
+            );
+        });
+    </script>
+
+</div>

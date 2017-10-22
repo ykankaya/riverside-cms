@@ -1,0 +1,71 @@
+﻿@using Riverside.Cms.Core.Elements
+@using Riverside.Cms.Core.Extensions
+@using Riverside.Cms.Elements.Carousels
+@using Riverside.Cms.Elements.Resources
+@using Cms = Riverside.Cms.Core.Pages
+
+@model IElementInfo<CarouselSettings, CarouselContent>
+
+<div class="rcms-carousel">
+    <ul>
+        @if (Model.Settings.Slides.Count == 0)
+        {
+            <li>
+                <div class="rcms-carousel-slide">
+                    <div class="rcms-carousel-slide-info">
+                        <h2>@ElementResource.CarouselSlideEmptyName</h2>
+                        <p>@ElementResource.CarouselSlideEmptyDescription</p>
+                    </div>
+                </div>
+            </li>
+        }
+        @for (int index = 0; index < Model.Settings.Slides.Count; index++)
+        {
+            CarouselSlide slide = Model.Settings.Slides[index];
+            Cms.Page page = Model.Content.Pages[index];
+            <li>
+                <div class="rcms-carousel-slide" style="background-image: url(@Url.RouteUrl("ReadElementUpload", new { elementid = slide.ElementId, uploadid = slide.CarouselSlideId, format = "preview", t = slide.PreviewImageUploadId }));">
+                    @if (slide.Name != null || slide.Description != null || page != null)
+                    {
+                        <div class="rcms-carousel-slide-info">
+                            @if (slide.Name != null)
+                            {
+                                <h2>@slide.Name</h2>
+                            }
+                            @if (slide.Description != null)
+                            {
+                                <p>@slide.Description</p>
+                            }
+                            @if (page != null)
+                            {
+                                @Html.PageLink(page, slide.PageText ?? page.Name, new { role = "button" })
+                            }
+                        </div>
+                    }
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+@if (!Model.Content.Items.ContainsKey("slick-loaded"))
+{
+    Model.Content.Items["slick-loaded"] = true;
+    <script src="@Url.Content("~/scripts/slick.min.js")"></script>
+}
+@if (!Model.Content.Items.ContainsKey("carousel-loaded"))
+{
+    Model.Content.Items["carousel-loaded"] = true;
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.rcms-carousel ul').slick({
+                dots: true,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 5000,
+                arrows: false
+            });
+        });
+    </script>
+}
