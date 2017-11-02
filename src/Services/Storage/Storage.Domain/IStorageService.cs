@@ -7,7 +7,7 @@ namespace Riverside.Cms.Services.Storage.Domain
 {
     public interface IStorageService
     {
-        Task<Blob> ReadBlobAsync(long tenantId, long uploadId);
-        Task<BlobContent> ReadBlobContentAsync(long tenantId, long uploadId);
+        Task<Blob> ReadBlobAsync(long tenantId, long blobId);
+        Task<BlobContent> ReadBlobContentAsync(long tenantId, long blobId);
     }
 }

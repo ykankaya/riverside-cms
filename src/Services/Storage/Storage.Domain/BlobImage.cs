@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Riverside.Cms.Services.Storage.Domain
 {
-    public interface IStorageRepository
+    public class BlobImage : Blob
     {
-        Task<Blob> ReadBlobAsync(long tenantId, long blobId);
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }

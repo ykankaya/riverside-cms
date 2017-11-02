@@ -18,25 +18,23 @@ namespace Storage.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/v1/storage/items/{uploadId:int}")]
+        [Route("api/v1/storage/tenants/{tenantId:int}/blobs/{blobId:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Blob), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> ReadBlob(long uploadId)
+        public async Task<IActionResult> ReadBlob(long tenantId, long blobId)
         {
-            long tenantId = 5;
-            Blob blob = await _storageService.ReadBlobAsync(tenantId, uploadId);
+            Blob blob = await _storageService.ReadBlobAsync(tenantId, blobId);
             if (blob == null)
                 return NotFound();
             return Ok(blob);
         }
 
         [HttpGet]
-        [Route("api/v1/storage/items/{uploadId:int}/content")]
+        [Route("api/v1/storage/tenants/{tenantId:int}/blobs/{blobId:int}/content")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> ReadFileContent(long uploadId)
+        public async Task<IActionResult> ReadFileContent(long tenantId, long blobId)
         {
-            long tenantId = 5;
-            BlobContent blobContent = await _storageService.ReadBlobContentAsync(tenantId, uploadId);
+            BlobContent blobContent = await _storageService.ReadBlobContentAsync(tenantId, blobId);
             if (blobContent == null)
                 return NotFound();
             return File(blobContent.Stream, blobContent.Type);

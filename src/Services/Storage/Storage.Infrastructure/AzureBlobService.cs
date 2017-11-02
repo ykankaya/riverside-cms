@@ -29,7 +29,7 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
             string blobName = string.Join("/", blob.Location);
             if (!string.IsNullOrWhiteSpace(blobName))
                 blobName += "/";
-            blobName += string.Format("{0}{1}-{2}", blob.UploadId, blob.Name);
+            blobName += string.Format("{0}-{1}", blob.BlobId, blob.Name);
             return blobName;
         }
 
@@ -46,6 +46,8 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
             Stream target = new MemoryStream();
 
             await cloudBlockBlob.DownloadToStreamAsync(target);
+
+            target.Position = 0;
 
             return target;
         }

@@ -16,14 +16,14 @@ namespace Riverside.Cms.Services.Storage.Domain
             _storageRepository = storageRepository;
         }
 
-        public async Task<Blob> ReadBlobAsync(long tenantId, long uploadId)
+        public async Task<Blob> ReadBlobAsync(long tenantId, long blobId)
         {
-            return await _storageRepository.ReadBlobAsync(tenantId, uploadId);
+            return await _storageRepository.ReadBlobAsync(tenantId, blobId);
         }
 
-        public async Task<BlobContent> ReadBlobContentAsync(long tenantId, long uploadId)
+        public async Task<BlobContent> ReadBlobContentAsync(long tenantId, long blobId)
         {
-            Blob blob = await _storageRepository.ReadBlobAsync(tenantId, uploadId);
+            Blob blob = await _storageRepository.ReadBlobAsync(tenantId, blobId);
             BlobContent blobContent = new BlobContent
             {
                 Type = blob.ContentType,
