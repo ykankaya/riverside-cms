@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Riverside.Cms.Services.Storage.Domain;
+using Riverside.Cms.Services.Storage.Infrastructure;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Storage.API
@@ -21,6 +23,19 @@ namespace Storage.API
 
         public IConfiguration Configuration { get; }
 
+        private void ConfigureDependencyInjectionServices(IServiceCollection services)
+        {
+            services.AddTransient<IStorageService, StorageService>();
+            services.AddTransient<IStorageRepository, SqlStorageRepository>();
+            services.AddTransient<IBlobService, AzureBlobService>();
+        }
+
+        private void ConfigureOptionServices(IServiceCollection services)
+        {
+            services.Configure<AzureBlobOptions>(Configuration);
+            services.Configure<SqlOptions>(Configuration);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -30,6 +45,9 @@ namespace Storage.API
             {
                 c.SwaggerDoc("v1", new Info { Title = "Storage HTTP API", Version = "v1" });
             });
+
+            ConfigureDependencyInjectionServices(services);
+            ConfigureOptionServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +59,11 @@ namespace Storage.API
             }
 
             app.UseMvc();
-            app.UseSwagger();
+            app.UseSwagger()
+              .UseSwaggerUI(c =>
+              {
+                  c.SwaggerEndpoint("/swagger/v1/swagger.json", "Storage HTTP API v1");
+              });
         }
     }
 }
