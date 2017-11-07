@@ -33,6 +33,24 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
             return blobName;
         }
 
+        public async Task CreateBlobContentAsync(Blob blob, Stream stream)
+        {
+            string blobContainer = GetBlobContainer(blob);
+            string blobName = GetBlobName(blob);
+
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(_options.Value.StorageConnectionString);
+            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(blobContainer);
+
+            await cloudBlobContainer.CreateIfNotExistsAsync();
+
+            CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(blobName);
+
+            cloudBlockBlob.Properties.ContentType = blob.ContentType;
+
+            await cloudBlockBlob.UploadFromStreamAsync(stream);
+        }
+
         public async Task<Stream> ReadBlobContentAsync(Blob blob)
         {
             string blobContainer = GetBlobContainer(blob);

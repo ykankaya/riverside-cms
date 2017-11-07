@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Riverside.Cms.Services.Storage.Domain;
 
@@ -32,12 +34,31 @@ namespace Storage.API.Controllers
         [HttpGet]
         [Route("api/v1/storage/tenants/{tenantId:int}/blobs/{blobId:int}/content")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> ReadFileContent(long tenantId, long blobId)
+        public async Task<IActionResult> ReadBlobContent(long tenantId, long blobId)
         {
             BlobContent blobContent = await _storageService.ReadBlobContentAsync(tenantId, blobId);
             if (blobContent == null)
                 return NotFound();
             return File(blobContent.Stream, blobContent.Type);
+        }
+
+        [HttpPost]
+        [Route("api/v1/storage/tenants/{tenantId:int}/blobs")]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<IActionResult> CreateBlob(long tenantId, List<string> location, IFormFile file)
+        {
+            if (file == null)
+                return BadRequest();
+            Blob blob = new Blob
+            {
+                TenantId = tenantId,
+                ContentType = file.ContentType,
+                Name = file.FileName,
+                Location = location
+            };
+            Stream stream = file.OpenReadStream();
+            long blobId = await _storageService.CreateBlobAsync(tenantId, blob, stream);
+            return CreatedAtAction(nameof(ReadBlob), new { tenantId = tenantId, blobId = blobId }, null);
         }
     }
 }

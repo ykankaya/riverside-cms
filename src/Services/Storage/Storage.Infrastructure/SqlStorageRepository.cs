@@ -30,6 +30,13 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
             return location;
         }
 
+        private string GetFolderFromBlob(Blob blob, int level)
+        {
+            if (blob.Location == null || blob.Location.Count <= level)
+                return null;
+            return blob.Location[level];
+        }
+
         private Blob GetBlobFromDto(BlobDto dto)
         {
             Blob blob = null;
@@ -46,6 +53,46 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
             blob.Created = dto.Created;
             blob.Updated = dto.Updated;
             return blob;
+        }
+
+        private BlobDto GetDtoFromBlob(Blob blob)
+        {
+            BlobDto dto = new BlobDto
+            {
+                TenantId = blob.TenantId,
+                BlobId = blob.BlobId,
+                Size = blob.Size,
+                ContentType = blob.ContentType,
+                Folder1 = GetFolderFromBlob(blob, 0),
+                Folder2 = GetFolderFromBlob(blob, 1),
+                Folder3 = GetFolderFromBlob(blob, 2),
+                Name = blob.Name,
+                Created = blob.Created,
+                Updated = blob.Updated
+            };
+            if (blob is BlobImage)
+            {
+                dto.Width = ((BlobImage)blob).Width;
+                dto.Height = ((BlobImage)blob).Height;
+            }
+            return dto;
+        }
+
+        public async Task<long> CreateBlobAsync(long tenantId, Blob blob)
+        {
+            BlobDto dto = GetDtoFromBlob(blob);
+
+            using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
+            {
+                connection.Open();
+                long blobId = await connection.QuerySingleAsync<long>(
+                    @"INSERT INTO Blob (TenantId, Size, ContentType, Name, Folder1, Folder2, Folder3, Width, Height, Created, Updated)
+                        VALUES(@TenantId, @Size, @ContentType, @Name, @Folder1, @Folder2, @Folder3, @Width, @Height, @Created, @Updated)
+                        SELECT CAST(SCOPE_IDENTITY() as bigint)",
+                    dto
+                );
+                return blobId;
+            }
         }
 
         public async Task<Blob> ReadBlobAsync(long tenantId, long blobId)
