@@ -10,5 +10,6 @@ namespace Riverside.Cms.Services.Storage.Domain
     {
         Task CreateBlobContentAsync(Blob blob, Stream stream);
         Task<Stream> ReadBlobContentAsync(Blob blob);
+        Task DeleteBlobContentAsync(Blob blob);
     }
 }

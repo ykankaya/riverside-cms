@@ -60,5 +60,17 @@ namespace Storage.API.Controllers
             long blobId = await _storageService.CreateBlobAsync(tenantId, blob, stream);
             return CreatedAtAction(nameof(ReadBlob), new { tenantId = tenantId, blobId = blobId }, null);
         }
+
+        [HttpDelete]
+        [Route("api/v1/storage/tenants/{tenantId:int}/blobs/{blobId:int}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        public async Task<IActionResult> DeleteBlob(long tenantId, long blobId)
+        {
+            Blob blob = await _storageService.ReadBlobAsync(tenantId, blobId);
+            if (blob == null)
+                return NotFound();
+            await _storageService.DeleteBlobAsync(tenantId, blobId);
+            return NoContent();
+        }
     }
 }

@@ -110,5 +110,18 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
                 return GetBlobFromDto(dto);
             }
         }
+
+        public async Task DeleteBlobAsync(long tenantId, long blobId)
+        {
+            using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
+            {
+                connection.Open();
+
+                await connection.ExecuteAsync(
+                    @"DELETE FROM Blob WHERE TenantId = @TenantId AND BlobId = @BlobId",
+                    new { TenantId = tenantId, BlobId = blobId }
+                );
+            }
+        }
     }
 }

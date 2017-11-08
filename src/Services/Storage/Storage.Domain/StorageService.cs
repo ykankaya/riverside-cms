@@ -43,5 +43,14 @@ namespace Riverside.Cms.Services.Storage.Domain
             };
             return blobContent;
         }
+
+        public async Task DeleteBlobAsync(long tenantId, long blobId)
+        {
+            Blob blob = await _storageRepository.ReadBlobAsync(tenantId, blobId);
+            if (blob == null)
+                return;
+            await _blobService.DeleteBlobContentAsync(blob);
+            await _storageRepository.DeleteBlobAsync(tenantId, blobId);
+        }
     }
 }

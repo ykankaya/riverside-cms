@@ -69,5 +69,18 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
 
             return target;
         }
+
+        public async Task DeleteBlobContentAsync(Blob blob)
+        {
+            string blobContainer = GetBlobContainer(blob);
+            string blobName = GetBlobName(blob);
+
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(_options.Value.StorageConnectionString);
+            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(blobContainer);
+            CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(blobName);
+
+            await cloudBlockBlob.DeleteIfExistsAsync();
+        }
     }
 }
