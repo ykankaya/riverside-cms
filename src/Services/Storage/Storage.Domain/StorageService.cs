@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,13 @@ namespace Riverside.Cms.Services.Storage.Domain
         {
             _blobService = blobService;
             _storageRepository = storageRepository;
+        }
+
+        public Task<IEnumerable<Blob>> SearchBlobsAsync(long tenantId, string path)
+        {
+            if (path == null)
+                path = string.Empty;
+            return _storageRepository.SearchBlobsAsync(tenantId, path);
         }
 
         public async Task<long> CreateBlobAsync(long tenantId, Blob blob, Stream stream)

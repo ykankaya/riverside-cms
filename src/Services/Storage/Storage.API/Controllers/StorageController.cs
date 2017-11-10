@@ -20,6 +20,15 @@ namespace Storage.API.Controllers
         }
 
         [HttpGet]
+        [Route("api/v1/storage/tenants/{tenantId:int}/blobs")]
+        [ProducesResponseType(typeof(IEnumerable<Blob>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> SearchBlobs(long tenantId, [FromQuery]string path)
+        {
+            IEnumerable<Blob> blobs = await _storageService.SearchBlobsAsync(tenantId, path);
+            return Ok(blobs);
+        }
+
+        [HttpGet]
         [Route("api/v1/storage/tenants/{tenantId:int}/blobs/{blobId:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Blob), (int)HttpStatusCode.OK)]
