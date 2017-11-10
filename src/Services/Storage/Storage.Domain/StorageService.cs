@@ -31,6 +31,8 @@ namespace Riverside.Cms.Services.Storage.Domain
             blob.Created = utcNow;
             blob.Updated = utcNow;
             blob.Size = (int)stream.Length;
+            if (blob.Path == null)
+                blob.Path = string.Empty;
             blob.BlobId = await _storageRepository.CreateBlobAsync(tenantId, blob);
             await _blobService.CreateBlobContentAsync(blob, stream);
             return blob.BlobId;

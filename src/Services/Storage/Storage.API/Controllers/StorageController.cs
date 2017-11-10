@@ -54,7 +54,7 @@ namespace Storage.API.Controllers
         [HttpPost]
         [Route("api/v1/storage/tenants/{tenantId:int}/blobs")]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateBlob(long tenantId, List<string> location, IFormFile file)
+        public async Task<IActionResult> CreateBlob(long tenantId, string path, IFormFile file)
         {
             if (file == null)
                 return BadRequest();
@@ -63,7 +63,7 @@ namespace Storage.API.Controllers
                 TenantId = tenantId,
                 ContentType = file.ContentType,
                 Name = file.FileName,
-                Location = location
+                Path = path
             };
             Stream stream = file.OpenReadStream();
             long blobId = await _storageService.CreateBlobAsync(tenantId, blob, stream);

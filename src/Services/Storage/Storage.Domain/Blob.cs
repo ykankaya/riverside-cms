@@ -10,7 +10,7 @@ namespace Riverside.Cms.Services.Storage.Domain
         public long BlobId { get; set; }
         public int Size { get; set; }
         public string ContentType { get; set; }
-        public List<string> Location { get; set; }
+        public string Path { get; set; }
         public string Name { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }

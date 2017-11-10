@@ -19,23 +19,33 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
             _options = options;
         }
 
-        private List<string> GetLocationFromDto(BlobDto dto)
+        private List<string> GetPathSegmentsFromFolders(string folder1, string folder2, string folder3)
         {
-            List<string> location = new List<string>();
-            if (dto.Folder1 != null)
-                location.Add(dto.Folder1);
-            if (dto.Folder2 != null)
-                location.Add(dto.Folder2);
-            if (dto.Folder3 != null)
-                location.Add(dto.Folder3);
-            return location;
+            List<string> pathSegments = new List<string>();
+            if (folder1 != null)
+                pathSegments.Add(folder1);
+            if (folder2 != null)
+                pathSegments.Add(folder2);
+            if (folder3 != null)
+                pathSegments.Add(folder3);
+            return pathSegments;
         }
 
-        private string GetFolderFromLocation(List<string> location, int level)
+        private string GetFolderFromPathSegments(List<string> pathSegments, int level)
         {
-            if (location == null || location.Count <= level)
+            if (pathSegments == null || pathSegments.Count <= level)
                 return null;
-            return location[level];
+            return pathSegments[level];
+        }
+
+        private List<string> GetPathSegmentsFromPath(string path)
+        {
+            return path == string.Empty ? new List<string>() : path.Split('/').ToList();
+        }
+
+        private string GetPathFromPathSegments(List<string> pathSegments)
+        {
+            return string.Join("/", pathSegments);
         }
 
         private Blob GetBlobFromDto(BlobDto dto)
@@ -47,11 +57,12 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
                 blob = new BlobImage { Width = dto.Width.Value, Height = dto.Height.Value };
             else
                 blob = new Blob();
+            List<string> pathSegments = GetPathSegmentsFromFolders(dto.Folder1, dto.Folder2, dto.Folder3);
             blob.TenantId = dto.TenantId;
             blob.BlobId = dto.BlobId;
             blob.Size = dto.Size;
             blob.ContentType = dto.ContentType;
-            blob.Location = GetLocationFromDto(dto);
+            blob.Path = GetPathFromPathSegments(pathSegments);
             blob.Name = dto.Name;
             blob.Created = dto.Created;
             blob.Updated = dto.Updated;
@@ -62,15 +73,16 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
         {
             if (blob == null)
                 return null;
+            List<string> pathSegments = GetPathSegmentsFromPath(blob.Path);
             BlobDto dto = new BlobDto
             {
                 TenantId = blob.TenantId,
                 BlobId = blob.BlobId,
                 Size = blob.Size,
                 ContentType = blob.ContentType,
-                Folder1 = GetFolderFromLocation(blob.Location, 0),
-                Folder2 = GetFolderFromLocation(blob.Location, 1),
-                Folder3 = GetFolderFromLocation(blob.Location, 2),
+                Folder1 = GetFolderFromPathSegments(pathSegments, 0),
+                Folder2 = GetFolderFromPathSegments(pathSegments, 1),
+                Folder3 = GetFolderFromPathSegments(pathSegments, 2),
                 Name = blob.Name,
                 Created = blob.Created,
                 Updated = blob.Updated
@@ -90,10 +102,10 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
 
         public async Task<IEnumerable<Blob>> SearchBlobsAsync(long tenantId, string path)
         {
-            List<string> location = path == string.Empty ? new List<string>() : path.Split('/').ToList();
-            string folder1 = GetFolderFromLocation(location, 0);
-            string folder2 = GetFolderFromLocation(location, 1);
-            string folder3 = GetFolderFromLocation(location, 2);
+            List<string> pathSegments = GetPathSegmentsFromPath(path);
+            string folder1 = GetFolderFromPathSegments(pathSegments, 0);
+            string folder2 = GetFolderFromPathSegments(pathSegments, 1);
+            string folder3 = GetFolderFromPathSegments(pathSegments, 2);
             using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
             {
                 connection.Open();

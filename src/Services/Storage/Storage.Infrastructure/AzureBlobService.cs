@@ -26,7 +26,7 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
 
         public string GetBlobName(Blob blob)
         {
-            string blobName = string.Join("/", blob.Location);
+            string blobName = blob.Path;
             if (!string.IsNullOrWhiteSpace(blobName))
                 blobName += "/";
             blobName += string.Format("{0}-{1}", blob.BlobId, blob.Name);
