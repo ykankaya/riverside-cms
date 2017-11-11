@@ -25,6 +25,7 @@ namespace Storage.API
 
         private void ConfigureDependencyInjectionServices(IServiceCollection services)
         {
+            services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IStorageService, StorageService>();
             services.AddTransient<IStorageRepository, SqlStorageRepository>();
             services.AddTransient<IBlobService, AzureBlobService>();

@@ -10,12 +10,48 @@ namespace Riverside.Cms.Services.Storage.Domain
     public class StorageService : IStorageService
     {
         private readonly IBlobService _blobService;
+        private readonly IImageService _imageService;
         private readonly IStorageRepository _storageRepository;
 
-        public StorageService(IBlobService blobService, IStorageRepository storageRepository)
+        public StorageService(IBlobService blobService, IImageService imageService, IStorageRepository storageRepository)
         {
             _blobService = blobService;
+            _imageService = imageService;
             _storageRepository = storageRepository;
+        }
+
+        private bool ContentTypeIsImage(string contentType)
+        {
+            switch (contentType)
+            {
+                case ContentTypes.Gif:
+                case ContentTypes.Jpeg:
+                case ContentTypes.Png:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private BlobImage GetBlobImage(Blob blob, Stream stream)
+        {
+            ImageMetadata metadata = _imageService.GetImageMetadata(stream);
+            stream.Position = 0;
+            BlobImage blobImage = new BlobImage
+            {
+                BlobId = blob.BlobId,
+                ContentType = blob.ContentType,
+                Created = blob.Created,
+                Name = blob.Name,
+                Path = blob.Path,
+                Size = blob.Size,
+                TenantId = blob.TenantId,
+                Updated = blob.Updated
+            };
+            blobImage.Width = metadata.Width;
+            blobImage.Height = metadata.Height;
+            return blobImage;
         }
 
         public Task<IEnumerable<Blob>> SearchBlobsAsync(long tenantId, string path)
@@ -33,6 +69,10 @@ namespace Riverside.Cms.Services.Storage.Domain
             blob.Size = (int)stream.Length;
             if (blob.Path == null)
                 blob.Path = string.Empty;
+
+            if (ContentTypeIsImage(blob.ContentType))
+                blob = GetBlobImage(blob, stream);
+
             blob.BlobId = await _storageRepository.CreateBlobAsync(tenantId, blob);
             await _blobService.CreateBlobContentAsync(blob, stream);
             return blob.BlobId;
