@@ -10,6 +10,7 @@ namespace Riverside.Cms.Services.Storage.Domain
     {
         Task<IEnumerable<Blob>> SearchBlobsAsync(long tenantId, string path);
         Task<long> CreateBlobAsync(long tenantId, Blob blob, Stream stream);
+        Task<long> ResizeBlobAsync(long tenantId, long sourceBlobId, string path, ResizeOptions options);
         Task<Blob> ReadBlobAsync(long tenantId, long blobId);
         Task<BlobContent> ReadBlobContentAsync(long tenantId, long blobId);
         Task DeleteBlobAsync(long tenantId, long blobId);

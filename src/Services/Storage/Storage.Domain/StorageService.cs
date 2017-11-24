@@ -78,6 +78,17 @@ namespace Riverside.Cms.Services.Storage.Domain
             return blob.BlobId;
         }
 
+        public async Task<long> ResizeBlobAsync(long tenantId, long sourceBlobId, string path, ResizeOptions options)
+        {
+            Blob blob = await _storageRepository.ReadBlobAsync(tenantId, sourceBlobId);
+            Stream imageStream = await _blobService.ReadBlobContentAsync(blob);
+
+            blob.Path = path;
+            Stream resizedImageStream = _imageService.ResizeImage(imageStream, options);
+
+            return await CreateBlobAsync(tenantId, blob, resizedImageStream);
+        }
+
         public Task<Blob> ReadBlobAsync(long tenantId, long blobId)
         {
             return _storageRepository.ReadBlobAsync(tenantId, blobId);

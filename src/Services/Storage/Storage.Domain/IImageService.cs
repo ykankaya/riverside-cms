@@ -9,5 +9,6 @@ namespace Riverside.Cms.Services.Storage.Domain
     public interface IImageService
     {
         ImageMetadata GetImageMetadata(Stream stream);
+        Stream ResizeImage(Stream stream, ResizeOptions options);
     }
 }
