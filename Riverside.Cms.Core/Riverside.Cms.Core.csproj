@@ -15,6 +15,7 @@
     <None Remove="Sql\DeletePageZoneElementsByMasterPageZoneElementIds.sql" />
     <None Remove="Sql\DeletePageZonesByMasterPageZone.sql" />
     <None Remove="Sql\DeleteWeb.sql" />
+    <None Remove="Sql\ListAssetElementTypes.sql" />
     <None Remove="Sql\ListCreatableMasterPages.sql" />
     <None Remove="Sql\ListElements.sql" />
     <None Remove="Sql\ListMasterPageElements.sql" />
@@ -59,6 +60,7 @@
     <EmbeddedResource Include="Sql\DeletePageZoneElementsByMasterPageZoneElementIds.sql" />
     <EmbeddedResource Include="Sql\DeletePageZonesByMasterPageZone.sql" />
     <EmbeddedResource Include="Sql\DeleteWeb.sql" />
+    <EmbeddedResource Include="Sql\ListAssetElementTypes.sql" />
     <EmbeddedResource Include="Sql\ListCreatableMasterPages.sql" />
     <EmbeddedResource Include="Sql\ListElements.sql" />
     <EmbeddedResource Include="Sql\ListMasterPageElements.sql" />

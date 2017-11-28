@@ -21,6 +21,8 @@ DELETE FROM element.Forum
 DELETE FROM element.TagCloud
 DELETE FROM element.LatestThread
 DELETE FROM element.Share
+DELETE FROM cms.AssetDeployment
+DELETE FROM cms.AssetElementType
 DELETE FROM cms.Tag
 DELETE FROM cms.TagPage
 DELETE FROM cms.PageZoneElement

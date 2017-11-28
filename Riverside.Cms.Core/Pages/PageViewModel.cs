@@ -76,5 +76,9 @@ namespace Riverside.Cms.Core.Pages
         /// TODO: Remove this.
         /// </summary>
         public string ForumAction { get; set; }
+
+        public HashSet<Guid> AssetElementTypes { get; set; }
+        public string AssetElementViewPath { get; set; }
+        public string StockElementViewPath { get; set; }
     }
 }

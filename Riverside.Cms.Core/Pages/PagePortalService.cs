@@ -269,7 +269,10 @@ namespace Riverside.Cms.Core.Pages
                 AssetStyleSheetPath = _assetService.GetAssetStyleSheetPath(pageContext.Web.TenantId),
                 FontOptionStyleSheetPath = _assetService.GetFontOptionStyleSheetPath(pageContext.Web.TenantId, pageContext.Web.FontOption),
                 ColourOptionStyleSheetPath = _assetService.GetColourOptionStyleSheetPath(pageContext.Web.TenantId, pageContext.Web.ColourOption),
-                ForumAction = GetForumAction()
+                ForumAction = GetForumAction(),
+                AssetElementTypes = _assetService.GetAssetElementTypes(pageContext.Web.TenantId),
+                StockElementViewPath = "~/Views/Elements",
+                AssetElementViewPath = _assetService.GetElementViewPath(pageContext.Web.TenantId)
             };
 
             // Maintain lists of page elements, master elements and configurable page zones

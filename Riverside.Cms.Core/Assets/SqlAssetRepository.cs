@@ -64,5 +64,25 @@ namespace Riverside.Cms.Core.Assets
                     dbm.Dispose();
             }
         }
+
+        public IEnumerable<Guid> ListAssetElementTypes(long tenantId, IUnitOfWork unitOfWork = null)
+        {
+            IDatabaseManager dbm = _databaseManagerFactory.GetDatabaseManager(unitOfWork);
+            try
+            {
+                List<Guid> guids = new List<Guid>();
+                dbm.SetSQL(_sqlManager.GetSql("Sql.ListAssetElementTypes.sql"));
+                dbm.AddParameter("@TenantId", FieldType.BigInt, tenantId);
+                dbm.ExecuteReader();
+                while (dbm.Read())
+                    guids.Add((Guid)dbm.DataReaderValue("ElementTypeId"));
+                return guids;
+            }
+            finally
+            {
+                if (unitOfWork == null)
+                    dbm.Dispose();
+            }
+        }
     }
 }

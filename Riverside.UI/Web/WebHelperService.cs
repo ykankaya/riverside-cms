@@ -39,6 +39,14 @@ namespace Riverside.UI.Web
             return Path.Combine(webRootPath, path);
         }
 
+        public string ContentPath(string path)
+        {
+            if (path.StartsWith(VirtualPathPrefix))
+                path = path.Substring(VirtualPathPrefix.Length);
+            string contentRootPath = _hostingEnvironment.ContentRootPath;
+            return Path.Combine(contentRootPath, path);
+        }
+
         public void SetItem<T>(string key, T value)
         {
             _httpContextAccessor.HttpContext.Items[key] = value;

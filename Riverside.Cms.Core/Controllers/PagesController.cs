@@ -71,7 +71,7 @@ namespace Riverside.Cms.Core.Controllers
             AssetDeployment deployment = _assetService.ReadDeployment(_authenticationService.TenantId, hostname);
             if (deployment == null)
             {
-                _assetService.Deploy(_authenticationService.TenantId, hostname);
+                _assetService.Deploy(_authenticationService.TenantId);
                 _assetService.RegisterDeployment(_authenticationService.TenantId, hostname);
             }
         }

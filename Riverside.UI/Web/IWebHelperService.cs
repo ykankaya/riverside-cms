@@ -16,8 +16,15 @@ namespace Riverside.UI.Web
         /// Returns the physical file path that corresponds to the specified virtual path on the web server.
         /// </summary>
         /// <param name="path">Path like "~/webs".</param>
-        /// <returns>Physical file path.</returns>
+        /// <returns>Physical file path like "C:\\riverside-cms\\WebApplication\\wwwroot\\webs").</returns>
         string MapPath(string path);
+
+        /// <summary>
+        /// Returns the physical file path that corresponds to the specified virtual path on the web server.
+        /// </summary>
+        /// <param name="path">Path like "~/Views".</param>
+        /// <returns>Physical file path like "C:\\riverside-cms\\WebApplication\\Views").</returns>
+        string ContentPath(string path);
 
         /// <summary>
         /// Sets item in key / value collection that can be used to share data between an IHttpModule and an IHttpHandler interface during an HTTP request.

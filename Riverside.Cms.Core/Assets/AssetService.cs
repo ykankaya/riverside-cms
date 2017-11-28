@@ -38,46 +38,91 @@ namespace Riverside.Cms.Core.Assets
             return _assetRepository.ReadDeployment(tenantId, hostname, unitOfWork);
         }
 
-        private void DeployContent(long tenantId, string hostname, string filename, UploadContent content, IUnitOfWork unitOfWork)
+        private void DeployFile(string fileName, UploadContent content, List<string> storageHierarchy, bool useContentPath)
         {
-            // Create Webs folder?
-            string websPath = _webHelperService.MapPath("~/webs");
-            if (!Directory.Exists(websPath))
-                Directory.CreateDirectory(websPath);
-
-            // Create Tenant folder?
-            string tenantPath = _webHelperService.MapPath(string.Format("~/webs/{0}", tenantId));
-            if (!Directory.Exists(tenantPath))
-                Directory.CreateDirectory(tenantPath);
-
-            // Create Assets folder?
-            string assetsPath = _webHelperService.MapPath(string.Format("~/webs/{0}/assets", tenantId));
-            if (!Directory.Exists(assetsPath))
-                Directory.CreateDirectory(assetsPath);
-
-            // Create file
-            string path = _webHelperService.MapPath(string.Format("~/webs/{0}/assets/{1}", tenantId, filename));
+            string relativePath = "~/" + string.Join("/", storageHierarchy) + "/" + fileName;
+            string path = useContentPath ? _webHelperService.ContentPath(relativePath) : _webHelperService.MapPath(relativePath);
             using (FileStream fs = File.Open(path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
             {
                 fs.Write(content.Content, 0, content.Content.Length);
             }
         }
 
-        public void Deploy(long tenantId, string hostname, IUnitOfWork unitOfWork = null)
+        private void CheckCreateFolder(List<string> storageHierarchy, bool useContentPath)
         {
-            List<string> storageHierarchy = new List<string> { "assets" };
-            List<string> uploads = _storageService.List(tenantId, storageHierarchy, unitOfWork);
+            string relativePath = "~";
+            foreach (string folder in storageHierarchy)
+            {
+                relativePath = relativePath + "/" + folder;
+                string path = useContentPath ? _webHelperService.ContentPath(relativePath) : _webHelperService.MapPath(relativePath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+            }
+        }
+
+        private void DeployFiles(long tenantId, List<string> localStorageHierarchy, List<string> remoteStorageHierarchy, bool useContentPath, IUnitOfWork unitOfWork)
+        {
+            List<string> uploads = _storageService.List(tenantId, remoteStorageHierarchy, unitOfWork);
+            if (uploads.Count == 0)
+                return;
+            CheckCreateFolder(localStorageHierarchy, useContentPath);
             foreach (string upload in uploads)
             {
-                string tempUpload = upload.Replace("%20", " "); // TODO: Is this a bug with the Azure SDK? 
-                UploadContent content = _storageService.Read(tenantId, storageHierarchy, tempUpload, unitOfWork);
-                DeployContent(tenantId, hostname, tempUpload, content, unitOfWork);
+                UploadContent content = _storageService.Read(tenantId, remoteStorageHierarchy, upload, unitOfWork);
+                DeployFile(upload, content, localStorageHierarchy, useContentPath);
             }
+        }
+
+        private void DeployElements(long tenantId, IUnitOfWork unitOfWork)
+        {
+            List<string> localStorageHierarchy = new List<string>
+            {
+                "Views",
+                "Tenants",
+                tenantId.ToString(),
+                "Elements"
+            };
+
+            List<string> remoteStorageHierarchy = new List<string>
+            {
+                "assets",
+                "elements"
+            };
+
+            DeployFiles(tenantId, localStorageHierarchy, remoteStorageHierarchy, true, unitOfWork);
+        }
+
+        private void DeployStyles(long tenantId, IUnitOfWork unitOfWork)
+        {
+            List<string> localStorageHierarchy = new List<string>
+            {
+                "webs",
+                tenantId.ToString(),
+                "assets"
+            };
+
+            List<string> remoteStorageHierarchy = new List<string>
+            {
+                "assets"
+            };
+
+            DeployFiles(tenantId, localStorageHierarchy, remoteStorageHierarchy, false, unitOfWork);
+        }
+
+        public void Deploy(long tenantId, IUnitOfWork unitOfWork = null)
+        {
+            DeployStyles(tenantId, unitOfWork);
+            DeployElements(tenantId, unitOfWork);
         }
 
         public string GetAssetStyleSheetPath(long tenantId)
         {
             return string.Format("~/webs/{0}/assets/site.css", tenantId);
+        }
+
+        public string GetElementViewPath(long tenantId)
+        {
+            return string.Format("~/Views/Tenants/{0}/Elements", tenantId);
         }
 
         public string GetFontOptionStyleSheetPath(long tenantId, string fontOption)
@@ -122,6 +167,13 @@ namespace Riverside.Cms.Core.Assets
             }
             options.Sort();
             return options;
+        }
+
+        public HashSet<Guid> GetAssetElementTypes(long tenantId, IUnitOfWork unitOfWork = null)
+        {
+            IEnumerable<Guid> guids = _assetRepository.ListAssetElementTypes(tenantId, unitOfWork);
+            HashSet<Guid> guidHashSet = guids.ToHashSet<Guid>();
+            return guidHashSet;
         }
     }
 }

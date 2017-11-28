@@ -71,7 +71,8 @@
 
             string elementDomId = pageZoneElementViewModel.ElementInfo.Settings.ElementTypeId + "_" + pageZoneElementViewModel.ElementInfo.Settings.ElementId;
             bool admin = Model.PageContext.MasterPage.Administration && pageZoneViewModel.ContentType == MasterPageZoneContentType.Main && pageZoneElementViewModel.ElementInfo.Settings.ElementId != 0;
-            string partialViewName = "~/Views/Elements/" + pageZoneElementViewModel.ElementInfo.Content.PartialViewName + (admin ? "Admin" : string.Empty) + ".cshtml";
+            string elementViewPath = !admin && Model.AssetElementTypes.Contains(pageZoneElementViewModel.ElementInfo.Settings.ElementTypeId) ? Model.AssetElementViewPath : Model.StockElementViewPath;
+            string partialViewName = elementViewPath + "/" + pageZoneElementViewModel.ElementInfo.Content.PartialViewName + (admin ? "Admin" : string.Empty) + ".cshtml";
             <div class="rcms-element" id="@elementDomId">
                 @{ Html.RenderPartial(partialViewName, pageZoneElementViewModel.ElementInfo); }
             </div>

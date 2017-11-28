@@ -11,5 +11,6 @@ namespace Riverside.Cms.Core.Assets
     {
         void RegisterDeployment(long tenantId, string hostname, DateTime deployed, IUnitOfWork unitOfWork = null);
         AssetDeployment ReadDeployment(long tenantId, string hostname, IUnitOfWork unitOfWork = null);
+        IEnumerable<Guid> ListAssetElementTypes(long tenantId, IUnitOfWork unitOfWork = null);
     }
 }

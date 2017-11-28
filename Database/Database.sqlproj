@@ -184,5 +184,6 @@
     <None Include="Scripts\Templates\cms-reset-uploads.sql" />
     <None Include="Scripts\Templates\cms-setup.sql" />
     <Build Include="cms\Tables\Blob.sql" />
+    <Build Include="cms\Tables\AssetElementType.sql" />
   </ItemGroup>
 </Project>

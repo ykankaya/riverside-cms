@@ -138,6 +138,16 @@ namespace Riverside.Cms.Core.Uploads
             return new UploadContent { Content = content, ContentType = blockBlob.Properties.ContentType };
         }
 
+        private bool ItemIsBlockBlob(IListBlobItem item)
+        {
+            return item is CloudBlockBlob;
+        }
+
+        private string GetBlockBlobFileName(CloudBlockBlob blob)
+        {
+            return blob.Name.Substring(blob.Name.LastIndexOf("/") + 1);
+        }
+
         /// <summary>
         /// Gets list of uploads found at a storage location.
         /// </summary>
@@ -168,8 +178,8 @@ namespace Riverside.Cms.Core.Uploads
                 BlobResultSegment results = blobDirectory.ListBlobsSegmentedAsync(token).Result;
                 foreach (IListBlobItem item in results.Results)
                 {
-                    string upload = item.Uri.AbsoluteUri.Substring(item.Uri.AbsoluteUri.LastIndexOf("/") + 1);
-                    uploads.Add(upload);
+                    if (ItemIsBlockBlob(item))
+                        uploads.Add(GetBlockBlobFileName((CloudBlockBlob)item));
                 }
                 token = results.ContinuationToken;
             }
