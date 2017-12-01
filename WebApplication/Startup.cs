@@ -248,41 +248,12 @@ namespace WebApplication
             services.AddTransient<ITestimonialService, TestimonialService>();
             services.AddTransient<ITestimonialRepository, SqlTestimonialRepository>();
 
-            // Dynamically created basic element services
-            services.AddTransient<MasterPageFormService>();
-            services.AddTransient<MasterPageZoneFormService>();
-            services.AddTransient<MasterPageZonesFormService>();
-            services.AddTransient<AuthenticationElementService>();
-            services.AddTransient<ChangePasswordService>();
-            services.AddTransient<ConfirmUserService>();
-            services.AddTransient<ConfirmUserSetPasswordService>();
-            services.AddTransient<CreateUserService>();
-            services.AddTransient<ForgottenPasswordService>();
-            services.AddTransient<LogonUserService>();
-            services.AddTransient<ResetPasswordService>();
-            services.AddTransient<Riverside.Cms.Elements.Pages.PageService>();
-            services.AddTransient<PageZoneElementService>();
-            services.AddTransient<ThemeService>();
-
-            // Dynamically create advanced element services
-            services.AddTransient<AlbumService>();
-            services.AddTransient<CarouselService>();
-            services.AddTransient<CodeSnippetService>();
-            services.AddTransient<ContactService>();
-            services.AddTransient<FooterService>();
-            services.AddTransient<FormService>();
-            services.AddTransient<ForumElementService>();
-            services.AddTransient<HtmlService>();
-            services.AddTransient<LatestThreadService>();
-            services.AddTransient<MapService>();
-            services.AddTransient<NavBarService>();
-            services.AddTransient<PageHeaderService>();
-            services.AddTransient<PageListService>();
-            services.AddTransient<ShareService>();
-            services.AddTransient<TableService>();
-            services.AddTransient<TagCloudService>();
-            services.AddTransient<TestimonialCarouselService>();
-            services.AddTransient<TestimonialService>();
+            // Dynamically created element services
+            IReflectionService reflectionService = new ReflectionService();
+            IListElementServices listElementServices = new ListElementServices(reflectionService);
+            IEnumerable<Type> elementTypes = listElementServices.ListTypes();
+            foreach (Type elementType in elementTypes)
+                services.AddTransient(elementType);
 
             // Dynamically created form services
             services.AddTransient<AuthenticationFormService>();

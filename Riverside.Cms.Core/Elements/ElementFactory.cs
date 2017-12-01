@@ -42,10 +42,9 @@ namespace Riverside.Cms.Core.Elements
         private Dictionary<Guid, IBasicElementService> GetElementServices()
         { 
             Dictionary<Guid, IBasicElementService> elementServiceDict = new Dictionary<Guid, IBasicElementService>();
-            List<Type> elementServiceTypes = _listElementServices.ListTypes();
-            for (int index = 0; index < elementServiceTypes.Count; index++)
+            IEnumerable<Type> elementServiceTypes = _listElementServices.ListTypes();
+            foreach (Type type in elementServiceTypes)
             {
-                Type type = elementServiceTypes[index];
                 IBasicElementService elementService = _injectionService.CreateType<IBasicElementService>(type);
                 elementServiceDict.Add(elementService.ElementTypeId, elementService);
             }

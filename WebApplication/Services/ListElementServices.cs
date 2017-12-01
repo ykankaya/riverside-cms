@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Riverside.Cms.Core.Elements;
@@ -25,48 +26,24 @@ using Riverside.Cms.Elements.TagCloud;
 using Riverside.Cms.Elements.TestimonialCarousels;
 using Riverside.Cms.Elements.Testimonials;
 using Riverside.Cms.Elements.Themes;
+using Riverside.Utilities.Reflection;
 
 namespace WebApplication.Services
 {
     public class ListElementServices : IListElementServices
     {
-        public List<Type> ListTypes()
+        public readonly IReflectionService _reflectionService;
+
+        public ListElementServices(IReflectionService reflectionService)
         {
-            return new List<Type>
-            {
-                typeof(MasterPageFormService),
-                typeof(MasterPageZoneFormService),
-                typeof(MasterPageZonesFormService),
-                typeof(AuthenticationElementService),
-                typeof(ChangePasswordService),
-                typeof(ConfirmUserService),
-                typeof(ConfirmUserSetPasswordService),
-                typeof(CreateUserService),
-                typeof(ForgottenPasswordService),
-                typeof(LogonUserService),
-                typeof(ResetPasswordService),
-                typeof(PageService),
-                typeof(PageZoneElementService),
-                typeof(ThemeService),
-                typeof(AlbumService),
-                typeof(CarouselService),
-                typeof(CodeSnippetService),
-                typeof(ContactService),
-                typeof(FooterService),
-                typeof(FormService),
-                typeof(ForumElementService),
-                typeof(HtmlService),
-                typeof(LatestThreadService),
-                typeof(MapService),
-                typeof(NavBarService),
-                typeof(PageHeaderService),
-                typeof(PageListService),
-                typeof(ShareService),
-                typeof(TableService),
-                typeof(TagCloudService),
-                typeof(TestimonialCarouselService),
-                typeof(TestimonialService)
-            };
+            _reflectionService = reflectionService;
+        }
+
+        public IEnumerable<Type> ListTypes()
+        {
+            string assemblyFolderPath = _reflectionService.GetExecutingAssemblyFolderPath();
+            string[] assemblyPaths = Directory.GetFiles(assemblyFolderPath, "*.dll");
+            return _reflectionService.GetTypesThatImplementInterface<IBasicElementService>(assemblyPaths);
         }
     }
 }

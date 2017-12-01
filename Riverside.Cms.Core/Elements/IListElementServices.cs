@@ -6,6 +6,6 @@ namespace Riverside.Cms.Core.Elements
 {
     public interface IListElementServices
     {
-        List<Type> ListTypes();
+        IEnumerable<Type> ListTypes();
     }
 }

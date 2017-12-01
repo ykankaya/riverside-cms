@@ -6,7 +6,8 @@ namespace Riverside.Utilities.Reflection
 {
     public interface IReflectionService
     {
-        List<Type> GetTypes<T>(string path);
-        string GetExecutingAssemblyPath();
+        IEnumerable<Type> GetTypesThatImplementInterface<T>(string assemblyPath);
+        IEnumerable<Type> GetTypesThatImplementInterface<T>(string[] assemblyPaths);
+        string GetExecutingAssemblyFolderPath();
     }
 }
