@@ -88,6 +88,7 @@ namespace WebApplication
 
             // ASP.NET core specific
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Authentication
             services.AddTransient<IAuthenticationService, AuthenticationService>();
