@@ -9,6 +9,7 @@ namespace Riverside.Cms.Services.Core.Domain
     {
         Task<Page> ReadPageAsync(long tenantId, long pageId);
 
+        Task<IEnumerable<PageZone>> SearchPageZonesAsync(long tenantId, long pageId);
         Task<PageZone> ReadPageZoneAsync(long tenantId, long pageId, long pageZoneId);
     }
 }

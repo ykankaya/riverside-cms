@@ -35,6 +35,20 @@ namespace Riverside.Cms.Services.Core.Infrastructure
             }
         }
 
+        public async Task<IEnumerable<PageZone>> SearchPageZonesAsync(long tenantId, long pageId)
+        {
+            using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
+            {
+                connection.Open();
+                IEnumerable<PageZone> pageZones = await connection.QueryAsync<PageZone>(
+                    @"SELECT TenantId, PageId, PageZoneId, MasterPageId, MasterPageZoneId
+                        FROM cms.PageZone WHERE TenantId = @TenantId AND PageId = @PageId",
+                    new { TenantId = tenantId, PageId = pageId }
+                );
+                return pageZones;
+            }
+        }
+
         public async Task<PageZone> ReadPageZoneAsync(long tenantId, long pageId, long pageZoneId)
         {
             using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
