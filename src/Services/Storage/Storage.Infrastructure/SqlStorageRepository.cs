@@ -112,7 +112,7 @@ namespace Riverside.Cms.Services.Storage.Infrastructure
                 IEnumerable<BlobDto> dtos = await connection.QueryAsync<BlobDto>(
                     "SELECT TenantId, BlobId, Size, ContentType, Name, Folder1, Folder2, Folder3, Width, Height, Created, Updated FROM Blob " +
                     "WHERE TenantId = @TenantId AND " + GetWhereClause(folder1, 0) + " AND " + GetWhereClause(folder2, 1) + " AND " + GetWhereClause(folder3, 2) +
-                    "ORDER BY Folder1, Folder2, Folder3",
+                    " ORDER BY Folder1, Folder2, Folder3",
                     new { TenantId = tenantId, Folder1 = folder1, Folder2 = folder2, Folder3 = folder3 }
                 );
                 List<Blob> blobs = new List<Blob>();
