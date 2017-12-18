@@ -6,3 +6,9 @@ services:
     build:
       context: ./src/Services/Storage/Storage.API
       dockerfile: Dockerfile
+
+  core.api:
+    image: core.api
+    build:
+      context: ./src/Services/Core/Core.API
+      dockerfile: Dockerfile
