@@ -64,5 +64,21 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                 return pageZone;
             }
         }
+
+        public async Task<PageZoneElement> ReadPageZoneElementAsync(long tenantId, long pageId, long pageZoneId, long pageZoneElementId)
+        {
+            using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
+            {
+                connection.Open();
+
+                PageZoneElement pageZoneElement = await connection.QueryFirstOrDefaultAsync<PageZoneElement>(
+                    @"SELECT TenantId, PageId, PageZoneId, PageZoneElementId, SortOrder, ElementId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId
+	                    FROM cms.PageZoneElement WHERE TenantId = @TenantId AND PageId = @PageId AND PageZoneId = @PageZoneId AND PageZoneElementId = @PageZoneElementId",
+                    new { TenantId = tenantId, PageId = pageId, PageZoneId = pageZoneId, PageZoneElementId = pageZoneElementId }
+                );
+
+                return pageZoneElement;
+            }
+        }
     }
 }
