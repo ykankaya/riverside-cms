@@ -42,7 +42,8 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                 connection.Open();
                 IEnumerable<PageZone> pageZones = await connection.QueryAsync<PageZone>(
                     @"SELECT TenantId, PageId, PageZoneId, MasterPageId, MasterPageZoneId
-                        FROM cms.PageZone WHERE TenantId = @TenantId AND PageId = @PageId",
+                        FROM cms.PageZone WHERE TenantId = @TenantId AND PageId = @PageId
+                        ORDER BY PageZoneId",
                     new { TenantId = tenantId, PageId = pageId }
                 );
                 return pageZones;
@@ -62,6 +63,36 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                 );
 
                 return pageZone;
+            }
+        }
+
+        public async Task<IEnumerable<PageZoneElement>> SearchPageZoneElementsAsync(long tenantId, long pageId)
+        {
+            using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
+            {
+                connection.Open();
+                IEnumerable<PageZoneElement> pageZoneElements = await connection.QueryAsync<PageZoneElement>(
+                    @"SELECT TenantId, PageId, PageZoneId, PageZoneElementId, SortOrder, ElementId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId
+	                    FROM cms.PageZoneElement WHERE TenantId = @TenantId AND PageId = @PageId
+                        ORDER BY PageZoneId ASC, PageZoneElementId ASC",
+                    new { TenantId = tenantId, PageId = pageId }
+                );
+                return pageZoneElements;
+            }
+        }
+
+        public async Task<IEnumerable<PageZoneElement>> SearchPageZoneElementsAsync(long tenantId, long pageId, long pageZoneId)
+        {
+            using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
+            {
+                connection.Open();
+                IEnumerable<PageZoneElement> pageZoneElements = await connection.QueryAsync<PageZoneElement>(
+                    @"SELECT TenantId, PageId, PageZoneId, PageZoneElementId, SortOrder, ElementId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId
+	                    FROM cms.PageZoneElement WHERE TenantId = @TenantId AND PageId = @PageId AND PageZoneId = @PageZoneId
+                        ORDER BY PageZoneElementId ASC",
+                    new { TenantId = tenantId, PageId = pageId }
+                );
+                return pageZoneElements;
             }
         }
 
