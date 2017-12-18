@@ -9,7 +9,7 @@
     <PackageReference Include="Dapper" Version="1.50.4" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0001" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.5.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.7.0" />
   </ItemGroup>
 
   <ItemGroup>
