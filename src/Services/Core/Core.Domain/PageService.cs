@@ -18,5 +18,10 @@ namespace Riverside.Cms.Services.Core.Domain
         {
             return _pageRepository.ReadPageAsync(tenantId, pageId);
         }
+
+        public Task<PageZone> ReadPageZoneAsync(long tenantId, long pageId, long pageZoneId)
+        {
+            return _pageRepository.ReadPageZoneAsync(tenantId, pageId, pageZoneId);
+        }
     }
 }

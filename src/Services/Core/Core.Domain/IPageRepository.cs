@@ -8,5 +8,7 @@ namespace Riverside.Cms.Services.Core.Domain
     public interface IPageRepository
     {
         Task<Page> ReadPageAsync(long tenantId, long pageId);
+
+        Task<PageZone> ReadPageZoneAsync(long tenantId, long pageId, long pageZoneId);
     }
 }

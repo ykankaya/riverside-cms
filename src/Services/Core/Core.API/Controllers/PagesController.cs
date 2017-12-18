@@ -21,12 +21,24 @@ namespace Core.API.Controllers
         [Route("api/v1/core/tenants/{tenantId:int}/pages/{pageId:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Page), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> ReadBlob(long tenantId, long pageId)
+        public async Task<IActionResult> ReadPage(long tenantId, long pageId)
         {
             Page page = await _pageService.ReadPageAsync(tenantId, pageId);
             if (page == null)
                 return NotFound();
             return Ok(page);
+        }
+
+        [HttpGet]
+        [Route("api/v1/core/tenants/{tenantId:int}/pages/{pageId:int}/zones/{pageZoneId:int}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(PageZone), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ReadPageZone(long tenantId, long pageId, long pageZoneId)
+        {
+            PageZone pageZone = await _pageService.ReadPageZoneAsync(tenantId, pageId, pageZoneId);
+            if (pageZone == null)
+                return NotFound();
+            return Ok(pageZone);
         }
     }
 }
