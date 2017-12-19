@@ -22,10 +22,10 @@ namespace Riverside.Cms.Services.Core.Domain
         public bool HasImage { get; set; }
         public int? ThumbnailImageWidth { get; set; }
         public int? ThumbnailImageHeight { get; set; }
-        public ResizeMode? ThumbnailResizeMode { get; set; }
+        public ResizeMode? ThumbnailImageResizeMode { get; set; }
         public int? PreviewImageWidth { get; set; }
         public int? PreviewImageHeight { get; set; }
-        public ResizeMode? PreviewResizeMode { get; set; }
+        public ResizeMode? PreviewImageResizeMode { get; set; }
         public int? ImageMinWidth { get; set; }
         public int? ImageMinHeight { get; set; }
 
