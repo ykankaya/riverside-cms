@@ -28,5 +28,10 @@ namespace Riverside.Cms.Services.Core.Domain
         {
             return _masterPageRepository.ReadMasterPageZoneAsync(tenantId, masterPageId, masterPageZoneId);
         }
+
+        public Task<MasterPageZoneElement> ReadMasterPageZoneElementAsync(long tenantId, long masterPageId, long masterPageZoneId, long masterPageZoneElementId)
+        {
+            return _masterPageRepository.ReadMasterPageZoneElementAsync(tenantId, masterPageId, masterPageZoneId, masterPageZoneElementId);
+        }
     }
 }
