@@ -51,7 +51,7 @@ namespace Core.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/v1/core/tenants/{tenantId:int}/masterpages/{masterPageId:int}/zones/{masterPageZoneId:int}")]
+        [Route("api/v1/core/tenants/{tenantId:int}/masterpages/{masterPageId:int}/zones/{masterPageZoneId:int}/elements")]
         [ProducesResponseType(typeof(IEnumerable<MasterPageZoneElement>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> SearchMasterPageZoneElements(long tenantId, long masterPageId, long masterPageZoneId)
         {
