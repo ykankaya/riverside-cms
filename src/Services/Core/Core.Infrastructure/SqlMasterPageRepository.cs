@@ -36,6 +36,20 @@ namespace Riverside.Cms.Services.Core.Infrastructure
             }
         }
 
+        public async Task<IEnumerable<MasterPageZone>> SearchMasterPageZonesAsync(long tenantId, long masterPageId)
+        {
+            using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
+            {
+                connection.Open();
+                IEnumerable<MasterPageZone> masterPageZones = await connection.QueryAsync<MasterPageZone>(
+                    @"SELECT TenantId, MasterPageId, MasterPageZoneId, SortOrder, AdminType, ContentType, BeginRender, EndRender, Name
+                        FROM cms.MasterPageZone WHERE TenantId = @TenantId AND MasterPageId = @MasterPageId ORDER BY SortOrder",
+                    new { TenantId = tenantId, MasterPageId = masterPageId }
+                );
+                return masterPageZones;
+            }
+        }
+
         public async Task<MasterPageZone> ReadMasterPageZoneAsync(long tenantId, long masterPageId, long masterPageZoneId)
         {
             using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))

@@ -30,6 +30,15 @@ namespace Core.API.Controllers
         }
 
         [HttpGet]
+        [Route("api/v1/core/tenants/{tenantId:int}/masterpages/{masterPageId:int}/zones")]
+        [ProducesResponseType(typeof(IEnumerable<MasterPageZone>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> SearchMasterPageZones(long tenantId, long masterPageId)
+        {
+            IEnumerable<MasterPageZone> masterPageZones = await _masterPageService.SearchMasterPageZonesAsync(tenantId, masterPageId);
+            return Ok(masterPageZones);
+        }
+
+        [HttpGet]
         [Route("api/v1/core/tenants/{tenantId:int}/masterpages/{masterPageId:int}/zones/{masterPageZoneId:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(MasterPageZone), (int)HttpStatusCode.OK)]
