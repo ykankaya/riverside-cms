@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
@@ -42,12 +43,22 @@ namespace Riverside.Cms.Services.Core.Infrastructure
             using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
             {
                 connection.Open();
-                IEnumerable<MasterPageZone> masterPageZones = await connection.QueryAsync<MasterPageZone>(
+
+                using (GridReader gr = await connection.QueryMultipleAsync(
                     @"SELECT TenantId, MasterPageId, MasterPageZoneId, SortOrder, AdminType, ContentType, BeginRender, EndRender, Name
-                        FROM cms.MasterPageZone WHERE TenantId = @TenantId AND MasterPageId = @MasterPageId ORDER BY SortOrder",
+                        FROM cms.MasterPageZone WHERE TenantId = @TenantId AND MasterPageId = @MasterPageId ORDER BY SortOrder
+                      SELECT MasterPageZoneId, ElementTypeId FROM cms.MasterPageZoneElementType
+                        WHERE TenantId = @TenantId AND MasterPageId = @MasterPageId",
                     new { TenantId = tenantId, MasterPageId = masterPageId }
-                );
-                return masterPageZones;
+                    )
+                )
+                {
+                    IEnumerable<MasterPageZone> masterPageZones = await gr.ReadAsync<MasterPageZone>();
+                    IEnumerable<MasterPageZoneElementTypeDto> masterPageZoneElementTypeIds = await gr.ReadAsync<MasterPageZoneElementTypeDto>();
+                    foreach (MasterPageZone masterPageZone in masterPageZones)
+                        masterPageZone.ElementTypeIds = masterPageZoneElementTypeIds.Where(e => e.MasterPageZoneId == masterPageZone.MasterPageZoneId).Select(e => e.ElementTypeId);
+                    return masterPageZones;
+                }
             }
         }
 
