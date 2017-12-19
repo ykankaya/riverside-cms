@@ -75,7 +75,7 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                     @"SELECT TenantId, PageId, PageZoneId, PageZoneElementId, SortOrder, ElementId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId
 	                    FROM cms.PageZoneElement WHERE TenantId = @TenantId AND PageId = @PageId AND PageZoneId = @PageZoneId
                         ORDER BY PageZoneElementId ASC",
-                    new { TenantId = tenantId, PageId = pageId }
+                    new { TenantId = tenantId, PageId = pageId, PageZoneId = pageZoneId }
                 );
                 return pageZoneElements;
             }
