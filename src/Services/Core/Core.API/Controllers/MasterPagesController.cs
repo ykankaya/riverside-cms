@@ -51,6 +51,15 @@ namespace Core.API.Controllers
         }
 
         [HttpGet]
+        [Route("api/v1/core/tenants/{tenantId:int}/masterpages/{masterPageId:int}/zones/{masterPageZoneId:int}")]
+        [ProducesResponseType(typeof(IEnumerable<MasterPageZoneElement>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> SearchMasterPageZoneElements(long tenantId, long masterPageId, long masterPageZoneId)
+        {
+            IEnumerable<MasterPageZoneElement> masterPageZoneElements = await _masterPageService.SearchMasterPageZoneElementsAsync(tenantId, masterPageId, masterPageZoneId);
+            return Ok(masterPageZoneElements);
+        }
+
+        [HttpGet]
         [Route("api/v1/core/tenants/{tenantId:int}/masterpages/{masterPageId:int}/zones/{masterPageZoneId:int}/elements/{masterPageZoneElementId:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(MasterPageZoneElement), (int)HttpStatusCode.OK)]
