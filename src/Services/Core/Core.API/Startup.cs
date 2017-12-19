@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Riverside.Cms.Services.Core.Domain;
+using Riverside.Cms.Services.Core.Infrastructure;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Core.API
@@ -21,6 +23,19 @@ namespace Core.API
 
         public IConfiguration Configuration { get; }
 
+        private void ConfigureDependencyInjectionServices(IServiceCollection services)
+        {
+            services.AddTransient<IPageService, PageService>();
+            services.AddTransient<IMasterPageService, MasterPageService>();
+            services.AddTransient<IPageRepository, SqlPageRepository>();
+            services.AddTransient<IMasterPageRepository, SqlMasterPageRepository>();
+        }
+
+        private void ConfigureOptionServices(IServiceCollection services)
+        {
+            services.Configure<SqlOptions>(Configuration);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -30,6 +45,9 @@ namespace Core.API
             {
                 c.SwaggerDoc("v1", new Info { Title = "Core HTTP API", Version = "v1" });
             });
+
+            ConfigureDependencyInjectionServices(services);
+            ConfigureOptionServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
