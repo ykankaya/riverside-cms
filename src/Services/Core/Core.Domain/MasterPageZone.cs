@@ -17,5 +17,7 @@ namespace Riverside.Cms.Services.Core.Domain
         public string Name { get; set; }
         public string BeginRender { get; set; }
         public string EndRender { get; set; }
+
+        public IEnumerable<Guid> ElementTypeIds { get; set; }
     }
 }
