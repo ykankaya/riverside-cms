@@ -14,7 +14,7 @@ namespace Riverside.Cms.Services.Core.Domain
         public string Description { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
-        public DateTime Occurred { get; set; }
+        public DateTime? Occurred { get; set; }
 
         public long MasterPageId { get; set; }
 
