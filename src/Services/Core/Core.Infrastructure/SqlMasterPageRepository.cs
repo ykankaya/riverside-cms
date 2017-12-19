@@ -38,6 +38,15 @@ namespace Riverside.Cms.Services.Core.Infrastructure
             }
         }
 
+        private IEnumerable<MasterPageZone> PopulateMasterPageZones(IEnumerable<MasterPageZone> masterPageZones, IEnumerable<MasterPageZoneElementTypeDto> masterPageZoneElementTypeIds)
+        {
+            foreach (MasterPageZone masterPageZone in masterPageZones)
+            {
+                masterPageZone.ElementTypeIds = masterPageZoneElementTypeIds.Where(e => e.MasterPageZoneId == masterPageZone.MasterPageZoneId).Select(e => e.ElementTypeId);
+                yield return masterPageZone;
+            }
+        }
+
         public async Task<IEnumerable<MasterPageZone>> SearchMasterPageZonesAsync(long tenantId, long masterPageId)
         {
             using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
@@ -55,9 +64,7 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                 {
                     IEnumerable<MasterPageZone> masterPageZones = await gr.ReadAsync<MasterPageZone>();
                     IEnumerable<MasterPageZoneElementTypeDto> masterPageZoneElementTypeIds = await gr.ReadAsync<MasterPageZoneElementTypeDto>();
-                    foreach (MasterPageZone masterPageZone in masterPageZones)
-                        masterPageZone.ElementTypeIds = masterPageZoneElementTypeIds.Where(e => e.MasterPageZoneId == masterPageZone.MasterPageZoneId).Select(e => e.ElementTypeId);
-                    return masterPageZones;
+                    return PopulateMasterPageZones(masterPageZones, masterPageZoneElementTypeIds);
                 }
             }
         }
