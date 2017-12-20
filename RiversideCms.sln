@@ -39,6 +39,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Infrastructure", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Client", "src\Services\Core\Core.Client\Core.Client.csproj", "{84D7778B-F4CF-407A-935D-CA52F97D6ED6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{4F51F6CF-7CE8-4BBE-A8C8-15ECE483DC6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharpExtensions", "src\Utilities\RestSharpExtensions\RestSharpExtensions.csproj", "{D795FA1B-1D2E-4D56-90E4-EFF35CE055E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +107,10 @@ Global
 		{84D7778B-F4CF-407A-935D-CA52F97D6ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84D7778B-F4CF-407A-935D-CA52F97D6ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84D7778B-F4CF-407A-935D-CA52F97D6ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D795FA1B-1D2E-4D56-90E4-EFF35CE055E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D795FA1B-1D2E-4D56-90E4-EFF35CE055E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D795FA1B-1D2E-4D56-90E4-EFF35CE055E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D795FA1B-1D2E-4D56-90E4-EFF35CE055E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +126,8 @@ Global
 		{9E8F2709-66D9-409A-B1B0-68FF9E197A31} = {12968302-C293-42A6-8CE5-114CA39CDDBD}
 		{2876BE96-D064-41F9-A189-40F2B0DBEC45} = {12968302-C293-42A6-8CE5-114CA39CDDBD}
 		{84D7778B-F4CF-407A-935D-CA52F97D6ED6} = {12968302-C293-42A6-8CE5-114CA39CDDBD}
+		{4F51F6CF-7CE8-4BBE-A8C8-15ECE483DC6F} = {90988250-F53A-4655-81E5-F690E2CAD416}
+		{D795FA1B-1D2E-4D56-90E4-EFF35CE055E1} = {4F51F6CF-7CE8-4BBE-A8C8-15ECE483DC6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A9D6838-ED01-4238-A5A9-22EFD2D48A70}

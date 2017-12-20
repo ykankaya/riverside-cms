@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RestSharp;
+using Riverside.Cms.Utilities.RestSharpExtensions;
 
 namespace Riverside.Cms.Services.Core.Client
 {
