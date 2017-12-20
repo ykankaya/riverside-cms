@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Client
+namespace Riverside.Cms.Services.Core.Client
 {
     public interface IPageService
     {

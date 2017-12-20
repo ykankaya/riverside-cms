@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RestSharp;
 
-namespace Core.Client
+namespace Riverside.Cms.Services.Core.Client
 {
     public class PageService : IPageService
     {
