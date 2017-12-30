@@ -16,6 +16,8 @@ services:
   riversidecms.mvc:
     image: riversidecms.mvc
     build:
-      context: .
-      dockerfile: src/Applications/RiversideCms.Mvc/Dockerfile
+      context: ./src/Applications/RiversideCms.Mvc
+      dockerfile: Dockerfile
+    depends_on:
+      - core.api
 

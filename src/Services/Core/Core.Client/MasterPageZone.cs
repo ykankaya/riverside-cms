@@ -19,5 +19,7 @@ namespace Riverside.Cms.Services.Core.Client
         public string EndRender { get; set; }
 
         public IEnumerable<Guid> ElementTypeIds { get; set; }
+
+        public List<MasterPageZoneElement> MasterPageZoneElements { get; set; }
     }
 }

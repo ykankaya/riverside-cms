@@ -13,5 +13,7 @@ namespace Riverside.Cms.Services.Core.Client
 
         public long MasterPageId { get; set; }
         public long MasterPageZoneId { get; set; }
+
+        public List<PageZoneElement> PageZoneElements { get; set; }
     }
 }

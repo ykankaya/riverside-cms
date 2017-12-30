@@ -33,5 +33,7 @@ namespace Riverside.Cms.Services.Core.Client
         public bool Deletable { get; set; }
         public bool Taggable { get; set; }
         public bool Administration { get; set; }
+
+        public List<MasterPageZone> MasterPageZones { get; set; }
     }
 }

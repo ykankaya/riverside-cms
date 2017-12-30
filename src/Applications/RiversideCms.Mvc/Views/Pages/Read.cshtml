@@ -1,0 +1,30 @@
+﻿@using Riverside.Cms.Services.Core.Client
+
+@model PageViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Page title goes here</title>
+</head>
+<body>
+    @Html.Raw(Model.MasterPage.BeginRender)
+    @foreach (MasterPageZone masterPageZone in Model.MasterPage.MasterPageZones)
+    {
+        @Html.Raw(masterPageZone.BeginRender)
+        @foreach (MasterPageZoneElement masterPageZoneElement in masterPageZone.MasterPageZoneElements)
+        {
+            <div class="rcms-element">
+            </div>
+        }
+        @Html.Raw(masterPageZone.EndRender)
+    }
+    @Html.Raw(Model.MasterPage.EndRender)
+</body>
+</html>

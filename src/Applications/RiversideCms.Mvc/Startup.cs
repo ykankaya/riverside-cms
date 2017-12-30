@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Riverside.Cms.Services.Core.Client;
 
 namespace RiversideCms.Mvc
 {
@@ -18,10 +19,24 @@ namespace RiversideCms.Mvc
 
         public IConfiguration Configuration { get; }
 
+        private void ConfigureDependencyInjectionServices(IServiceCollection services)
+        {
+            services.AddTransient<IMasterPageService, MasterPageService>();
+            services.AddTransient<IPageService, PageService>();
+        }
+
+        private void ConfigureOptionServices(IServiceCollection services)
+        {
+            services.Configure<ApiOptions>(Configuration);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            ConfigureDependencyInjectionServices(services);
+            ConfigureOptionServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
