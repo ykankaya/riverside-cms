@@ -12,3 +12,10 @@ services:
     build:
       context: ./src/Services/Core/Core.API
       dockerfile: Dockerfile
+
+  riversidecms.mvc:
+    image: riversidecms.mvc
+    build:
+      context: .
+      dockerfile: src/Applications/RiversideCms.Mvc/Dockerfile
+
