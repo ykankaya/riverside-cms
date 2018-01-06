@@ -16,5 +16,10 @@
 <body>
     @Html.Raw(Model.BeginRender)
     @Html.Raw(Model.EndRender)
+    @foreach (PageViewZone pageViewZone in Model.PageViewZones)
+    {
+        @Html.Raw(pageViewZone.BeginRender)
+        @Html.Raw(pageViewZone.EndRender)
+    }
 </body>
 </html>

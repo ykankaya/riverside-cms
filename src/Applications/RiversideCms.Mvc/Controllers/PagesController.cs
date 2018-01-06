@@ -23,6 +23,7 @@ namespace RiversideCms.Mvc.Controllers
         public async Task<IActionResult> Read(long id)
         {
             PageView pageView = await _pageViewService.ReadPageViewAsync(TenantId, id);
+            pageView.PageViewZones = await _pageViewService.SearchPageViewZonesAsync(TenantId, id);
             return View("Read", pageView);
         }
     }

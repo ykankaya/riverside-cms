@@ -8,5 +8,8 @@ namespace Riverside.Cms.Services.Core.Client
     public interface IPageViewService
     {
         Task<PageView> ReadPageViewAsync(long tenantId, long pageId);
+
+        Task<List<PageViewZone>> SearchPageViewZonesAsync(long tenantId, long pageId);
+        Task<PageViewZone> ReadPageViewZoneAsync(long tenantId, long pageId, long masterPageZoneId);
     }
 }

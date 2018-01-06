@@ -44,5 +44,50 @@ namespace Riverside.Cms.Services.Core.Client
                 throw new CoreClientException("Core API failed", ex);
             }
         }
+
+        public async Task<List<PageViewZone>> SearchPageViewZonesAsync(long tenantId, long pageId)
+        {
+            try
+            {
+                RestClient client = new RestClient(_options.Value.ApiBaseUrl);
+                RestRequest request = new RestRequest("tenants/{tenantId}/pageviews/{pageId}/zones", Method.GET);
+                request.AddUrlSegment("tenantId", tenantId);
+                request.AddUrlSegment("pageId", pageId);
+                IRestResponse<List<PageViewZone>> response = await client.ExecuteAsync<List<PageViewZone>>(request);
+                CheckResponseStatus(response);
+                return response.Data;
+            }
+            catch (CoreClientException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new CoreClientException("Core API failed", ex);
+            }
+        }
+
+        public async Task<PageViewZone> ReadPageViewZoneAsync(long tenantId, long pageId, long masterPageZoneId)
+        {
+            try
+            {
+                RestClient client = new RestClient(_options.Value.ApiBaseUrl);
+                RestRequest request = new RestRequest("tenants/{tenantId}/pageviews/{pageId}/zones/{masterPageZoneId}", Method.GET);
+                request.AddUrlSegment("tenantId", tenantId);
+                request.AddUrlSegment("pageId", pageId);
+                request.AddUrlSegment("masterPageZoneId", masterPageZoneId);
+                IRestResponse<PageViewZone> response = await client.ExecuteAsync<PageViewZone>(request);
+                CheckResponseStatus(response);
+                return response.Data;
+            }
+            catch (CoreClientException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new CoreClientException("Core API failed", ex);
+            }
+        }
     }
 }
