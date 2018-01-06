@@ -21,8 +21,7 @@ namespace RiversideCms.Mvc
 
         private void ConfigureDependencyInjectionServices(IServiceCollection services)
         {
-            services.AddTransient<IMasterPageService, MasterPageService>();
-            services.AddTransient<IPageService, PageService>();
+            services.AddTransient<IPageViewService, PageViewService>();
         }
 
         private void ConfigureOptionServices(IServiceCollection services)

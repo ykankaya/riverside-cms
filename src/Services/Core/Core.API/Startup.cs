@@ -26,6 +26,7 @@ namespace Core.API
         private void ConfigureDependencyInjectionServices(IServiceCollection services)
         {
             services.AddTransient<IPageService, PageService>();
+            services.AddTransient<IPageViewService, PageViewService>();
             services.AddTransient<IMasterPageService, MasterPageService>();
             services.AddTransient<IPageRepository, SqlPageRepository>();
             services.AddTransient<IMasterPageRepository, SqlMasterPageRepository>();
