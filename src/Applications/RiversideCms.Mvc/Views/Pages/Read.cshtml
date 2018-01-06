@@ -15,11 +15,24 @@
 </head>
 <body>
     @Html.Raw(Model.BeginRender)
-    @Html.Raw(Model.EndRender)
+
     @foreach (PageViewZone pageViewZone in Model.PageViewZones)
     {
         @Html.Raw(pageViewZone.BeginRender)
+
+        @foreach (PageViewZoneElement pageViewZoneElement in pageViewZone.PageViewZoneElements)
+        {
+            @Html.Raw(pageViewZoneElement.BeginRender)
+
+            <div class="rcms-element" id="element-id-@pageViewZoneElement.ElementId">
+            </div>
+
+            @Html.Raw(pageViewZoneElement.EndRender)
+        }
+
         @Html.Raw(pageViewZone.EndRender)
     }
+
+    @Html.Raw(Model.EndRender)
 </body>
 </html>

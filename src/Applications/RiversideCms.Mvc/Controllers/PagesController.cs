@@ -24,6 +24,8 @@ namespace RiversideCms.Mvc.Controllers
         {
             PageView pageView = await _pageViewService.ReadPageViewAsync(TenantId, id);
             pageView.PageViewZones = await _pageViewService.SearchPageViewZonesAsync(TenantId, id);
+            foreach (PageViewZone pageViewZone in pageView.PageViewZones)
+                pageViewZone.PageViewZoneElements = await _pageViewService.SearchPageViewZoneElementsAsync(TenantId, id, pageViewZone.MasterPageZoneId);
             return View("Read", pageView);
         }
     }

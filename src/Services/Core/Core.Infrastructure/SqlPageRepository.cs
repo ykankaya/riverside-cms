@@ -74,7 +74,7 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                 IEnumerable<PageZoneElement> pageZoneElements = await connection.QueryAsync<PageZoneElement>(
                     @"SELECT TenantId, PageId, PageZoneId, PageZoneElementId, SortOrder, ElementId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId
 	                    FROM cms.PageZoneElement WHERE TenantId = @TenantId AND PageId = @PageId AND PageZoneId = @PageZoneId
-                        ORDER BY PageZoneElementId ASC",
+                        ORDER BY SortOrder ASC, PageZoneElementId ASC",
                     new { TenantId = tenantId, PageId = pageId, PageZoneId = pageZoneId }
                 );
                 return pageZoneElements;

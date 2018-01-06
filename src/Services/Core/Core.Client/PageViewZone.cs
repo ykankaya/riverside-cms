@@ -14,5 +14,7 @@ namespace Riverside.Cms.Services.Core.Client
 
         public string BeginRender { get; set; }
         public string EndRender { get; set; }
+
+        public List<PageViewZoneElement> PageViewZoneElements { get; set; }
     }
 }

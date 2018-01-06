@@ -11,5 +11,7 @@ namespace Riverside.Cms.Services.Core.Domain
 
         Task<IEnumerable<PageViewZone>> SearchPageViewZonesAsync(long tenantId, long pageId);
         Task<PageViewZone> ReadPageViewZoneAsync(long tenantId, long pageId, long masterPageZoneId);
+
+        Task<IEnumerable<PageViewZoneElement>> SearchPageViewZoneElementsAsync(long tenantId, long pageId, long masterPageZoneId);
     }
 }

@@ -89,5 +89,28 @@ namespace Riverside.Cms.Services.Core.Client
                 throw new CoreClientException("Core API failed", ex);
             }
         }
+
+        public async Task<List<PageViewZoneElement>> SearchPageViewZoneElementsAsync(long tenantId, long pageId, long masterPageZoneId)
+        {
+            try
+            {
+                RestClient client = new RestClient(_options.Value.ApiBaseUrl);
+                RestRequest request = new RestRequest("tenants/{tenantId}/pageviews/{pageId}/zones/{masterPageZoneId}/elements", Method.GET);
+                request.AddUrlSegment("tenantId", tenantId);
+                request.AddUrlSegment("pageId", pageId);
+                request.AddUrlSegment("masterPageZoneId", masterPageZoneId);
+                IRestResponse<List<PageViewZoneElement>> response = await client.ExecuteAsync<List<PageViewZoneElement>>(request);
+                CheckResponseStatus(response);
+                return response.Data;
+            }
+            catch (CoreClientException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new CoreClientException("Core API failed", ex);
+            }
+        }
     }
 }

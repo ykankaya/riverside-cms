@@ -49,5 +49,14 @@ namespace Core.API.Controllers
                 return NotFound();
             return Ok(pageViewZone);
         }
+
+        [HttpGet]
+        [Route("api/v1/core/tenants/{tenantId:int}/pageviews/{pageId:int}/zones/{masterPageZoneId:int}/elements")]
+        [ProducesResponseType(typeof(IEnumerable<PageViewZoneElement>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> SearchPageZoneElements(long tenantId, long pageId, long masterPageZoneId)
+        {
+            IEnumerable<PageViewZoneElement> pageViewZoneElements = await _pageViewService.SearchPageViewZoneElementsAsync(tenantId, pageId, masterPageZoneId);
+            return Ok(pageViewZoneElements);
+        }
     }
 }
