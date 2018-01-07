@@ -20,4 +20,12 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - core.api
+      - element.api
 
+  element.api:
+    image: element.api
+    build:
+      context: ./src/Services/Element/Element.Api
+      dockerfile: Dockerfile
+    depends_on:
+      - core.api

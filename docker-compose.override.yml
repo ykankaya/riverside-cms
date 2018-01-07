@@ -19,3 +19,8 @@ services:
     ports:
       - "5100:80"
 
+  element.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5103:80"
