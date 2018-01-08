@@ -9,11 +9,11 @@ namespace Riverside.Cms.Services.Element.Domain
     {
         private readonly IElementRepository _elementRepository;
 
-        private readonly IElementService<PageHeaderElementSettings> _pageHeaderElementService;
+        private readonly IElementService<PageHeaderElementSettings, PageHeaderElementContent> _pageHeaderElementService;
 
         public ElementService(
             IElementRepository elementRepository,
-            IElementService<PageHeaderElementSettings> pageHeaderElementService
+            IElementService<PageHeaderElementSettings, PageHeaderElementContent> pageHeaderElementService
         )
         {
             _elementRepository = elementRepository;
@@ -28,6 +28,20 @@ namespace Riverside.Cms.Services.Element.Domain
             {
                 case "1cbac30c-5deb-404e-8ea8-aabc20c82aa8":
                     return await _pageHeaderElementService.ReadElementAsync(tenantId, elementId);
+
+                default:
+                    return null;
+            }
+        }
+
+        public async Task<ElementContent> ReadElementContentAsync(long tenantId, long elementId, long pageId)
+        {
+            ElementSettings elementSettings = await _elementRepository.ReadElementAsync(tenantId, elementId);
+
+            switch (elementSettings.ElementTypeId.ToString().ToLower())
+            {
+                case "1cbac30c-5deb-404e-8ea8-aabc20c82aa8":
+                    return await _pageHeaderElementService.ReadElementContentAsync(tenantId, elementId, pageId);
 
                 default:
                     return null;

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Riverside.Cms.Services.Core.Client;
 using Riverside.Cms.Services.Element.Domain;
 using Riverside.Cms.Services.Element.Infrastructure;
 using Swashbuckle.AspNetCore.Swagger;
@@ -25,15 +26,18 @@ namespace Element.Api
 
         private void ConfigureDependencyInjectionServices(IServiceCollection services)
         {
+            services.AddTransient<IPageService, PageService>();
+
             services.AddTransient<IElementService, ElementService>();
             services.AddTransient<IElementRepository, SqlElementRepository>();
 
-            services.AddTransient<IElementService<PageHeaderElementSettings>, PageHeaderElementService>();
+            services.AddTransient<IElementService<PageHeaderElementSettings, PageHeaderElementContent>, PageHeaderElementService>();
             services.AddTransient<IElementRepository<PageHeaderElementSettings>, SqlPageHeaderElementRepository>();
         }
 
         private void ConfigureOptionServices(IServiceCollection services)
         {
+            services.Configure<ApiOptions>(Configuration);
             services.Configure<SqlOptions>(Configuration);
         }
 

@@ -8,10 +8,12 @@ namespace Riverside.Cms.Services.Element.Domain
     public interface IElementService
     {
         Task<ElementSettings> ReadElementAsync(long tenantId, long elementId);
+        Task<ElementContent> ReadElementContentAsync(long tenantId, long elementId, long pageId);
     }
 
-    public interface IElementService<T> where T : ElementSettings
+    public interface IElementService<S, C> where S : ElementSettings where C : ElementContent
     {
-        Task<ElementSettings> ReadElementAsync(long tenantId, long elementId);
+        Task<S> ReadElementAsync(long tenantId, long elementId);
+        Task<C> ReadElementContentAsync(long tenantId, long elementId, long pageId);
     }
 }

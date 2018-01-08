@@ -12,6 +12,6 @@ namespace Riverside.Cms.Services.Element.Domain
 
     public interface IElementRepository<T> where T : ElementSettings
     {
-        Task<ElementSettings> ReadElementAsync(long tenantId, long elementId);
+        Task<T> ReadElementAsync(long tenantId, long elementId);
     }
 }
