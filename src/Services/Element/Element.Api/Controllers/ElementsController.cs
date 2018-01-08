@@ -10,35 +10,35 @@ namespace Element.Api.Controllers
 {
     public class ElementsController : Controller
     {
-        private readonly IElementService _elementService;
+        private readonly IPageHeaderElementService _pageHeaderElementService;
 
-        public ElementsController(IElementService elementService)
+        public ElementsController(IPageHeaderElementService pageHeaderElementService)
         {
-            _elementService = elementService;
+            _pageHeaderElementService = pageHeaderElementService;
         }
 
         [HttpGet]
-        [Route("api/v1/element/tenants/{tenantId:int}/elements/{elementId:int}")]
+        [Route("api/v1/element/tenants/{tenantId:int}/elementtypes/1cbac30c-5deb-404e-8ea8-aabc20c82aa8/elements/{elementId:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(ElementSettings), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PageHeaderElementSettings), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> ReadElement(long tenantId, long elementId)
         {
-            ElementSettings elementSettings = await _elementService.ReadElementAsync(tenantId, elementId);
+            PageHeaderElementSettings elementSettings = await _pageHeaderElementService.ReadElementAsync(tenantId, elementId);
             if (elementSettings == null)
                 return NotFound();
             return Ok(elementSettings);
         }
 
         [HttpGet]
-        [Route("api/v1/element/tenants/{tenantId:int}/elements/{elementId:int}/pages/{pageId:int}")]
+        [Route("api/v1/element/tenants/{tenantId:int}/elementtypes/1cbac30c-5deb-404e-8ea8-aabc20c82aa8/elements/{elementId:int}/view")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(ElementContent), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> ReadElementContent(long tenantId, long elementId, long pageId)
+        [ProducesResponseType(typeof(PageHeaderElementView), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetElementView(long tenantId, long elementId, [FromQuery]long pageId)
         {
-            ElementContent elementContent = await _elementService.ReadElementContentAsync(tenantId, elementId, pageId);
-            if (elementContent == null)
+            PageHeaderElementView elementView = await _pageHeaderElementService.GetElementViewAsync(tenantId, elementId, pageId);
+            if (elementView == null)
                 return NotFound();
-            return Ok(elementContent);
+            return Ok(elementView);
         }
     }
 }

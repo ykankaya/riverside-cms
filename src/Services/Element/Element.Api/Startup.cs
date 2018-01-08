@@ -28,10 +28,7 @@ namespace Element.Api
         {
             services.AddTransient<IPageService, PageService>();
 
-            services.AddTransient<IElementService, ElementService>();
-            services.AddTransient<IElementRepository, SqlElementRepository>();
-
-            services.AddTransient<IElementService<PageHeaderElementSettings, PageHeaderElementContent>, PageHeaderElementService>();
+            services.AddTransient<IPageHeaderElementService, PageHeaderElementService>();
             services.AddTransient<IElementRepository<PageHeaderElementSettings>, SqlPageHeaderElementRepository>();
         }
 
