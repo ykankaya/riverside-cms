@@ -13,6 +13,14 @@ services:
       context: ./src/Services/Core/Core.API
       dockerfile: Dockerfile
 
+  element.api:
+    image: element.api
+    build:
+      context: ./src/Services/Element/Element.Api
+      dockerfile: Dockerfile
+    depends_on:
+      - core.api
+
   riversidecms.mvc:
     image: riversidecms.mvc
     build:
@@ -21,11 +29,3 @@ services:
     depends_on:
       - core.api
       - element.api
-
-  element.api:
-    image: element.api
-    build:
-      context: ./src/Services/Element/Element.Api
-      dockerfile: Dockerfile
-    depends_on:
-      - core.api
