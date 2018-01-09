@@ -10,9 +10,9 @@ namespace Riverside.Cms.Services.Core.Client
 {
     public class PageService : IPageService
     {
-        private readonly IOptions<ApiOptions> _options;
+        private readonly IOptions<CoreApiOptions> _options;
 
-        public PageService(IOptions<ApiOptions> options)
+        public PageService(IOptions<CoreApiOptions> options)
         {
             _options = options;
         }

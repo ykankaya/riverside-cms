@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Riverside.Cms.Services.Core.Client;
+using Riverside.Cms.Services.Element.Client;
 
 namespace RiversideCms.Mvc
 {
@@ -22,11 +23,13 @@ namespace RiversideCms.Mvc
         private void ConfigureDependencyInjectionServices(IServiceCollection services)
         {
             services.AddTransient<IPageViewService, PageViewService>();
+            services.AddTransient<IPageHeaderElementService, PageHeaderElementService>();
         }
 
         private void ConfigureOptionServices(IServiceCollection services)
         {
-            services.Configure<ApiOptions>(Configuration);
+            services.Configure<CoreApiOptions>(Configuration);
+            services.Configure<ElementApiOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

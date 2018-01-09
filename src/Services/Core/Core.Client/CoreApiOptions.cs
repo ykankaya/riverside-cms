@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Riverside.Cms.Services.Core.Client
 {
-    public class ApiOptions
+    public class CoreApiOptions
     {
         public string ApiBaseUrl { get; set; }
 

@@ -34,7 +34,7 @@ namespace Element.Api
 
         private void ConfigureOptionServices(IServiceCollection services)
         {
-            services.Configure<ApiOptions>(Configuration);
+            services.Configure<CoreApiOptions>(Configuration);
             services.Configure<SqlOptions>(Configuration);
         }
 

@@ -1,6 +1,6 @@
 ﻿@using Riverside.Cms.Services.Core.Client
 
-@model PageView
+@model PageRender
 
 @{
     Layout = null;
@@ -11,12 +11,12 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@Model.Title</title>
+    <title>@Model.View.Title</title>
 </head>
 <body>
-    @Html.Raw(Model.BeginRender)
+    @Html.Raw(Model.View.BeginRender)
 
-    @foreach (PageViewZone pageViewZone in Model.PageViewZones)
+    @foreach (PageViewZone pageViewZone in Model.View.PageViewZones)
     {
         @Html.Raw(pageViewZone.BeginRender)
 
@@ -25,6 +25,7 @@
             @Html.Raw(pageViewZoneElement.BeginRender)
 
             <div class="rcms-element" id="element-id-@pageViewZoneElement.ElementId">
+                @{ if (Model.Elements.ContainsKey(pageViewZoneElement.ElementId)) { Html.RenderPartial(Model.Elements[pageViewZoneElement.ElementId].PartialViewName, Model.Elements[pageViewZoneElement.ElementId].ElementView); } }
             </div>
 
             @Html.Raw(pageViewZoneElement.EndRender)
@@ -33,6 +34,6 @@
         @Html.Raw(pageViewZone.EndRender)
     }
 
-    @Html.Raw(Model.EndRender)
+    @Html.Raw(Model.View.EndRender)
 </body>
 </html>

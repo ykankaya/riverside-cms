@@ -34,8 +34,8 @@ namespace Riverside.Cms.Services.Element.Domain
 
             PageHeaderElementView elementView = new PageHeaderElementView
             {
-                ElementSettings = elementSettings,
-                ElementContent = elementContent
+                Settings = elementSettings,
+                Content = elementContent
             };
             return elementView;
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Riverside.Cms.Services.Element.Domain
+namespace Riverside.Cms.Services.Element.Client
 {
     public class PageHeaderElementView
     {

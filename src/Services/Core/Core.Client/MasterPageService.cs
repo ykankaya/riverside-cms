@@ -10,9 +10,9 @@ namespace Riverside.Cms.Services.Core.Client
 {
     public class MasterPageService : IMasterPageService
     {
-        private readonly IOptions<ApiOptions> _options;
+        private readonly IOptions<CoreApiOptions> _options;
 
-        public MasterPageService(IOptions<ApiOptions> options)
+        public MasterPageService(IOptions<CoreApiOptions> options)
         {
             _options = options;
         }
