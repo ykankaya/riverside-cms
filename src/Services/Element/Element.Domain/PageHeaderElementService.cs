@@ -22,11 +22,25 @@ namespace Riverside.Cms.Services.Element.Domain
             return _elementRepository.ReadElementAsync(tenantId, elementId);
         }
 
+        private async void PopulatePageHierarchy(Page page)
+        {
+            Page hierarchyPage = page;
+            while (hierarchyPage != null && hierarchyPage.ParentPageId != null)
+            {
+                hierarchyPage.ParentPage = await _pageService.ReadPageAsync(page.TenantId, hierarchyPage.ParentPageId.Value);
+                hierarchyPage = hierarchyPage.ParentPage;
+            }
+        }
+
         public async Task<PageHeaderElementView> GetElementViewAsync(long tenantId, long elementId, long pageId)
         {
             PageHeaderElementSettings elementSettings = await _elementRepository.ReadElementAsync(tenantId, elementId);
 
             Page page = await _pageService.ReadPageAsync(tenantId, pageId);
+
+            if (elementSettings.ShowBreadcrumbs)
+                PopulatePageHierarchy(page);
+
             PageHeaderElementContent elementContent = new PageHeaderElementContent
             {
                 Page = page
@@ -37,6 +51,7 @@ namespace Riverside.Cms.Services.Element.Domain
                 Settings = elementSettings,
                 Content = elementContent
             };
+
             return elementView;
         }
     }

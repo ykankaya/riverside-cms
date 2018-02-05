@@ -23,5 +23,7 @@ namespace Riverside.Cms.Services.Core.Client
         public long? ThumbnailImageUploadId { get; set; }
 
         public List<PageZone> PageZones { get; set; }
+
+        public Page ParentPage { get; set; }
     }
 }

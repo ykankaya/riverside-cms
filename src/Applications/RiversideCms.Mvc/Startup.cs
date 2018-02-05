@@ -58,6 +58,8 @@ namespace RiversideCms.Mvc
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute("Home", "", new { controller = "pages", action = "home" });
+                routes.MapRoute("Page", "pages/{pageId}/{*description}", new { controller = "pages", action = "read" });
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

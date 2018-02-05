@@ -1,4 +1,5 @@
 ﻿@using RiversideCms.Mvc.Extensions
+@using Riverside.Cms.Services.Core.Client
 @using Riverside.Cms.Services.Element.Client
 
 @model ElementView<PageHeaderElementSettings, PageHeaderElementContent>
@@ -46,17 +47,24 @@
             }
             @if (showOccurred)
             {
-                <dt>@if (occursInFuture) {<text>Occurs</text> } else { <text>Occurred</text>}</dt>
+                <dt>@if (occursInFuture)
+                {<text>Occurs</text> }
+            else
+            { <text>Occurred</text>}</dt>
                 <dd>@Html.Date(Model.Content.Page.Occurred.Value)</dd>
             }
         </dl>
     }
 
-    <p>Note: Breadcrumbs not implemented</p>
-
     @if (Model.Settings.ShowBreadcrumbs)
     {
+        Page hierarchyPage = Model.Content.Page;
         <ol class="breadcrumb">
+            @while (hierarchyPage != null)
+            {
+                <li>@Html.PageLink(hierarchyPage)</li>
+                hierarchyPage = hierarchyPage.ParentPage;
+            }
         </ol>
     }
 
