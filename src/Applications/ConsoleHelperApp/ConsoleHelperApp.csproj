@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Google\Google.Client\Google.Client.csproj" />
-    <ProjectReference Include="..\..\Services\Google\Google.Domain\Google.Domain.csproj" />
-    <ProjectReference Include="..\..\Services\Google\Google.Infrastructure\Google.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Services\Google\Google.Places.Client\Google.Places.Client.csproj" />
+    <ProjectReference Include="..\..\Services\Reviews\Reviews.Domain\Reviews.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\Reviews\Reviews.Infrastructure\Reviews.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

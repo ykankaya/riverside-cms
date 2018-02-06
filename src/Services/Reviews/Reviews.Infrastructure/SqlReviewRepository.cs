@@ -4,10 +4,10 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using Riverside.Cms.Services.Google.Domain;
+using Riverside.Cms.Services.Reviews.Domain;
 using static Dapper.SqlMapper;
 
-namespace Riverside.Cms.Services.Google.Infrastructure
+namespace Riverside.Cms.Services.Reviews.Infrastructure
 {
     public class SqlReviewRepository : IReviewRepository
     {

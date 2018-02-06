@@ -2,16 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Riverside.Cms.Services.Google.Infrastructure</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.4" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Google.Domain\Google.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\RestSharpExtensions\RestSharpExtensions.csproj" />
   </ItemGroup>
 
 </Project>

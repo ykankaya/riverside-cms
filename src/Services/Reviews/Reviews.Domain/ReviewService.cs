@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Riverside.Cms.Services.Google.Client;
+using Riverside.Cms.Services.Google.Places.Client;
 
-namespace Riverside.Cms.Services.Google.Domain
+namespace Riverside.Cms.Services.Reviews.Domain
 {
     public class ReviewService : IReviewService
     {
@@ -34,7 +34,7 @@ namespace Riverside.Cms.Services.Google.Domain
         {
             Place place = await _placeService.ReadPlaceAsync(placeId);
 
-            List<Google.Domain.Review> reviews = new List<Review>();
+            List<Review> reviews = new List<Review>();
             foreach (PlaceReview placeReview in place.Result.Reviews)
             {
                 Review review = new Review

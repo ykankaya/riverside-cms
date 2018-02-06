@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Riverside.Cms.Services.Google.Infrastructure
+namespace Riverside.Cms.Services.Reviews.Infrastructure
 {
     public class SqlOptions
     {

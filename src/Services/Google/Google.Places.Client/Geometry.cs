@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Riverside.Cms.Services.Google.Client
+namespace Riverside.Cms.Services.Google.Places.Client
 {
     public class Geometry
     {

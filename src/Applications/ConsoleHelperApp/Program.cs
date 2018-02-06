@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using Riverside.Cms.Services.Google.Client;
-using Riverside.Cms.Services.Google.Domain;
-using Riverside.Cms.Services.Google.Infrastructure;
+using Riverside.Cms.Services.Google.Places.Client;
+using Riverside.Cms.Services.Reviews.Domain;
+using Riverside.Cms.Services.Reviews.Infrastructure;
 using static Dapper.SqlMapper;
 
 namespace ConsoleHelperApp

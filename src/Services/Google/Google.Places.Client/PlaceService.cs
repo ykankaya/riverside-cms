@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using RestSharp;
 using Riverside.Cms.Utilities.RestSharpExtensions;
 
-namespace Riverside.Cms.Services.Google.Client
+namespace Riverside.Cms.Services.Google.Places.Client
 {
     public class PlaceService : IPlaceService
     {
