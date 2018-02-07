@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Riverside.Cms.Utilities.Google.Places.Client</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Utilities\RestSharpExtensions\RestSharpExtensions.csproj" />
+    <ProjectReference Include="..\..\RestSharpExtensions\RestSharpExtensions.csproj" />
   </ItemGroup>
 
 </Project>

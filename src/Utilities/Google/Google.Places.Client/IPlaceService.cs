@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Riverside.Cms.Services.Google.Places.Client
+namespace Riverside.Cms.Utilities.Google.Places.Client
 {
     public interface IPlaceService
     {

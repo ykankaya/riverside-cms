@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Google\Google.Places.Client\Google.Places.Client.csproj" />
     <ProjectReference Include="..\..\Services\Reviews\Reviews.Domain\Reviews.Domain.csproj" />
     <ProjectReference Include="..\..\Services\Reviews\Reviews.Infrastructure\Reviews.Infrastructure.csproj" />
   </ItemGroup>

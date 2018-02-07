@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Riverside.Cms.Services.Google.Places.Client;
+using Riverside.Cms.Utilities.Google.Places.Client;
 
 namespace Riverside.Cms.Services.Reviews.Domain
 {

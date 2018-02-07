@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Riverside.Cms.Services.Google.Places.Client
+namespace Riverside.Cms.Utilities.Google.Places.Client
 {
     public class PlaceResult
     {

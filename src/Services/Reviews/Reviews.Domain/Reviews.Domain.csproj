@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Google\Google.Places.Client\Google.Places.Client.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\Google\Google.Places.Client\Google.Places.Client.csproj" />
   </ItemGroup>
 
 </Project>
