@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
 
-namespace Riverside.Cms.Utilities.RestSharpExtensions
+namespace Riverside.Cms.Utilities.Net.RestSharpExtensions
 {
     /// <summary>
     /// Credit: https://stackoverflow.com/questions/41390647/how-to-use-restsharp-netcore-in-asp-net-core

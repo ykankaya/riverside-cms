@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RestSharp;
-using Riverside.Cms.Utilities.RestSharpExtensions;
+using Riverside.Cms.Utilities.Net.RestSharpExtensions;
 
 namespace Riverside.Cms.Utilities.Google.Places.Client
 {

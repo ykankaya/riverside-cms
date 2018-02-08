@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Utilities\RestSharpExtensions\RestSharpExtensions.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\Net\Net.RestSharpExtensions\Net.RestSharpExtensions.csproj" />
     <ProjectReference Include="..\..\Core\Core.Client\Core.Client.csproj" />
   </ItemGroup>
 

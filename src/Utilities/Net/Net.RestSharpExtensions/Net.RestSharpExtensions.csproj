@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Riverside.Cms.Utilities.RestSharpExtensions</RootNamespace>
+    <RootNamespace>Riverside.Cms.Utilities.Net.RestSharpExtensions</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

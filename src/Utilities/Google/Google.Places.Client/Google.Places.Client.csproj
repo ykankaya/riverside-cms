@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\RestSharpExtensions\RestSharpExtensions.csproj" />
+    <ProjectReference Include="..\..\Net\Net.RestSharpExtensions\Net.RestSharpExtensions.csproj" />
   </ItemGroup>
 
 </Project>
