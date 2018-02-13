@@ -40,7 +40,7 @@ namespace Riverside.Cms.Services.Element.Domain
 
     public interface ICodeSnippetElementService
     {
-        Task<CodeSnippetElementSettings> ReadElementAsync(long tenantId, long elementId);
+        Task<CodeSnippetElementSettings> ReadElementSettingsAsync(long tenantId, long elementId);
     }
 
     public class CodeSnippetElementService : ICodeSnippetElementService
@@ -52,9 +52,9 @@ namespace Riverside.Cms.Services.Element.Domain
             _elementRepository = elementRepository;
         }
 
-        public Task<CodeSnippetElementSettings> ReadElementAsync(long tenantId, long elementId)
+        public Task<CodeSnippetElementSettings> ReadElementSettingsAsync(long tenantId, long elementId)
         {
-            return _elementRepository.ReadElementAsync(tenantId, elementId);
+            return _elementRepository.ReadElementSettingsAsync(tenantId, elementId);
         }
     }
 }

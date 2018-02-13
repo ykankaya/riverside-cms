@@ -17,9 +17,9 @@ namespace Riverside.Cms.Services.Element.Domain
             _pageService = pageService;
         }
 
-        public Task<PageHeaderElementSettings> ReadElementAsync(long tenantId, long elementId)
+        public Task<PageHeaderElementSettings> ReadElementSettingsAsync(long tenantId, long elementId)
         {
-            return _elementRepository.ReadElementAsync(tenantId, elementId);
+            return _elementRepository.ReadElementSettingsAsync(tenantId, elementId);
         }
 
         private async void PopulatePageHierarchy(Page page)
@@ -34,7 +34,7 @@ namespace Riverside.Cms.Services.Element.Domain
 
         public async Task<PageHeaderElementView> GetElementViewAsync(long tenantId, long elementId, long pageId)
         {
-            PageHeaderElementSettings elementSettings = await _elementRepository.ReadElementAsync(tenantId, elementId);
+            PageHeaderElementSettings elementSettings = await _elementRepository.ReadElementSettingsAsync(tenantId, elementId);
 
             Page page = await _pageService.ReadPageAsync(tenantId, pageId);
 

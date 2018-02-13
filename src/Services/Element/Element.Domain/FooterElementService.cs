@@ -19,7 +19,7 @@ namespace Riverside.Cms.Services.Element.Domain
 
     public interface IFooterElementService
     {
-        Task<FooterElementSettings> ReadElementAsync(long tenantId, long elementId);
+        Task<FooterElementSettings> ReadElementSettingsAsync(long tenantId, long elementId);
         Task<FooterElementView> GetElementViewAsync(long tenantId, long elementId, long pageId);
     }
 
@@ -32,14 +32,14 @@ namespace Riverside.Cms.Services.Element.Domain
             _elementRepository = elementRepository;
         }
 
-        public Task<FooterElementSettings> ReadElementAsync(long tenantId, long elementId)
+        public Task<FooterElementSettings> ReadElementSettingsAsync(long tenantId, long elementId)
         {
-            return _elementRepository.ReadElementAsync(tenantId, elementId);
+            return _elementRepository.ReadElementSettingsAsync(tenantId, elementId);
         }
 
         public async Task<FooterElementView> GetElementViewAsync(long tenantId, long elementId, long pageId)
         {
-            FooterElementSettings elementSettings = await _elementRepository.ReadElementAsync(tenantId, elementId);
+            FooterElementSettings elementSettings = await _elementRepository.ReadElementSettingsAsync(tenantId, elementId);
             FooterElementView elementView = new FooterElementView
             {
                 Settings = elementSettings

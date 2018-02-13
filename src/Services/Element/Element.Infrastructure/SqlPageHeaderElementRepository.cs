@@ -18,7 +18,7 @@ namespace Riverside.Cms.Services.Element.Infrastructure
             _options = options;
         }
 
-        public async Task<PageHeaderElementSettings> ReadElementAsync(long tenantId, long elementId)
+        public async Task<PageHeaderElementSettings> ReadElementSettingsAsync(long tenantId, long elementId)
         {
             using (SqlConnection connection = new SqlConnection(_options.Value.SqlConnectionString))
             {

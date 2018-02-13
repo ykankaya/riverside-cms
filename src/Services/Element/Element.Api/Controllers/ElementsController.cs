@@ -27,7 +27,7 @@ namespace Element.Api.Controllers
         [ProducesResponseType(typeof(FooterElementSettings), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> ReadFooterElement(long tenantId, long elementId)
         {
-            FooterElementSettings elementSettings = await _footerElementService.ReadElementAsync(tenantId, elementId);
+            FooterElementSettings elementSettings = await _footerElementService.ReadElementSettingsAsync(tenantId, elementId);
             if (elementSettings == null)
                 return NotFound();
             return Ok(elementSettings);
@@ -53,7 +53,7 @@ namespace Element.Api.Controllers
         [ProducesResponseType(typeof(PageHeaderElementSettings), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> ReadPageHeaderElement(long tenantId, long elementId)
         {
-            PageHeaderElementSettings elementSettings = await _pageHeaderElementService.ReadElementAsync(tenantId, elementId);
+            PageHeaderElementSettings elementSettings = await _pageHeaderElementService.ReadElementSettingsAsync(tenantId, elementId);
             if (elementSettings == null)
                 return NotFound();
             return Ok(elementSettings);
