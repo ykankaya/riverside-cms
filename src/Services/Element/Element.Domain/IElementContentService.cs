@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Riverside.Cms.Services.Element.Domain
 {
-    public interface IPageHeaderElementService : IElementSettingsService<PageHeaderElementSettings>, IElementContentService<PageHeaderElementContent>
+    public interface IElementContentService<T> where T : IElementContent
     {
+        Task<T> ReadElementContentAsync(long tenantId, long elementId, long pageId);
     }
 }

@@ -32,7 +32,7 @@ namespace Riverside.Cms.Services.Element.Domain
             }
         }
 
-        public async Task<PageHeaderElementView> GetElementViewAsync(long tenantId, long elementId, long pageId)
+        public async Task<PageHeaderElementContent> ReadElementContentAsync(long tenantId, long elementId, long pageId)
         {
             PageHeaderElementSettings elementSettings = await _elementRepository.ReadElementSettingsAsync(tenantId, elementId);
 
@@ -41,18 +41,10 @@ namespace Riverside.Cms.Services.Element.Domain
             if (elementSettings.ShowBreadcrumbs)
                 PopulatePageHierarchy(page);
 
-            PageHeaderElementContent elementContent = new PageHeaderElementContent
+            return new PageHeaderElementContent
             {
                 Page = page
             };
-
-            PageHeaderElementView elementView = new PageHeaderElementView
-            {
-                Settings = elementSettings,
-                Content = elementContent
-            };
-
-            return elementView;
         }
     }
 }
