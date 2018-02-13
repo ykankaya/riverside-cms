@@ -11,6 +11,21 @@ namespace RiversideCms.Mvc.Models
         public object Content { get; set; }
     }
 
+    public class ElementView<TSettings> : ElementView
+    {
+        public new TSettings Settings
+        {
+            get
+            {
+                return (TSettings)base.Settings;
+            }
+            set
+            {
+                base.Settings = value;
+            }
+        }
+    }
+
     public class ElementView<TSettings, TContent> : ElementView
     {
         public new TSettings Settings

@@ -1,0 +1,47 @@
+﻿@using Riverside.Cms.Services.Element.Client
+
+@model ElementView<CodeSnippetElementSettings>
+
+@{ 
+    string cssClass = null;
+    switch (Model.Settings.Language)
+    {
+        case Language.Apache:
+        case Language.Bash:
+        case Language.CoffeeScript:
+        case Language.Css:
+        case Language.Diff:
+        case Language.Html:
+        case Language.Http:
+        case Language.Ini:
+        case Language.Java:
+        case Language.JavaScript:
+        case Language.Json:
+        case Language.Makefile:
+        case Language.Markdown:
+        case Language.Nginx:
+        case Language.ObjectiveC:
+        case Language.Perl:
+        case Language.Php:
+        case Language.Python:
+        case Language.Ruby:
+        case Language.Sql:
+        case Language.Xml:
+            cssClass = Model.Settings.Language.ToString().ToLower();
+            break;
+
+        case Language.CPlusPlus:
+            cssClass = "cpp";
+            break;
+
+        case Language.CSharp:
+            cssClass= "cs";
+            break;
+    }
+}
+
+<div class="rcms-code-snippet">
+
+    <pre><code class="@cssClass">@Model.Settings.Code</code></pre>
+
+</div>

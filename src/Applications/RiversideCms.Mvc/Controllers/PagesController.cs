@@ -13,16 +13,19 @@ namespace RiversideCms.Mvc.Controllers
     {
         private readonly IPageViewService _pageViewService;
 
+        private readonly ICodeSnippetElementService _codeSnippetElementService;
         private readonly IFooterElementService _footerElementService;
         private readonly IPageHeaderElementService _pageHeaderElementService;
 
         private const long TenantId = 6;
 
-        public PagesController(IFooterElementService footerElementService, IPageHeaderElementService pageHeaderElementService, IPageViewService pageViewService)
+        public PagesController(ICodeSnippetElementService codeSnippetElementService, IFooterElementService footerElementService, IPageHeaderElementService pageHeaderElementService, IPageViewService pageViewService)
         {
+            _pageViewService = pageViewService;
+
+            _codeSnippetElementService = codeSnippetElementService;
             _footerElementService = footerElementService;
             _pageHeaderElementService = pageHeaderElementService;
-            _pageViewService = pageViewService;
         }
 
         private async Task<ElementRender> GetElementRender(long elementId, long pageId)
@@ -34,6 +37,19 @@ namespace RiversideCms.Mvc.Controllers
 
             switch (elementTypeId.ToString())
             {
+                case "5401977d-865f-4a7a-b416-0a26305615de":
+                    CodeSnippetElementSettings codeSnippetElementSettings = await _codeSnippetElementService.ReadElementSettingsAsync(TenantId, elementId);
+                    ElementView<CodeSnippetElementSettings> codeSnippetElementView = new ElementView<CodeSnippetElementSettings>()
+                    {
+                        Settings = codeSnippetElementSettings
+                    };
+                    elementRender = new ElementRender
+                    {
+                        PartialViewName = "~/Views/Elements/CodeSnippet.cshtml",
+                        ElementView = codeSnippetElementView
+                    };
+                    break;
+
                 case "f1c2b384-4909-47c8-ada7-cd3cc7f32620":
                     FooterElementSettings footerElementSettings = await _footerElementService.ReadElementSettingsAsync(TenantId, elementId);
                     FooterElementContent footerElementContent = await _footerElementService.ReadElementContentAsync(TenantId, elementId, pageId);
