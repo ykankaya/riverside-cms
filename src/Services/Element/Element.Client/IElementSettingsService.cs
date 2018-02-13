@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Riverside.Cms.Services.Element.Client
+{
+    public interface IElementSettingsService<T> where T : IElementSettings
+    {
+        Task<T> ReadElementSettingsAsync(long tenantId, long elementId);
+    }
+}

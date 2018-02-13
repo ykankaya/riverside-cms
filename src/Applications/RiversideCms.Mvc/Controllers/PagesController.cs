@@ -35,29 +35,32 @@ namespace RiversideCms.Mvc.Controllers
             switch (elementTypeId.ToString())
             {
                 case "f1c2b384-4909-47c8-ada7-cd3cc7f32620":
-                    FooterElementView footerElementView = await _footerElementService.GetElementViewAsync(TenantId, elementId, pageId);
-                    ElementView<FooterElementSettings, object> footerElementRenderView = new ElementView<FooterElementSettings, object>()
+                    FooterElementSettings footerElementSettings = await _footerElementService.ReadElementSettingsAsync(TenantId, elementId);
+                    FooterElementContent footerElementContent = await _footerElementService.ReadElementContentAsync(TenantId, elementId, pageId);
+                    ElementView<FooterElementSettings, FooterElementContent> footerElementView = new ElementView<FooterElementSettings, FooterElementContent>()
                     {
-                        Settings = footerElementView.Settings
+                        Settings = footerElementSettings,
+                        Content = footerElementContent
                     };
                     elementRender = new ElementRender
                     {
                         PartialViewName = "~/Views/Elements/Footer.cshtml",
-                        ElementView = footerElementRenderView
+                        ElementView = footerElementView
                     };
                     break;
 
                 case "1cbac30c-5deb-404e-8ea8-aabc20c82aa8":
-                    PageHeaderElementView pageHeaderElementView = await _pageHeaderElementService.GetElementViewAsync(TenantId, elementId, pageId);
-                    ElementView<PageHeaderElementSettings, PageHeaderElementContent> pageHeaderElementRenderView = new ElementView<PageHeaderElementSettings, PageHeaderElementContent>()
+                    PageHeaderElementSettings pageHeaderElementSettings = await _pageHeaderElementService.ReadElementSettingsAsync(TenantId, elementId);
+                    PageHeaderElementContent pageHeaderElementContent = await _pageHeaderElementService.ReadElementContentAsync(TenantId, elementId, pageId);
+                    ElementView<PageHeaderElementSettings, PageHeaderElementContent> pageHeaderElementView = new ElementView<PageHeaderElementSettings, PageHeaderElementContent>()
                     {
-                        Settings = pageHeaderElementView.Settings,
-                        Content = pageHeaderElementView.Content
+                        Settings = pageHeaderElementSettings,
+                        Content = pageHeaderElementContent
                     };
                     elementRender = new ElementRender
                     {
                         PartialViewName = "~/Views/Elements/PageHeader.cshtml",
-                        ElementView = pageHeaderElementRenderView
+                        ElementView = pageHeaderElementView
                     };
                     break;
             }

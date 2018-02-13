@@ -4,10 +4,32 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RestSharp;
+using Riverside.Cms.Services.Core.Client;
 using Riverside.Cms.Utilities.Net.RestSharpExtensions;
 
 namespace Riverside.Cms.Services.Element.Client
 {
+    public class PageHeaderElementSettings : ElementSettings
+    {
+        public long? PageId { get; set; }
+        public bool ShowName { get; set; }
+        public bool ShowDescription { get; set; }
+        public bool ShowImage { get; set; }
+        public bool ShowCreated { get; set; }
+        public bool ShowUpdated { get; set; }
+        public bool ShowOccurred { get; set; }
+        public bool ShowBreadcrumbs { get; set; }
+    }
+
+    public class PageHeaderElementContent : IElementContent
+    {
+        public Page Page { get; set; }
+    }
+
+    public interface IPageHeaderElementService : IElementSettingsService<PageHeaderElementSettings>, IElementContentService<PageHeaderElementContent>
+    {
+    }
+
     public class PageHeaderElementService : IPageHeaderElementService
     {
         private readonly IOptions<ElementApiOptions> _options;
@@ -45,16 +67,16 @@ namespace Riverside.Cms.Services.Element.Client
             }
         }
 
-        public async Task<PageHeaderElementView> GetElementViewAsync(long tenantId, long elementId, long pageId)
+        public async Task<PageHeaderElementContent> ReadElementContentAsync(long tenantId, long elementId, long pageId)
         {
             try
             {
                 RestClient client = new RestClient(_options.Value.ElementApiBaseUrl);
-                RestRequest request = new RestRequest("tenants/{tenantId}/elementtypes/1cbac30c-5deb-404e-8ea8-aabc20c82aa8/elements/{elementId}/view", Method.GET);
+                RestRequest request = new RestRequest("tenants/{tenantId}/elementtypes/1cbac30c-5deb-404e-8ea8-aabc20c82aa8/elements/{elementId}/content", Method.GET);
                 request.AddUrlSegment("tenantId", tenantId);
                 request.AddUrlSegment("elementId", elementId);
                 request.AddQueryParameter("pageId", pageId.ToString());
-                IRestResponse<PageHeaderElementView> response = await client.ExecuteAsync<PageHeaderElementView>(request);
+                IRestResponse<PageHeaderElementContent> response = await client.ExecuteAsync<PageHeaderElementContent>(request);
                 CheckResponseStatus(response);
                 return response.Data;
             }

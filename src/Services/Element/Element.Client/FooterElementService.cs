@@ -15,15 +15,13 @@ namespace Riverside.Cms.Services.Element.Client
         public string Message { get; set; }
     }
 
-    public class FooterElementView
+    public class FooterElementContent : IElementContent
     {
-        public FooterElementSettings Settings { get; set; }
+        public string FormattedMessage { get; set; }
     }
 
-    public interface IFooterElementService
+    public interface IFooterElementService : IElementSettingsService<FooterElementSettings>, IElementContentService<FooterElementContent>
     {
-        Task<FooterElementSettings> ReadElementSettingsAsync(long tenantId, long elementId);
-        Task<FooterElementView> GetElementViewAsync(long tenantId, long elementId, long pageId);
     }
 
     public class FooterElementService : IFooterElementService
@@ -63,16 +61,16 @@ namespace Riverside.Cms.Services.Element.Client
             }
         }
 
-        public async Task<FooterElementView> GetElementViewAsync(long tenantId, long elementId, long pageId)
+        public async Task<FooterElementContent> ReadElementContentAsync(long tenantId, long elementId, long pageId)
         {
             try
             {
                 RestClient client = new RestClient(_options.Value.ElementApiBaseUrl);
-                RestRequest request = new RestRequest("tenants/{tenantId}/elementtypes/f1c2b384-4909-47c8-ada7-cd3cc7f32620/elements/{elementId}/view", Method.GET);
+                RestRequest request = new RestRequest("tenants/{tenantId}/elementtypes/f1c2b384-4909-47c8-ada7-cd3cc7f32620/elements/{elementId}/content", Method.GET);
                 request.AddUrlSegment("tenantId", tenantId);
                 request.AddUrlSegment("elementId", elementId);
                 request.AddQueryParameter("pageId", pageId.ToString());
-                IRestResponse<FooterElementView> response = await client.ExecuteAsync<FooterElementView>(request);
+                IRestResponse<FooterElementContent> response = await client.ExecuteAsync<FooterElementContent>(request);
                 CheckResponseStatus(response);
                 return response.Data;
             }
