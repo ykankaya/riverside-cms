@@ -38,9 +38,8 @@ namespace Riverside.Cms.Services.Element.Domain
         public Language Language { get; set; }
     }
 
-    public interface ICodeSnippetElementService
+    public interface ICodeSnippetElementService : IElementSettingsService<CodeSnippetElementSettings>
     {
-        Task<CodeSnippetElementSettings> ReadElementSettingsAsync(long tenantId, long elementId);
     }
 
     public class CodeSnippetElementService : ICodeSnippetElementService

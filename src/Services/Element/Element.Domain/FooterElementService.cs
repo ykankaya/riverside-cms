@@ -17,9 +17,8 @@ namespace Riverside.Cms.Services.Element.Domain
         public FooterElementSettings Settings { get; set; }
     }
 
-    public interface IFooterElementService
+    public interface IFooterElementService : IElementSettingsService<FooterElementSettings>
     {
-        Task<FooterElementSettings> ReadElementSettingsAsync(long tenantId, long elementId);
         Task<FooterElementView> GetElementViewAsync(long tenantId, long elementId, long pageId);
     }
 
