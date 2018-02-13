@@ -23,7 +23,7 @@ namespace Riverside.Cms.Services.Element.Client
                 throw new ElementClientException($"Element API failed with response status {response.ResponseStatus}", response.ErrorException);
         }
 
-        public async Task<PageHeaderElementSettings> ReadElementAsync(long tenantId, long elementId)
+        public async Task<PageHeaderElementSettings> ReadElementSettingsAsync(long tenantId, long elementId)
         {
             try
             {

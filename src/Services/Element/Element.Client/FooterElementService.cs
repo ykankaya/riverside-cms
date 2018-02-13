@@ -22,7 +22,7 @@ namespace Riverside.Cms.Services.Element.Client
 
     public interface IFooterElementService
     {
-        Task<FooterElementSettings> ReadElementAsync(long tenantId, long elementId);
+        Task<FooterElementSettings> ReadElementSettingsAsync(long tenantId, long elementId);
         Task<FooterElementView> GetElementViewAsync(long tenantId, long elementId, long pageId);
     }
 
@@ -41,7 +41,7 @@ namespace Riverside.Cms.Services.Element.Client
                 throw new ElementClientException($"Element API failed with response status {response.ResponseStatus}", response.ErrorException);
         }
 
-        public async Task<FooterElementSettings> ReadElementAsync(long tenantId, long elementId)
+        public async Task<FooterElementSettings> ReadElementSettingsAsync(long tenantId, long elementId)
         {
             try
             {

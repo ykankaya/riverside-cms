@@ -22,7 +22,12 @@ namespace RiversideCms.Mvc
 
         private void ConfigureDependencyInjectionServices(IServiceCollection services)
         {
+            // Core services
             services.AddTransient<IPageViewService, PageViewService>();
+
+            // Element services
+            services.AddTransient<ICodeSnippetElementService, CodeSnippetElementService>();
+            services.AddTransient<IFooterElementService, FooterElementService>();
             services.AddTransient<IPageHeaderElementService, PageHeaderElementService>();
         }
 

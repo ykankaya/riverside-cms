@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Riverside.Cms.Services.Element.Client
 {
-    public class ElementSettings
+    public class ElementSettings : IElementSettings
     {
         public long TenantId { get; set; }
         public Guid ElementTypeId { get; set; }
