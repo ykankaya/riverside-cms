@@ -6,6 +6,27 @@ using Riverside.Cms.Services.Core.Client;
 
 namespace Riverside.Cms.Services.Element.Domain
 {
+    public class PageHeaderElementSettings : ElementSettings
+    {
+        public long? PageId { get; set; }
+        public bool ShowName { get; set; }
+        public bool ShowDescription { get; set; }
+        public bool ShowImage { get; set; }
+        public bool ShowCreated { get; set; }
+        public bool ShowUpdated { get; set; }
+        public bool ShowOccurred { get; set; }
+        public bool ShowBreadcrumbs { get; set; }
+    }
+
+    public class PageHeaderElementContent : IElementContent
+    {
+        public Page Page { get; set; }
+    }
+
+    public interface IPageHeaderElementService : IElementSettingsService<PageHeaderElementSettings>, IElementContentService<PageHeaderElementContent>
+    {
+    }
+
     public class PageHeaderElementService : IPageHeaderElementService
     {
         private readonly IElementRepository<PageHeaderElementSettings> _elementRepository;
