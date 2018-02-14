@@ -14,6 +14,7 @@ namespace Riverside.Cms.Services.Core.Domain
 
         public int? SortOrder { get; set; }
 
+        public Guid ElementTypeId { get; set; }
         public long ElementId { get; set; } 
 
         public long? MasterPageId { get; set; }

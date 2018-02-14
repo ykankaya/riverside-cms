@@ -28,17 +28,14 @@ namespace RiversideCms.Mvc.Controllers
             _pageHeaderElementService = pageHeaderElementService;
         }
 
-        private async Task<ElementRender> GetElementRender(long elementId, long pageId)
+        private async Task<ElementRender> GetElementRender(long tenantId, Guid elementTypeId, long elementId, long pageId)
         {
             ElementRender elementRender = null;
-
-            Guid elementTypeId = new Guid("1cbac30c-5deb-404e-8ea8-aabc20c82aa8");
-            elementId = 162;
 
             switch (elementTypeId.ToString())
             {
                 case "5401977d-865f-4a7a-b416-0a26305615de":
-                    CodeSnippetElementSettings codeSnippetElementSettings = await _codeSnippetElementService.ReadElementSettingsAsync(TenantId, elementId);
+                    CodeSnippetElementSettings codeSnippetElementSettings = await _codeSnippetElementService.ReadElementSettingsAsync(tenantId, elementId);
                     ElementView<CodeSnippetElementSettings> codeSnippetElementView = new ElementView<CodeSnippetElementSettings>()
                     {
                         Settings = codeSnippetElementSettings
@@ -51,8 +48,8 @@ namespace RiversideCms.Mvc.Controllers
                     break;
 
                 case "f1c2b384-4909-47c8-ada7-cd3cc7f32620":
-                    FooterElementSettings footerElementSettings = await _footerElementService.ReadElementSettingsAsync(TenantId, elementId);
-                    FooterElementContent footerElementContent = await _footerElementService.ReadElementContentAsync(TenantId, elementId, pageId);
+                    FooterElementSettings footerElementSettings = await _footerElementService.ReadElementSettingsAsync(tenantId, elementId);
+                    FooterElementContent footerElementContent = await _footerElementService.ReadElementContentAsync(tenantId, elementId, pageId);
                     ElementView<FooterElementSettings, FooterElementContent> footerElementView = new ElementView<FooterElementSettings, FooterElementContent>()
                     {
                         Settings = footerElementSettings,
@@ -66,8 +63,8 @@ namespace RiversideCms.Mvc.Controllers
                     break;
 
                 case "1cbac30c-5deb-404e-8ea8-aabc20c82aa8":
-                    PageHeaderElementSettings pageHeaderElementSettings = await _pageHeaderElementService.ReadElementSettingsAsync(TenantId, elementId);
-                    PageHeaderElementContent pageHeaderElementContent = await _pageHeaderElementService.ReadElementContentAsync(TenantId, elementId, pageId);
+                    PageHeaderElementSettings pageHeaderElementSettings = await _pageHeaderElementService.ReadElementSettingsAsync(tenantId, elementId);
+                    PageHeaderElementContent pageHeaderElementContent = await _pageHeaderElementService.ReadElementContentAsync(tenantId, elementId, pageId);
                     ElementView<PageHeaderElementSettings, PageHeaderElementContent> pageHeaderElementView = new ElementView<PageHeaderElementSettings, PageHeaderElementContent>()
                     {
                         Settings = pageHeaderElementSettings,
@@ -87,10 +84,12 @@ namespace RiversideCms.Mvc.Controllers
         [HttpGet]
         public async Task<IActionResult> Read(long pageId)
         {
-            PageView pageView = await _pageViewService.ReadPageViewAsync(TenantId, pageId);
-            pageView.PageViewZones = await _pageViewService.SearchPageViewZonesAsync(TenantId, pageId);
+            long tenantId = TenantId;
+
+            PageView pageView = await _pageViewService.ReadPageViewAsync(tenantId, pageId);
+            pageView.PageViewZones = await _pageViewService.SearchPageViewZonesAsync(tenantId, pageId);
             foreach (PageViewZone pageViewZone in pageView.PageViewZones)
-                pageViewZone.PageViewZoneElements = await _pageViewService.SearchPageViewZoneElementsAsync(TenantId, pageId, pageViewZone.MasterPageZoneId);
+                pageViewZone.PageViewZoneElements = await _pageViewService.SearchPageViewZoneElementsAsync(tenantId, pageId, pageViewZone.MasterPageZoneId);
 
             Dictionary<long, ElementRender> elements = new Dictionary<long, ElementRender>();
             foreach (PageViewZone pageViewZone in pageView.PageViewZones)
@@ -98,7 +97,7 @@ namespace RiversideCms.Mvc.Controllers
                 foreach (PageViewZoneElement pageViewZoneElement in pageViewZone.PageViewZoneElements)
                 {
                     if (!elements.ContainsKey(pageViewZoneElement.ElementId))
-                        elements.Add(pageViewZoneElement.ElementId, await GetElementRender(pageViewZoneElement.ElementId, pageId));
+                        elements.Add(pageViewZoneElement.ElementId, await GetElementRender(tenantId, pageViewZoneElement.ElementTypeId, pageViewZoneElement.ElementId, pageId));
                 }
             }
 

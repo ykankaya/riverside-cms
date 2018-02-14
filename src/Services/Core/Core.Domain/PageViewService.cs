@@ -10,6 +10,7 @@ namespace Riverside.Cms.Services.Core.Domain
     {
         private readonly IMasterPageRepository _masterPageRepository;
         private readonly IPageRepository _pageRepository;
+        private readonly IElementRepository _elementRepository;
 
         public PageViewService(IMasterPageRepository masterPageRepository, IPageRepository pageRepository)
         {
@@ -84,6 +85,7 @@ namespace Riverside.Cms.Services.Core.Domain
             {
                 PageViewZoneElement pageViewZoneElement = new PageViewZoneElement
                 {
+                    ElementTypeId = masterPageZoneElement.ElementTypeId,
                     ElementId = masterPageZoneElement.ElementId,
                     BeginRender = masterPageZoneElement.BeginRender,
                     EndRender = masterPageZoneElement.EndRender
@@ -98,6 +100,7 @@ namespace Riverside.Cms.Services.Core.Domain
             {
                 PageViewZoneElement pageViewZoneElement = new PageViewZoneElement
                 {
+                    ElementTypeId = pageZoneElement.ElementTypeId,
                     ElementId = pageZoneElement.ElementId
                 };
                 yield return pageViewZoneElement;
@@ -113,6 +116,7 @@ namespace Riverside.Cms.Services.Core.Domain
                     continue;
                 PageViewZoneElement pageViewZoneElement = new PageViewZoneElement
                 {
+                    ElementTypeId = masterPageZoneElement.ElementTypeId,
                     ElementId = masterPageZoneElement.ElementId,
                     BeginRender = masterPageZoneElement.BeginRender,
                     EndRender = masterPageZoneElement.EndRender
