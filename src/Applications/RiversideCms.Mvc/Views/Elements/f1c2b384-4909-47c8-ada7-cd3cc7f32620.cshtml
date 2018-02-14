@@ -1,0 +1,15 @@
+﻿@using RiversideCms.Mvc.Extensions
+@using Riverside.Cms.Services.Element.Client
+
+@model ElementView
+
+@{ 
+    FooterElementSettings settings = (FooterElementSettings)Model.Settings;
+    FooterElementContent content = (FooterElementContent)Model.Content;
+}
+
+<div class="rcms-footer">
+    <div class="row">
+        @Html.MarkdownToHtml(content.FormattedMessage)
+    </div>
+</div>

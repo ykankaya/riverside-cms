@@ -10,7 +10,6 @@ namespace Riverside.Cms.Services.Core.Domain
     {
         private readonly IMasterPageRepository _masterPageRepository;
         private readonly IPageRepository _pageRepository;
-        private readonly IElementRepository _elementRepository;
 
         public PageViewService(IMasterPageRepository masterPageRepository, IPageRepository pageRepository)
         {

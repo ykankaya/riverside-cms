@@ -1,0 +1,76 @@
+﻿@using RiversideCms.Mvc.Extensions
+@using Riverside.Cms.Services.Core.Client
+@using Riverside.Cms.Services.Element.Client
+
+@model ElementView
+
+@{ 
+    PageHeaderElementSettings settings = (PageHeaderElementSettings)Model.Settings;
+    PageHeaderElementContent content = (PageHeaderElementContent)Model.Content;
+}
+
+<div class="rcms-page-header">
+
+    @if (settings.ShowName)
+    {
+        <h1>@content.Page.Name</h1>
+    }
+
+    @if (settings.ShowDescription && content.Page.Description != null)
+    {
+        @Html.MarkdownToHtml(content.Page.Description)
+    }
+
+    @if (settings.ShowImage)
+    {
+        <div class="media-object">
+            @if (content.Page.ThumbnailImageUploadId != null)
+            {
+                <img src="@Url.RouteUrl("ReadPageImage", new { pageid = content.Page.PageId, format = "thumbnail", description = Url.UrlFriendly(content.Page.Name), t = content.Page.ThumbnailImageUploadId })" alt="@content.Page.Name" />
+            }
+        </div>
+    }
+
+    @{
+        bool showUpdated = settings.ShowUpdated && !(settings.ShowCreated && (content.Page.Created.Date == content.Page.Updated.Date));
+        bool showOccurred = settings.ShowOccurred && content.Page.Occurred.HasValue;
+        bool occursInFuture = showOccurred && content.Page.Occurred.Value > DateTime.UtcNow;
+    }
+
+    @if (settings.ShowCreated || showUpdated || showOccurred)
+    {
+        <dl>
+            @if (settings.ShowCreated)
+            {
+                <dt>Posted</dt>
+                <dd>@Html.Date(content.Page.Created)</dd>
+            }
+            @if (showUpdated)
+            {
+                <dt>Updated</dt>
+                <dd>@Html.Date(content.Page.Updated)</dd>
+            }
+            @if (showOccurred)
+            {
+                <dt>@if (occursInFuture)
+                {<text>Occurs</text> }
+            else
+            { <text>Occurred</text>}</dt>
+                <dd>@Html.Date(content.Page.Occurred.Value)</dd>
+            }
+        </dl>
+    }
+
+    @if (settings.ShowBreadcrumbs)
+    {
+        Page hierarchyPage = content.Page;
+        <ol class="breadcrumb">
+            @while (hierarchyPage != null)
+            {
+                <li>@Html.PageLink(hierarchyPage)</li>
+                hierarchyPage = hierarchyPage.ParentPage;
+            }
+        </ol>
+    }
+
+</div>

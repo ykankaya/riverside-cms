@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Riverside.Cms.Services.Core.Client;
 using Riverside.Cms.Services.Element.Client;
+using RiversideCms.Mvc.Services;
 
 namespace RiversideCms.Mvc
 {
@@ -29,6 +30,9 @@ namespace RiversideCms.Mvc
             services.AddTransient<ICodeSnippetElementService, CodeSnippetElementService>();
             services.AddTransient<IFooterElementService, FooterElementService>();
             services.AddTransient<IPageHeaderElementService, PageHeaderElementService>();
+
+            // Element factory
+            services.AddTransient<IElementServiceFactory, ElementServiceFactory>();
         }
 
         private void ConfigureOptionServices(IServiceCollection services)
