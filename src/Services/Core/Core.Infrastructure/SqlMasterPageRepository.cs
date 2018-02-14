@@ -97,11 +97,12 @@ namespace Riverside.Cms.Services.Core.Infrastructure
             {
                 connection.Open();
                 IEnumerable<MasterPageZoneElement> masterPageZoneElements = await connection.QueryAsync<MasterPageZoneElement>(
-                    @"SELECT TenantId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId, SortOrder, ElementTypeId, ElementId, BeginRender, EndRender
+                    @"SELECT cms.MasterPageZoneElement.TenantId, cms.MasterPageZoneElement.MasterPageId, cms.MasterPageZoneElement.MasterPageZoneId, cms.MasterPageZoneElement.MasterPageZoneElementId, cms.MasterPageZoneElement.SortOrder,
+                        cms.Element.ElementTypeId, cms.MasterPageZoneElement.ElementId, cms.MasterPageZoneElement.BeginRender, cms.MasterPageZoneElement.EndRender
                         FROM cms.MasterPageZoneElement INNER JOIN cms.Element ON
                         cms.MasterPageZoneElement.TenantId = cms.Element.TenantId AND cms.MasterPageZoneElement.ElementId = cms.Element.ElementId
-                        WHERE TenantId = @TenantId AND MasterPageId = @MasterPageId AND MasterPageZoneId = @MasterPageZoneId
-                        ORDER BY SortOrder",
+                        WHERE cms.MasterPageZoneElement.TenantId = @TenantId AND cms.MasterPageZoneElement.MasterPageId = @MasterPageId AND cms.MasterPageZoneElement.MasterPageZoneId = @MasterPageZoneId
+                        ORDER BY cms.MasterPageZoneElement.SortOrder",
                     new { TenantId = tenantId, MasterPageId = masterPageId, MasterPageZoneId = masterPageZoneId }
                 );
                 return masterPageZoneElements;
@@ -115,11 +116,12 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                 connection.Open();
 
                 MasterPageZoneElement masterPageZoneElement = await connection.QueryFirstOrDefaultAsync<MasterPageZoneElement>(
-                    @"SELECT TenantId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId, SortOrder, ElementTypeId, ElementId, BeginRender, EndRender
+                    @"SELECT cms.MasterPageZoneElement.TenantId, cms.MasterPageZoneElement.MasterPageId, cms.MasterPageZoneElement.MasterPageZoneId, cms.MasterPageZoneElement.MasterPageZoneElementId, cms.MasterPageZoneElement.SortOrder,
+                        cms.Element.ElementTypeId, cms.MasterPageZoneElement.ElementId, cms.MasterPageZoneElement.BeginRender, cms.MasterPageZoneElement.EndRender
                         FROM cms.MasterPageZoneElement INNER JOIN cms.Element ON
                         cms.MasterPageZoneElement.TenantId = cms.Element.TenantId AND cms.MasterPageZoneElement.ElementId = cms.Element.ElementId
-                        WHERE TenantId = @TenantId AND MasterPageId = @MasterPageId AND MasterPageZoneId = @MasterPageZoneId AND
-                        MasterPageZoneElementId = @MasterPageZoneElementId",
+                        WHERE cms.MasterPageZoneElement.TenantId = @TenantId AND cms.MasterPageZoneElement.MasterPageId = @MasterPageId AND cms.MasterPageZoneElement.MasterPageZoneId = @MasterPageZoneId AND
+                        cms.MasterPageZoneElement.MasterPageZoneElementId = @MasterPageZoneElementId",
                     new { TenantId = tenantId, MasterPageId = masterPageId, MasterPageZoneId = masterPageZoneId, MasterPageZoneElementId = masterPageZoneElementId }
                 );
 

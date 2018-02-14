@@ -65,7 +65,7 @@ namespace Riverside.Cms.Services.Element.Client
             try
             {
                 RestClient client = new RestClient(_options.Value.ElementApiBaseUrl);
-                RestRequest request = new RestRequest("tenants/{tenantId}/elementtypes/f1c2b384-4909-47c8-ada7-cd3cc7f32620/elements/{elementId}", Method.GET);
+                RestRequest request = new RestRequest("tenants/{tenantId}/elementtypes/5401977d-865f-4a7a-b416-0a26305615de/elements/{elementId}", Method.GET);
                 request.AddUrlSegment("tenantId", tenantId);
                 request.AddUrlSegment("elementId", elementId);
                 IRestResponse<CodeSnippetElementSettings> response = await client.ExecuteAsync<CodeSnippetElementSettings>(request);

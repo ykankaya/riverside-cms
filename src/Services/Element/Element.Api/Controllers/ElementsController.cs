@@ -10,13 +10,29 @@ namespace Element.Api.Controllers
 {
     public class ElementsController : Controller
     {
+        private readonly ICodeSnippetElementService _codeSnippetElementService;
         private readonly IFooterElementService _footerElementService;
         private readonly IPageHeaderElementService _pageHeaderElementService;
 
-        public ElementsController(IFooterElementService footerElementService, IPageHeaderElementService pageHeaderElementService)
+        public ElementsController(ICodeSnippetElementService codeSnippetElementService, IFooterElementService footerElementService, IPageHeaderElementService pageHeaderElementService)
         {
+            _codeSnippetElementService = codeSnippetElementService;
             _footerElementService = footerElementService;
             _pageHeaderElementService = pageHeaderElementService;
+        }
+
+        // CODE SNIPPET
+
+        [HttpGet]
+        [Route("api/v1/element/tenants/{tenantId:int}/elementtypes/5401977d-865f-4a7a-b416-0a26305615de/elements/{elementId:int}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(CodeSnippetElementSettings), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ReadCodeSnippetElementSettings(long tenantId, long elementId)
+        {
+            CodeSnippetElementSettings elementSettings = await _codeSnippetElementService.ReadElementSettingsAsync(tenantId, elementId);
+            if (elementSettings == null)
+                return NotFound();
+            return Ok(elementSettings);
         }
 
         // FOOTER

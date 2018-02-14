@@ -72,11 +72,12 @@ namespace Riverside.Cms.Services.Core.Infrastructure
             {
                 connection.Open();
                 IEnumerable<PageZoneElement> pageZoneElements = await connection.QueryAsync<PageZoneElement>(
-                    @"SELECT TenantId, PageId, PageZoneId, PageZoneElementId, SortOrder, ElementTypeId, ElementId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId
+                    @"SELECT cms.PageZoneElement.TenantId, cms.PageZoneElement.PageId, cms.PageZoneElement.PageZoneId, cms.PageZoneElement.PageZoneElementId, cms.PageZoneElement.SortOrder,
+                        cms.Element.ElementTypeId, cms.PageZoneElement.ElementId, cms.PageZoneElement.MasterPageId, cms.PageZoneElement.MasterPageZoneId, cms.PageZoneElement.MasterPageZoneElementId
 	                    FROM cms.PageZoneElement INNER JOIN cms.Element ON 
                         cms.PageZoneElement.TenantId = cms.Element.TenantId AND cms.PageZoneElement.ElementId = cms.Element.ElementId
-                        WHERE TenantId = @TenantId AND PageId = @PageId AND PageZoneId = @PageZoneId
-                        ORDER BY SortOrder ASC, PageZoneElementId ASC",
+                        WHERE cms.PageZoneElement.TenantId = @TenantId AND cms.PageZoneElement.PageId = @PageId AND cms.PageZoneElement.PageZoneId = @PageZoneId
+                        ORDER BY cms.PageZoneElement.SortOrder ASC, cms.PageZoneElement.PageZoneElementId ASC",
                     new { TenantId = tenantId, PageId = pageId, PageZoneId = pageZoneId }
                 );
                 return pageZoneElements;
@@ -90,10 +91,11 @@ namespace Riverside.Cms.Services.Core.Infrastructure
                 connection.Open();
 
                 PageZoneElement pageZoneElement = await connection.QueryFirstOrDefaultAsync<PageZoneElement>(
-                    @"SELECT TenantId, PageId, PageZoneId, PageZoneElementId, SortOrder, ElementTypeId, ElementId, MasterPageId, MasterPageZoneId, MasterPageZoneElementId
+                    @"SELECT cms.PageZoneElement.TenantId, cms.PageZoneElement.PageId, cms.PageZoneElement.PageZoneId, cms.PageZoneElement.PageZoneElementId, cms.PageZoneElement.SortOrder,
+                        cms.Element.ElementTypeId, cms.PageZoneElement.ElementId, cms.PageZoneElement.MasterPageId, cms.PageZoneElement.MasterPageZoneId, cms.PageZoneElement.MasterPageZoneElementId
 	                    FROM cms.PageZoneElement INNER JOIN cms.Element ON
                         cms.PageZoneElement.TenantId = cms.Element.TenantId AND cms.PageZoneElement.ElementId = cms.Element.ElementId
-                        WHERE TenantId = @TenantId AND PageId = @PageId AND PageZoneId = @PageZoneId AND PageZoneElementId = @PageZoneElementId",
+                        WHERE cms.PageZoneElement.TenantId = @TenantId AND cms.PageZoneElement.PageId = @PageId AND cms.PageZoneElement.PageZoneId = @PageZoneId AND cms.PageZoneElement.PageZoneElementId = @PageZoneElementId",
                     new { TenantId = tenantId, PageId = pageId, PageZoneId = pageZoneId, PageZoneElementId = pageZoneElementId }
                 );
 
