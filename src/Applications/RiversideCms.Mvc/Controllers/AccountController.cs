@@ -11,25 +11,25 @@ namespace RiversideCms.Mvc.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View("Login.cshtml");
+            return View("Login");
         }
 
         [HttpGet]
         public IActionResult Logout()
         {
-            return View("Logout.cshtml");
+            return View("Logout");
         }
 
         [HttpGet]
         public IActionResult UpdateProfile()
         {
-            return View("UpdateProfile.cshtml");
+            return View("UpdateProfile");
         }
 
         [HttpGet]
         public IActionResult ChangePassword()
         {
-            return View("ChangePassword.cshtml");
+            return View("ChangePassword");
         }
     }
 }
