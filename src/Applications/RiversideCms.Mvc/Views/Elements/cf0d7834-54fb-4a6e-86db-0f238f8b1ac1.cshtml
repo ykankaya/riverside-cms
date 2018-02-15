@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Riverside.Cms.Services.Element.Client
+
+@model ElementView
+
+@{
+    ShareElementSettings settings = (ShareElementSettings)Model.Settings;
+    ShareElementContent content = (ShareElementContent)Model.Content;
+}
+
+@{
+    string url = Context.Request.GetDisplayUrl();
+    string title = content.Title;
+    string desc = content.Description;
+    string via = content.Via;
+    string hashtags = content.Hashtags;
+    string img = content.Image;
+    string is_video = content.IsVideo;
+}
+
+<div class="rcms-share">
+
+    @if (settings.DisplayName != null)
+    {
+        <h2>@settings.DisplayName</h2>
+    }
+
+    <ul class="share">
+        @if (settings.ShareOnDigg)
+        {
+            <li><a title="Share on Digg" href="#" onclick="window.open('https://digg.com/submit?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-digg" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnFacebook)
+        {
+            <li><a title="Share on Facebook" href="#" onclick="window.open('https://www.facebook.com/sharer.php?u=@(url)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnGoogle)
+        {
+            <li><a title="Share on Google" href="#" onclick="window.open('https://plus.google.com/share?url=@(url)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnLinkedIn)
+        {
+            <li><a title="Share on LinkedIn" href="#" onclick="window.open('https://www.linkedin.com/shareArticle?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnPinterest)
+        {
+            <li><a title="Share on Pinterest" href="#" onclick="window.open('https://pinterest.com/pin/create/bookmarklet/?media=@(img)&url=@(url)&is_video=@(is_video)&description=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-pinterest" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnReddit)
+        {
+            <li><a title="Share on Reddit" href="#" onclick="window.open('https://reddit.com/submit?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-reddit" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnStumbleUpon)
+        {
+            <li><a title="Share on StumbleUpon" href="#" onclick="window.open('https://www.stumbleupon.com/submit?url=@(url)&title=@(title)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-stumbleupon" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnTumblr)
+        {
+            <li><a title="Share on Tumblr" href="#" onclick="window.open('https://www.tumblr.com/widgets/share/tool?canonicalUrl=@(url)&title=@(title)&caption=@(desc)}', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-tumblr" aria-hidden="true"></i></a></li>
+        }
+        @if (settings.ShareOnTwitter)
+        {
+            <li><a title="Share on Twitter" href="#" onclick="window.open('https://twitter.com/share?url=@(url)&text=@(title)&via=@(via)&hashtags=@(hashtags)', 'social', 'width=600,height=400,location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'); return false;"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i></a></li>
+        }
+    </ul>
+
+</div>
