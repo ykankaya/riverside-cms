@@ -6,10 +6,32 @@
 @{ 
     FooterElementSettings settings = (FooterElementSettings)Model.Settings;
     FooterElementContent content = (FooterElementContent)Model.Content;
+
+    bool userLoggedOn = User.Identity.IsAuthenticated;
+    bool showLoggedOffUserOptions = settings.ShowLoggedOffUserOptions && !userLoggedOn;
+    bool showLoggedOnUserOptions = settings.ShowLoggedOnUserOptions && userLoggedOn;
+
+    string colClass = showLoggedOffUserOptions || showLoggedOnUserOptions ? "col-sm-6" : "col-sm-12";
 }
 
 <div class="rcms-footer">
     <div class="row">
-        @Html.MarkdownToHtml(content.FormattedMessage)
+        <div class="@colClass">
+            @Html.MarkdownToHtml(content.FormattedMessage)
+        </div>
+        @if (showLoggedOffUserOptions)
+        {
+            <div class="@colClass">
+                <p>@Html.RouteLink("Log in", "Login")</p>
+            </div>
+        }
+        @if (showLoggedOnUserOptions)
+        {
+            <div class="@colClass">
+                <p>@Html.RouteLink("Update your profile", "UpdateProfile")</p>
+                <p>@Html.RouteLink("Change your password", "ChangePassword")</p>
+                <p>@Html.RouteLink("Log out", "Logout")</p>
+            </div>
+        }
     </div>
 </div>

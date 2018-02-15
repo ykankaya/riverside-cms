@@ -70,6 +70,10 @@ namespace RiversideCms.Mvc
             {
                 routes.MapRoute("Home", "", new { controller = "pages", action = "home" });
                 routes.MapRoute("Page", "pages/{pageId}/{*description}", new { controller = "pages", action = "read" });
+                routes.MapRoute("Login", "users/login", new { controller = "account", action = "login" });
+                routes.MapRoute("Logout", "users/logout", new { controller = "account", action = "logout" });
+                routes.MapRoute("UpdateProfile", "users/updateprofile", new { controller = "account", action = "updateprofile" });
+                routes.MapRoute("ChangePassword", "users/changepassword", new { controller = "account", action = "changepassword" });
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
