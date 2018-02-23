@@ -10,13 +10,15 @@ namespace RiversideCms.Mvc.Services
     {
         private readonly ICodeSnippetElementService _codeSnippetElementService;
         private readonly IFooterElementService _footerElementService;
+        private readonly IHtmlElementService _htmlElementService;
         private readonly IPageHeaderElementService _pageHeaderElementService;
         private readonly IShareElementService _shareElementService;
 
-        public ElementServiceFactory(ICodeSnippetElementService codeSnippetElementService, IFooterElementService footerElementService, IPageHeaderElementService pageHeaderElementService, IShareElementService shareElementService)
+        public ElementServiceFactory(ICodeSnippetElementService codeSnippetElementService, IFooterElementService footerElementService, IHtmlElementService htmlElementService, IPageHeaderElementService pageHeaderElementService, IShareElementService shareElementService)
         {
             _codeSnippetElementService = codeSnippetElementService;
             _footerElementService = footerElementService;
+            _htmlElementService = htmlElementService;
             _pageHeaderElementService = pageHeaderElementService;
             _shareElementService = shareElementService;
         }
@@ -30,6 +32,9 @@ namespace RiversideCms.Mvc.Services
 
                 case "f1c2b384-4909-47c8-ada7-cd3cc7f32620":
                     return await _footerElementService.ReadElementSettingsAsync(tenantId, elementId);
+
+                case "c92ee4c4-b133-44cc-8322-640e99c334dc":
+                    return await _htmlElementService.ReadElementSettingsAsync(tenantId, elementId);
 
                 case "1cbac30c-5deb-404e-8ea8-aabc20c82aa8":
                     return await _pageHeaderElementService.ReadElementSettingsAsync(tenantId, elementId);
@@ -51,6 +56,9 @@ namespace RiversideCms.Mvc.Services
 
                 case "f1c2b384-4909-47c8-ada7-cd3cc7f32620":
                     return await _footerElementService.ReadElementContentAsync(tenantId, elementId, pageId);
+
+                case "c92ee4c4-b133-44cc-8322-640e99c334dc":
+                    return await _htmlElementService.ReadElementContentAsync(tenantId, elementId, pageId);
 
                 case "1cbac30c-5deb-404e-8ea8-aabc20c82aa8":
                     return await _pageHeaderElementService.ReadElementContentAsync(tenantId, elementId, pageId);

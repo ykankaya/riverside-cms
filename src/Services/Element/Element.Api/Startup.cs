@@ -30,11 +30,13 @@ namespace Element.Api
 
             services.AddTransient<ICodeSnippetElementService, CodeSnippetElementService>();
             services.AddTransient<IFooterElementService, FooterElementService>();
+            services.AddTransient<IHtmlElementService, HtmlElementService>();
             services.AddTransient<IPageHeaderElementService, PageHeaderElementService>();
             services.AddTransient<IShareElementService, ShareElementService>();
 
             services.AddTransient<IElementRepository<CodeSnippetElementSettings>, SqlCodeSnippetElementRepository>();
             services.AddTransient<IElementRepository<FooterElementSettings>, SqlFooterElementRepository>();
+            services.AddTransient<IElementRepository<HtmlElementSettings>, SqlHtmlElementRepository>();
             services.AddTransient<IElementRepository<PageHeaderElementSettings>, SqlPageHeaderElementRepository>();
             services.AddTransient<IElementRepository<ShareElementSettings>, SqlShareElementRepository>();
         }

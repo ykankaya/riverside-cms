@@ -1,0 +1,13 @@
+﻿@using RiversideCms.Mvc.Extensions
+@using Riverside.Cms.Services.Element.Client
+
+@model ElementView
+
+@{
+    HtmlElementSettings settings = (HtmlElementSettings)Model.Settings;
+    HtmlElementContent content = (HtmlElementContent)Model.Content;
+}
+
+<div class="rcms-html">
+    @Html.Raw(content.FormattedHtml)
+</div>

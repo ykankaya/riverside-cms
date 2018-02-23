@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Places.Client", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net", "Net", "{BFBE7660-CD29-4202-88F6-85B241F958FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.RestSharpExtensions", "src\Utilities\Net\Net.RestSharpExtensions\Net.RestSharpExtensions.csproj", "{FED13314-E2F0-4C1E-B656-EDC45EB25351}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.RestSharpExtensions", "src\Utilities\Net\Net.RestSharpExtensions\Net.RestSharpExtensions.csproj", "{FED13314-E2F0-4C1E-B656-EDC45EB25351}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

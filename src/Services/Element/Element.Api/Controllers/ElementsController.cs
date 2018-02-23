@@ -12,13 +12,15 @@ namespace Element.Api.Controllers
     {
         private readonly ICodeSnippetElementService _codeSnippetElementService;
         private readonly IFooterElementService _footerElementService;
+        private readonly IHtmlElementService _htmlElementService;
         private readonly IPageHeaderElementService _pageHeaderElementService;
         private readonly IShareElementService _shareElementService;
 
-        public ElementsController(ICodeSnippetElementService codeSnippetElementService, IFooterElementService footerElementService, IPageHeaderElementService pageHeaderElementService, IShareElementService shareElementService)
+        public ElementsController(ICodeSnippetElementService codeSnippetElementService, IFooterElementService footerElementService, IHtmlElementService htmlElementService, IPageHeaderElementService pageHeaderElementService, IShareElementService shareElementService)
         {
             _codeSnippetElementService = codeSnippetElementService;
             _footerElementService = footerElementService;
+            _htmlElementService = htmlElementService;
             _pageHeaderElementService = pageHeaderElementService;
             _shareElementService = shareElementService;
         }
@@ -58,6 +60,32 @@ namespace Element.Api.Controllers
         public async Task<IActionResult> ReadFooterElementContent(long tenantId, long elementId, [FromQuery]long pageId)
         {
             FooterElementContent elementContent = await _footerElementService.ReadElementContentAsync(tenantId, elementId, pageId);
+            if (elementContent == null)
+                return NotFound();
+            return Ok(elementContent);
+        }
+
+        // HTML
+
+        [HttpGet]
+        [Route("api/v1/element/tenants/{tenantId:int}/elementtypes/c92ee4c4-b133-44cc-8322-640e99c334dc/elements/{elementId:int}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(HtmlElementSettings), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ReadHtmlElementSettings(long tenantId, long elementId)
+        {
+            HtmlElementSettings elementSettings = await _htmlElementService.ReadElementSettingsAsync(tenantId, elementId);
+            if (elementSettings == null)
+                return NotFound();
+            return Ok(elementSettings);
+        }
+
+        [HttpGet]
+        [Route("api/v1/element/tenants/{tenantId:int}/elementtypes/c92ee4c4-b133-44cc-8322-640e99c334dc/elements/{elementId:int}/content")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(HtmlElementContent), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ReadHtmlElementContent(long tenantId, long elementId, [FromQuery]long pageId)
+        {
+            HtmlElementContent elementContent = await _htmlElementService.ReadElementContentAsync(tenantId, elementId, pageId);
             if (elementContent == null)
                 return NotFound();
             return Ok(elementContent);
